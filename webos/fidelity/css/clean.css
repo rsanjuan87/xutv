@@ -6412,3 +6412,107 @@ body.is-focused {
   box-shadow: inset 0 0 0 1px #ffffff, 0 10px 24px rgba(0, 0, 0, 0.7) !important;
   pointer-events: none !important;
 }
+
+/* =============================================================================
+   CONTINUAR VIENDO (HISTORY RAIL)
+   ============================================================================= */
+.history-rail-card {
+  position: absolute;
+}
+.history-rail-card .history-rail-bar {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 3px;
+  overflow: hidden;
+  z-index: 5;
+}
+.history-rail-card .history-rail-fill {
+  height: 100%;
+  background: #c8912f;
+  border-radius: 3px;
+}
+.history-rail-card .history-rail-badge {
+  position: absolute;
+  left: 12px;
+  bottom: 24px;
+  padding: 2px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  z-index: 5;
+  white-space: nowrap;
+  max-width: 215px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =============================================================================
+   TELEMETRY HUD ("STATS FOR NERDS")
+   ============================================================================= */
+.telemetry-hud {
+  position: absolute;
+  top: 40px;
+  right: 48px;
+  width: 540px;
+  background: rgba(10, 14, 22, 0.90);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-sizing: border-box;
+  color: #e2e8f0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace, sans-serif;
+  z-index: 999999;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+}
+.telemetry-hud .thud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+.telemetry-hud .thud-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 0.5px;
+}
+.telemetry-hud .thud-close-hint {
+  font-size: 14px;
+  color: #94a3b8;
+}
+.telemetry-hud .thud-body {
+  font-size: 16px;
+  line-height: 24px;
+}
+.telemetry-hud .thud-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.telemetry-hud .thud-label {
+  color: #94a3b8;
+  font-weight: 500;
+}
+.telemetry-hud .thud-val {
+  color: #f8fafc;
+  font-weight: 600;
+  text-align: right;
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.telemetry-hud .thud-highlight {
+  color: #facc15;
+}
+

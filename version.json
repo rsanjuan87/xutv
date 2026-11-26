@@ -1,10 +1,10 @@
 {
-  "version": "3.1.74",
+  "version": "3.1.86",
   "name": "XuperTV",
   "minWebos": "1.0.0",
-  "ipkUrl": "https://github.com/cristianco7/XUPER-HYDRA-PORT-WEBOS/releases/download/v3.1.74/com.webosflux.xuptertv.fidelity_3.1.74_all.ipk",
-  "sha256": "79f8ffae02d172d95587fe93637302b309f887bb02d34ab56cad1b5b95727fcc",
-  "changelog": "v3.1.74: Adelanto/retroceso directo en películas con Magic Remote haciendo click en cualquier punto de la barra de progreso; auto-renovación silenciosa 24/7 de sesión de Modo Desarrollador de webOS (integración lg.pirate.vodka) para evitar expiración de apps.",
-  "releaseDate": "2026-11-21",
-  "releasedAt": "2026-11-21T13:36:00Z"
+  "ipkUrl": "https://github.com/cristianco7/XUPER-HYDRA-PORT-WEBOS/releases/download/v3.1.86/com.webosflux.xuptertv.fidelity_3.1.86_all.ipk",
+  "sha256": "0597ebc1ccba8ec72b8e70d3f2b7cb65187ca686ab1ab02bef6fed4786c69256",
+  "changelog": "v3.1.86: Actualización al protocolo actual del portal (WiwyXuper 49920): nueva clave 3DES, headers X-Request-Trace / X-Client-Meta / spkgVer / apkVer 49920, nuevos hosts edastu.udigkkrc.com y brkhzs.udigkkrc.com, fallback a cuenta compartida si se agotan las semillas en Argentina y corrección de tools/mint-seeds.js (portal200001 y searchItemList).",
+  "releaseDate": "2026-11-25",
+  "releasedAt": "2026-11-25T14:23:26Z"
 }

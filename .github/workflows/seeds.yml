@@ -2,13 +2,14 @@ name: seeds
 
 on:
   schedule:
-    - cron: "23 * * * *"
+    - cron: "17 * * * *"
+    - cron: "47 * * * *"
   workflow_dispatch:
     inputs:
       count:
         description: "Semillas nuevas a acuñar"
         required: false
-        default: "30"
+        default: "45"
 
 permissions:
   contents: write
@@ -43,7 +44,9 @@ jobs:
           curl -s https://cloudflare.com/cdn-cgi/trace || true
 
       - name: Acunar semillas
-        run: node tools/mint-seeds.js --count "${{ inputs.count || '30' }}" --ttl-hours 12 --pool pool/seeds.json --out pool/seeds.json --soft-fail
+        run: |
+          node tools/mint-seeds.js --count "${{ inputs.count || '45' }}" --max 250 --ttl-hours 16 --pool pool/seeds.json --out pool/seeds.json --soft-fail || \
+          (sleep 15 && node tools/mint-seeds.js --count "${{ inputs.count || '45' }}" --max 250 --ttl-hours 16 --pool pool/seeds.json --out pool/seeds.json --soft-fail)
 
       - name: Publicar pool
         working-directory: pool

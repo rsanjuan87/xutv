@@ -76,6 +76,9 @@ function fetchUrl(u, timeoutMs, cb) {
 
 function fetchLatamProxies(cb) {
   var urls = [
+    "https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/http.txt",
+    "https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt",
+    "https://raw.githubusercontent.com/roosterkid/openproxylist/main/HTTPS_RAW.txt",
     "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=7000&country=CO,MX,PE,EC,AR,CL,BR,BO,UY,PY,PA,CR,GT,DO&ssl=yes",
     "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=7000&country=CO,MX,PE,EC,AR,CL,BR,BO,UY,PY,PA,CR,GT,DO&ssl=all",
     "https://proxylist.geonode.com/api/proxy-list?country=CO&protocols=http%2Chttps&limit=30&sort_by=lastChecked&sort_type=desc",
@@ -172,7 +175,7 @@ function probeProxy(proxy, cb) {
     if (done) return;
     done = true;
     cb(new Error("timeout"));
-  }, 9000);
+  }, 4000);
 
   magis.ensureSession(function (err) {
     if (done) return;
@@ -199,6 +202,10 @@ function ensureWorkingRoute(cb) {
       log("conexión directa funcional (zona no bloqueada)");
       return cb(null);
     }
+    if (err && err.portalCode === "portal200001") {
+      log("rechazo de versión del portal (portal200001): " + (err.message || "versión no aceptada"));
+      return cb(err);
+    }
     log("conexión directa bloqueada por región (portal100024); buscando proxy regional LatAm para GitHub Actions...");
     fetchLatamProxies(function (err2, list) {
       if (!list || !list.length) {
@@ -207,11 +214,11 @@ function ensureWorkingRoute(cb) {
       }
       log("reunidos " + list.length + " proxies candidatos de LatAm. Filtrando TCP CONNECT en paralelo...");
 
-      var candidates = list.slice(0, 150);
+      var candidates = list.slice(0, 100);
       var live = [];
       var tested = 0;
       candidates.forEach(function (p) {
-        testConnect(p, "cloudflare.com", 443, 6000, function (err3, ok) {
+        testConnect(p, "cloudflare.com", 443, 3500, function (err3, ok) {
           if (!err3 && ok) {
             live.push(p);
           }
@@ -256,7 +263,7 @@ function mintOne(cb) {
     if (finished) return;
     finished = true;
     cb(new Error("timeout acuñando la semilla"));
-  }, 90000);
+  }, 35000);
 
   function finish(err, seed) {
     if (finished) return;
@@ -270,11 +277,15 @@ function mintOne(cb) {
     var s = magis.session;
     if (s.usesSeed) return finish(new Error("el portal devolvió una semilla en vez de activar (zona bloqueada)"));
     if (!s.userId || !s.userToken) return finish(new Error("activación incompleta"));
-    magis.home("movies", 1, function (err2, res) {
+    magis.call("v3/searchByName", { value: "a", type: "0", pageSize: 5 }, { urgent: true }, function (err2, res) {
       if (err2) return finish(err2);
-      var list = res && res.items ? res.items : res;
+      var list =
+        (res && res.searchItemList) ||
+        (res && res.contents) ||
+        (res && res.items) ||
+        res;
       var n = (list && list.length) || 0;
-      if (n < 1) return finish(new Error("el catálogo vino vacío: sesión sin acceso"));
+      if (n < 1) return finish(new Error("la búsqueda de catálogo vino vacía: sesión sin acceso"));
       finish(null, {
         sn: String(s.sn || "").toLowerCase(),
         userId: String(s.userId),

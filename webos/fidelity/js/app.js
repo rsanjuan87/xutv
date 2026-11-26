@@ -1,6 +1,6 @@
 !(function () {
   "use strict";
-  var APP_VERSION = "3.1.74";
+  var APP_VERSION = "3.1.86";
   window.APP_VERSION = APP_VERSION;
   /* Iconos vectoriales inline: las fuentes de las TV webOS no incluyen
      glifos ★ ☆ ▶ ⚙ ➕ ni emoji, por eso se dibujan en SVG. */
@@ -96,20 +96,20 @@
   function o(e) {
     return (
       (e = String(e).toLowerCase()).normalize &&
-        (e = e.normalize("NFD").replace(/[\u0300-\u036f]/g, "")),
+      (e = e.normalize("NFD").replace(/[\u0300-\u036f]/g, "")),
       e
     );
   }
   var s = [
-      "Acción",
-      "Drama",
-      "Comedia",
-      "Suspenso",
-      "Aventura",
-      "Animación",
-      "Familiar",
-      "Ciencia ficción",
-    ],
+    "Acción",
+    "Drama",
+    "Comedia",
+    "Suspenso",
+    "Aventura",
+    "Animación",
+    "Familiar",
+    "Ciencia ficción",
+  ],
     l = [],
     d = {
       Destacado: "destacado",
@@ -163,16 +163,16 @@
     if (!e) return [];
     for (
       var t = [
-          "items",
-          "movies",
-          "results",
-          "recommendList",
-          "movieList",
-          "totalMovieList",
-          "programList",
-          "data",
-        ],
-        a = 0;
+        "items",
+        "movies",
+        "results",
+        "recommendList",
+        "movieList",
+        "totalMovieList",
+        "programList",
+        "data",
+      ],
+      a = 0;
       a < t.length;
       a++
     ) {
@@ -210,30 +210,30 @@
     var a = y();
     return "catalog" === e
       ? {
-          userId: a.userId,
-          userToken: a.userToken,
-          portalCode: a.portalCode,
-          homePageCode: a.homePageCode,
-          version: a.version,
-        }
+        userId: a.userId,
+        userToken: a.userToken,
+        portalCode: a.portalCode,
+        homePageCode: a.homePageCode,
+        version: a.version,
+      }
       : "search" === e
         ? {
-            userToken: a.userToken,
-            userId: a.userId,
-            portalCode: a.portalCode,
-            columnId: "",
-            value: t || "",
-            type: "",
-            pageSize: 20,
-            pageNum: 1,
-            filter: "",
-          }
+          userToken: a.userToken,
+          userId: a.userId,
+          portalCode: a.portalCode,
+          columnId: "",
+          value: t || "",
+          type: "",
+          pageSize: 20,
+          pageNum: 1,
+          filter: "",
+        }
         : {
-            userToken: a.userToken,
-            userId: a.userId,
-            portalCode: a.portalCode,
-            programId: t,
-          };
+          userToken: a.userToken,
+          userId: a.userId,
+          portalCode: a.portalCode,
+          programId: t,
+        };
   }
   function w(e) {
     return e
@@ -242,8 +242,8 @@
           ? e
           : p.imageBaseUrl
             ? String(p.imageBaseUrl).replace(/\/$/, "") +
-              "/" +
-              e.replace(/^\//, "")
+            "/" +
+            e.replace(/^\//, "")
             : e)
       : "";
   }
@@ -295,10 +295,10 @@
       ),
       title: S(
         e.title ||
-          e.name ||
-          e.programName ||
-          e.programTitle ||
-          e.original_title,
+        e.name ||
+        e.programName ||
+        e.programTitle ||
+        e.original_title,
         "Sin título"
       ),
       category: o(
@@ -310,9 +310,9 @@
       ),
       year: S(
         e.year ||
-          e.release_year ||
-          e.programYear ||
-          (e.releaseDate || e.releaseTime || e.release_date || "").slice(0, 4),
+        e.release_year ||
+        e.programYear ||
+        (e.releaseDate || e.releaseTime || e.release_date || "").slice(0, 4),
         "—"
       ),
       duration: S(r, "—"),
@@ -326,22 +326,22 @@
       kind: l ? "serie" : S(e.kind || e.media_type, "película"),
       poster: w(
         e.posterUrl ||
-          e.poster_url ||
-          e.poster ||
-          e.poster_path ||
-          e.image ||
-          e.imageUrl ||
-          e.cover ||
-          e.coverUrl ||
-          e.programPoster ||
-          e.programImage
+        e.poster_url ||
+        e.poster ||
+        e.poster_path ||
+        e.image ||
+        e.imageUrl ||
+        e.cover ||
+        e.coverUrl ||
+        e.programPoster ||
+        e.programImage
       ),
       landscape: w(
         e.landscapeUrl ||
-          e.landscape_url ||
-          e.landscape ||
-          e.wideImage ||
-          e.bannerImage
+        e.landscape_url ||
+        e.landscape ||
+        e.wideImage ||
+        e.bannerImage
       ),
       backdrop: w(
         e.backdropUrl || e.backdrop_url || e.backdrop || e.backdrop_path
@@ -415,9 +415,9 @@
   }
   function catalogSeasonNumber(item) {
     var raw =
-        String((item && (item.title || item.name)) || "") +
-        " " +
-        String((item && item.alias) || ""),
+      String((item && (item.title || item.name)) || "") +
+      " " +
+      String((item && item.alias) || ""),
       m = /\b(?:t|temp\.?|temporada|season|s)\s*(\d{1,2})\b/i.exec(raw),
       n = m ? parseInt(m[1], 10) : 0;
     return !n || n > 99 ? 0 : n;
@@ -502,8 +502,8 @@
   function k(e) {
     if (!e || !x(e)) return null;
     var t = String(e.title || e.alias || "")
-        .replace(/\s+/g, " ")
-        .replace(/^\s+|\s+$/g, ""),
+      .replace(/\s+/g, " ")
+      .replace(/^\s+|\s+$/g, ""),
       a =
         /^(.*?)(?:\s*[-–:|]?\s*(?:temporada|season)\s*(\d+)|\s*[-–:|]?\s*[st]\s*0?(\d+))\s*$/i.exec(
           t
@@ -522,53 +522,53 @@
       var u = r[String(p.id)];
       (u &&
         (u.episodes && (p.episodes = u.episodes),
-        u.seasons && (p.seasons = u.seasons),
-        u._detailsLoaded && (p._detailsLoaded = !0),
-        !p.streamUrl && u.streamUrl && (p.streamUrl = u.streamUrl)),
+          u.seasons && (p.seasons = u.seasons),
+          u._detailsLoaded && (p._detailsLoaded = !0),
+          !p.streamUrl && u.streamUrl && (p.streamUrl = u.streamUrl)),
         d.push(p));
     }
     for (
       var f = (function (e) {
-          for (var t = {}, a = [], i = 0; i < e.length; i++) {
-            var n = k(e[i]);            n
-              ? (t[(r = o(n.title))] || (t[r] = { title: n.title, items: [] }),
-                t[r].items.push({ item: e[i], number: n.number }))
-              : a.push(e[i]);
-          }
-          for (var r in t)
-            if (t.hasOwnProperty(r)) {
-              var s = t[r];
-              if (s.items.length < 2) a.push(s.items[0].item);
-              else {
-                s.items.sort(function (e, t) {
-                  return e.number - t.number;
-                });
-                var l = s.items[0].item,
-                  d = {};
-                ((l._catalogSeasons = []),
-                  (l._seriesGroup = !0),
-                  (l._seriesTitle = s.title),
-                  (l.title = s.title),
-                  (l.alias = s.title),
-                  (l.seasons = []));
-                for (var c = 0; c < s.items.length; c++) {
-                  for (
-                    var p = s.items[c],
-                      u = String(p.item.category || "").split(","),
-                      v = 0;
-                    v < u.length;
-                    v++
-                  )
-                    u[v] && (d[u[v]] = !0);
-                  var f = { id: p.item.id, number: p.number, title: s.title };
-                  (l._catalogSeasons.push(f), l.seasons.push(f));
-                }
-                ((l.category = Object.keys(d).join(",")), a.push(l));
+        for (var t = {}, a = [], i = 0; i < e.length; i++) {
+          var n = k(e[i]); n
+            ? (t[(r = o(n.title))] || (t[r] = { title: n.title, items: [] }),
+              t[r].items.push({ item: e[i], number: n.number }))
+            : a.push(e[i]);
+        }
+        for (var r in t)
+          if (t.hasOwnProperty(r)) {
+            var s = t[r];
+            if (s.items.length < 2) a.push(s.items[0].item);
+            else {
+              s.items.sort(function (e, t) {
+                return e.number - t.number;
+              });
+              var l = s.items[0].item,
+                d = {};
+              ((l._catalogSeasons = []),
+                (l._seriesGroup = !0),
+                (l._seriesTitle = s.title),
+                (l.title = s.title),
+                (l.alias = s.title),
+                (l.seasons = []));
+              for (var c = 0; c < s.items.length; c++) {
+                for (
+                  var p = s.items[c],
+                  u = String(p.item.category || "").split(","),
+                  v = 0;
+                  v < u.length;
+                  v++
+                )
+                  u[v] && (d[u[v]] = !0);
+                var f = { id: p.item.id, number: p.number, title: s.title };
+                (l._catalogSeasons.push(f), l.seasons.push(f));
               }
+              ((l.category = Object.keys(d).join(",")), a.push(l));
             }
-          return a;
-        })(dedupeCatalogVariants(d)),
-        h = 0;
+          }
+        return a;
+      })(dedupeCatalogVariants(d)),
+      h = 0;
       h < f.length;
       h++
     )
@@ -629,8 +629,8 @@
   function I() {
     return (
       !window.PalmServiceBridge ||
-        (window.webOS && window.webOS.service) ||
-        ((window.webOS = window.webOS || {}),
+      (window.webOS && window.webOS.service) ||
+      ((window.webOS = window.webOS || {}),
         (window.webOS.service = {
           request: function (e, t) {
             t = t || {};
@@ -669,18 +669,18 @@
     r = setTimeout(function () {
       try {
         o && o.abort();
-      } catch (e) {}
+      } catch (e) { }
       l("El servicio no respondió por la vía local", null);
     }, s + 1e3);
     try {
       (o = new XMLHttpRequest()).open(
         "GET",
         "http://127.0.0.1:" +
-          SERVICE_HTTP_PORT +
-          "/" +
-          encodeURIComponent(e) +
-          "?q=" +
-          encodeURIComponent(JSON.stringify(t || {})),
+        SERVICE_HTTP_PORT +
+        "/" +
+        encodeURIComponent(e) +
+        "?q=" +
+        encodeURIComponent(JSON.stringify(t || {})),
         !0
       );
       ((o.timeout = s),
@@ -718,7 +718,7 @@
       if (!/^https?:\/\//i.test(a)) return;
       if (/^https?:\/\/(127\.0\.0\.1|localhost)[:/]/i.test(a)) return;
       A[e] = { url: a, headers: t.headers || {} };
-    } catch (e) {}
+    } catch (e) { }
   }
   function P(e, t, a, i) {
     var n = p.serviceId || "com.webosflux.xuptertv.fidelity.service",
@@ -752,12 +752,12 @@
       ((s = setTimeout(function () {
         l(
           "El servicio de la TV no respondió en " +
-            Math.round(o / 1e3) +
-            " s. Desenchufa la TV de la corriente 10 segundos y vuelve a abrir la app.",
+          Math.round(o / 1e3) +
+          " s. Desenchufa la TV de la corriente 10 segundos y vuelve a abrir la app.",
           null
         );
       }, o + 1e3)),
-      I() && window.PalmServiceBridge)
+        I() && window.PalmServiceBridge)
     )
       try {
         return (
@@ -783,24 +783,24 @@
       }
     return p.devServiceUrl
       ? (_(
-          String(p.devServiceUrl).replace(/\/$/, "") +
-            "/" +
-            e +
-            "?" +
-            (function (e) {
-              var t = [];
-              for (var a in e)
-                Object.prototype.hasOwnProperty.call(e, a) &&
-                  t.push(
-                    encodeURIComponent(a) + "=" + encodeURIComponent(e[a])
-                  );
-              return t.join("&");
-            })(t || {}),
-          function (e, t) {
-            l(e, t);
-          },
-          null
-        ),
+        String(p.devServiceUrl).replace(/\/$/, "") +
+        "/" +
+        e +
+        "?" +
+        (function (e) {
+          var t = [];
+          for (var a in e)
+            Object.prototype.hasOwnProperty.call(e, a) &&
+              t.push(
+                encodeURIComponent(a) + "=" + encodeURIComponent(e[a])
+              );
+          return t.join("&");
+        })(t || {}),
+        function (e, t) {
+          l(e, t);
+        },
+        null
+      ),
         !0)
       : (l("El servicio XuperTV no está disponible", null), !1);
   }
@@ -836,17 +836,17 @@
       }
       for (
         var p = (function () {
-            for (var e = M(), t = [], a = 0; a < e.length; a++)
-              if (e[a] && e[a].streamUrl) {
-                var i = {};
-                for (var n in e[a])
-                  Object.prototype.hasOwnProperty.call(e[a], n) &&
-                    (i[n] = e[a][n]);
-                ((i.category = "demo"), (i.portal = !1), t.push(i));
-              }
-            return t;
-          })(),
-          u = 0;
+          for (var e = M(), t = [], a = 0; a < e.length; a++)
+            if (e[a] && e[a].streamUrl) {
+              var i = {};
+              for (var n in e[a])
+                Object.prototype.hasOwnProperty.call(e[a], n) &&
+                  (i[n] = e[a][n]);
+              ((i.category = "demo"), (i.portal = !1), t.push(i));
+            }
+          return t;
+        })(),
+        u = 0;
         u < p.length;
         u++
       )
@@ -867,19 +867,19 @@
             (f.lastSync = Date.now()),
             O(e),
             a &&
-              f.retryTimer &&
-              (clearTimeout(f.retryTimer), (f.retryTimer = null)),
+            f.retryTimer &&
+            (clearTimeout(f.retryTimer), (f.retryTimer = null)),
             void (
               a ||
               f.retryTimer ||
               ((f.error =
                 f.error || "El portal de XuperTV no respondió desde tu red"),
-              Yt(
-                "El portal de XuperTV no respondió. Reintentando en 20 segundos…"
-              ),
-              (f.retryTimer = setTimeout(function () {
-                ((f.retryTimer = null), q());
-              }, 2e4)))
+                Yt(
+                  "El portal de XuperTV no respondió. Reintentando en 20 segundos…"
+                ),
+                (f.retryTimer = setTimeout(function () {
+                  ((f.retryTimer = null), q());
+                }, 2e4)))
             )
           );
         var n = h[t++],
@@ -889,8 +889,8 @@
                 return ((e[n] = s.items), f.roots++, (a = !0), i());
               t < 2
                 ? setTimeout(function () {
-                    r(t + 1);
-                  }, 900 * t)
+                  r(t + 1);
+                }, 900 * t)
                 : (o && (f.error = o), i());
             });
           };
@@ -929,7 +929,7 @@
                         a = e.errorMessage || e.message || e.msg || "";
                       return t || a
                         ? (t ? String(t) + ": " : "") +
-                            (a ? String(a) : "La API rechazó la petición")
+                        (a ? String(a) : "La API rechazó la petición")
                         : "";
                     })(t);
                     if (e || a || !L(m(t), "api")) {
@@ -945,7 +945,7 @@
                 ? R("bundled", null)
                 : (v.error = "Falta baseUrl/catalogUrl del catálogo autorizado")
             : (v.error =
-                "Falta la sesión XuperTV (userId, userToken y portalCode)");
+              "Falta la sesión XuperTV (userId, userToken y portalCode)");
         } else R("bundled", null);
       else N();
   }
@@ -962,12 +962,12 @@
         (e[r] = n[r]);
     null !== a &&
       ((e.id = a),
-      (e.title = i),
-      (e.alias = i),
-      (e.seasons = e._catalogSeasons || e.seasons));
+        (e.title = i),
+        (e.alias = i),
+        (e.seasons = e._catalogSeasons || e.seasons));
   }
   function U(e, t) {
-    if (((t = t || function () {}), !e)) return t(null);
+    if (((t = t || function () { }), !e)) return t(null);
     if (e._detailsLoaded) return t(e);
     if (e._detailLoading)
       return (
@@ -984,10 +984,10 @@
           ) {
             if (
               (H(e, a.item),
-              (e.episodes = a.episodes || []),
-              (e.seasons = e._catalogSeasons || a.seasons || []),
-              e.seasonId || (e.seasonId = e.id),
-              e.seasons &&
+                (e.episodes = a.episodes || []),
+                (e.seasons = e._catalogSeasons || a.seasons || []),
+                e.seasonId || (e.seasonId = e.id),
+                e.seasons &&
                 e.seasons.length &&
                 e.seasons.sort(function (e, t) {
                   return (
@@ -995,7 +995,7 @@
                     (parseInt(t.number, 10) || 0)
                   );
                 }),
-              (!e.seasons || !e.seasons.length) && x(e))
+                (!e.seasons || !e.seasons.length) && x(e))
             ) {
               var i = 1,
                 n =
@@ -1028,8 +1028,8 @@
           X.detail === e &&
             "detail" === X.screen &&
             (Ca(e),
-            restoreDetailFocus(),
-            l || (xe && xe.src && !xe.paused) || Jr(e, X.detailEpisode));
+              restoreDetailFocus(),
+              l || (xe && xe.src && !xe.paused) || Jr(e, X.detailEpisode));
         })
       );
     var a = g("detail");
@@ -1044,12 +1044,12 @@
               r &&
                 "object" == typeof r &&
                 (H(e, r),
-                (e._detailsLoaded = !0),
-                X.detail === e &&
+                  (e._detailsLoaded = !0),
+                  X.detail === e &&
                   "detail" === X.screen &&
                   (Ca(e),
-                  restoreDetailFocus(),
-                  (xe && xe.src && !xe.paused) || Jr(e, X.detailEpisode)));
+                    restoreDetailFocus(),
+                    (xe && xe.src && !xe.paused) || Jr(e, X.detailEpisode)));
             }
             t(e);
           },
@@ -1233,7 +1233,7 @@
   function K(e, t) {
     try {
       localStorage.setItem(e, JSON.stringify(t));
-    } catch (e) {}
+    } catch (e) { }
   }
   function Y() {
     K(G, X.playback);
@@ -1292,6 +1292,23 @@
         X.playback.hasOwnProperty(t) &&
           void 0 !== e[t] &&
           (X.playback[t] = e[t]);
+    /* Detección de televisores webOS 1.x / 2.x o modelos legacy (UF, UB, UG, LF)
+       que no decodifican HEVC dentro de MPEG-TS crudo. Por defecto en estas TVs
+       se activa Modo Fluido (fMP4) para que la imagen se vea sin pantalla negra. */
+    try {
+      var ver = xWebosVersion();
+      var legacyModel = /^\d{2}(UB|UF|UG|LF)/i.test(String(panelInfo().modelName || ""));
+      var isLegacyTv = (ver > 0 && ver < 3) || legacyModel;
+      if (isLegacyTv && !localStorage.getItem("xuper_legacy_smooth_v1")) {
+        localStorage.setItem("xuper_legacy_smooth_v1", "1");
+        X.playback.streamMode = "smooth";
+        X.streamMode = "smooth";
+        K(G, X.playback);
+      } else if (!e && isLegacyTv) {
+        X.playback.streamMode = "smooth";
+        X.streamMode = "smooth";
+      }
+    } catch (e) { }
     /* Migración: las versiones anteriores guardaban subtitle=true por defecto.
        Se apaga una sola vez al actualizar. Después de esto, si el espectador
        activa los subtítulos, su elección se conserva hasta que los desactive. */
@@ -1301,7 +1318,7 @@
         localStorage.setItem("xuper_subtitle_pref_v2", "1");
         K(G, X.playback);
       }
-    } catch (e) {}
+    } catch (e) { }
     var a = J($, null);
     (a && a.id
       ? ((Q = a).history && Q.history.length) || (Q.history = [])
@@ -1563,7 +1580,7 @@
           var o = document.querySelector(".home-sidebar-bg");
           o &&
             (o.classList.toggle("is-on", !!r),
-            o.classList.toggle("is-collapsed", !r));
+              o.classList.toggle("is-collapsed", !r));
           var s = t("screen-home");
           s && s.classList.toggle("is-rail-open", !!r);
         }
@@ -1632,7 +1649,7 @@
           if (entry.onClose && typeof entry.onClose === "function") {
             try {
               entry.onClose();
-            } catch (err) {}
+            } catch (err) { }
           }
           entry.el = null;
           entry.returnFocus = null;
@@ -1779,7 +1796,7 @@
         if (top.canClose && typeof top.canClose === "function") {
           try {
             if (!top.canClose()) return false;
-          } catch (err) {}
+          } catch (err) { }
         }
 
         var popped = stack.pop();
@@ -1876,14 +1893,14 @@
       if (!X.focus._onMove || !X.focus._onMove(e)) {
         for (
           var isHomePage = "home" === X.screen && n(X.focus, ".home-page"),
-            a = "home" === X.screen && n(X.focus, ".home-tabs"),
-            i = it(),
-            r = X.focus.getBoundingClientRect(),
-            o = r.left + r.width / 2,
-            s = r.top + r.height / 2,
-            l = null,
-            d = 1e9,
-            c = 0;
+          a = "home" === X.screen && n(X.focus, ".home-tabs"),
+          i = it(),
+          r = X.focus.getBoundingClientRect(),
+          o = r.left + r.width / 2,
+          s = r.top + r.height / 2,
+          l = null,
+          d = 1e9,
+          c = 0;
           c < i.length;
           c++
         ) {
@@ -1940,10 +1957,10 @@
     var n = t("screen-" + e);
     if (
       (n && n.classList.add("is-active"),
-      (X.screen = e),
-      "player" !== e && X.episodeBrowserOpen && zn(!0),
-      "player" !== e && X.categoryPickerOpen && ur(!0),
-      "player" !== e && "detail" !== e)
+        (X.screen = e),
+        "player" !== e && X.episodeBrowserOpen && zn(!0),
+        "player" !== e && X.categoryPickerOpen && ur(!0),
+        "player" !== e && "detail" !== e)
     ) {
       var detScreen = t("screen-detail");
       if (detScreen) {
@@ -1972,74 +1989,76 @@
           if (liveFavoritePrompt) return void closeLiveFavoriteConfirm();
           if (X.categoryPickerOpen) return ((dt = Date.now()), void ur());
           if ("player" === X.screen)
-            return Ye
-              ? void Ur(!1)
-              : liveSearchOpen
-                ? void closeLiveChannelSearch()
-              : X.episodeBrowserOpen
-                ? ((dt = Date.now()), void zn())
-                : zi
-                    ? void On()
-                    : void (X.channelsOpen
+            return isTelemetryHudOpen()
+              ? void closeTelemetryHud()
+              : Ye
+                ? void Ur(!1)
+                : liveSearchOpen
+                  ? void closeLiveChannelSearch()
+                  : X.episodeBrowserOpen
+                    ? ((dt = Date.now()), void zn())
+                    : zi
+                      ? void On()
+                      : void (X.channelsOpen
                         ? ro()
                         : X.infobar
                           ? ui()
                           : X.vodInfobarVisible
                             ? fi()
                             : (function () {
-                                (ui(), fi());
-                                var e = X.playerReturn;
-                                if (e && "detail" === e.screen) {
-                                  var a = t("screen-player"),
-                                    i = t("screen-detail");
-                                  (a &&
-                                    (a.classList.add("is-mini"),
+                              (ui(), fi(), closeTelemetryHud());
+                              var e = X.playerReturn;
+                              if (e && "detail" === e.screen) {
+                                var a = t("screen-player"),
+                                  i = t("screen-detail");
+                                (a &&
+                                  (a.classList.add("is-mini"),
                                     a.classList.add("is-active")),
-                                    i && i.classList.add("is-active"),
-                                    (X.screen = "detail"));
-                                  if (xe && !xe.paused) {
-                                    try {
-                                      xe.pause();
-                                    } catch (errPause) {}
-                                  }
-                                  var n = !1;
-                                  if (X.detailNeedsRebuild && X.detail) {
-                                    ((X.detailNeedsRebuild = !1),
-                                      Ca(X.detail),
-                                      (n = !0));
-                                    var r = de
-                                      ? de.querySelector(".detail-season")
-                                      : null;
-                                    r && rt(r);
-                                  } else X.detail && Jn(X.detail);
-                                  if (!n)
-                                    if (e.focus && at(e.focus)) rt(e.focus);
-                                    else {
-                                      var o = le
-                                        ? le.querySelector(".focusable")
-                                        : null;
-                                      o && rt(o);
-                                    }
-                                } else {
-                                  zr();
-                                  var s = t("screen-player");
-                                  (s &&
-                                    (s.classList.remove("is-mini"),
-                                    s.classList.remove("is-active")),
-                                    e && "search" === e.screen
-                                      ? (lt("search"), rt(e.focus))
-                                      : (lt("home"),
-                                        bt(X.tab, !1),
-                                        e && e.focus && at(e.focus)
-                                          ? rt(e.focus)
-                                          : Ue[X.tab] && rt(Ue[X.tab])));
+                                  i && i.classList.add("is-active"),
+                                  (X.screen = "detail"));
+                                if (xe && !xe.paused) {
+                                  try {
+                                    xe.pause();
+                                  } catch (errPause) { }
                                 }
-                              })());
+                                var n = !1;
+                                if (X.detailNeedsRebuild && X.detail) {
+                                  ((X.detailNeedsRebuild = !1),
+                                    Ca(X.detail),
+                                    (n = !0));
+                                  var r = de
+                                    ? de.querySelector(".detail-season")
+                                    : null;
+                                  r && rt(r);
+                                } else X.detail && Jn(X.detail);
+                                if (!n)
+                                  if (e.focus && at(e.focus)) rt(e.focus);
+                                  else {
+                                    var o = le
+                                      ? le.querySelector(".focusable")
+                                      : null;
+                                    o && rt(o);
+                                  }
+                              } else {
+                                zr();
+                                var s = t("screen-player");
+                                (s &&
+                                  (s.classList.remove("is-mini"),
+                                    s.classList.remove("is-active")),
+                                  e && "search" === e.screen
+                                    ? (lt("search"), rt(e.focus))
+                                    : (lt("home"),
+                                      bt(X.tab, !1),
+                                      e && e.focus && at(e.focus)
+                                        ? rt(e.focus)
+                                        : Ue[X.tab] && rt(Ue[X.tab])));
+                              }
+                            })());
           if ("detail" !== X.screen) {
             if ("section" === X.screen) return void closeSection();
             if ("search" === X.screen) {
-              try { if (me && me.blur) me.blur(); } catch (err) {}
-              try { if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); } catch (err) {}
+              try { if (me && me.blur) me.blur(); } catch (err) { }
+              try { if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); } catch (err) { }
               Da();
               var sRet = X.searchReturn;
               X.searchReturn = null;
@@ -2066,9 +2085,9 @@
               })(X.focus);
               if (inRight) {
                 var menuTarget = document.querySelector(".settings-item.is-selected") ||
-                                 (je && je[0]) ||
-                                 (t("settings-menu") && t("settings-menu").querySelector(".focusable")) ||
-                                 null;
+                  (je && je[0]) ||
+                  (t("settings-menu") && t("settings-menu").querySelector(".focusable")) ||
+                  null;
                 if (menuTarget) {
                   rt(menuTarget);
                   return;
@@ -2085,8 +2104,8 @@
               window.webOSTV && window.webOSTV.platformBack
                 ? window.webOSTV.platformBack()
                 : window.PalmSystem &&
-                  window.PalmSystem.platformBack &&
-                  window.PalmSystem.platformBack();
+                window.PalmSystem.platformBack &&
+                window.PalmSystem.platformBack();
             }
           } else {
             if (DialogManager && DialogManager.isOpen("seasonPopup")) {
@@ -2164,7 +2183,7 @@
       try {
         e.focus();
         e.setSelectionRange && e.setSelectionRange(e.value.length, e.value.length);
-      } catch (t) {}
+      } catch (t) { }
     };
     e.onclick = function () {
       return (e._activate(), !0);
@@ -2226,8 +2245,8 @@
       lastBackKeyDown = Date.now();
       e.preventDefault && e.preventDefault();
       e.stopPropagation && e.stopPropagation();
-      try { if (me && me.blur) me.blur(); } catch (err) {}
-      try { if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); } catch (err) {}
+      try { if (me && me.blur) me.blur(); } catch (err) { }
+      try { if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); } catch (err) { }
       Da();
       var sRet = X.searchReturn;
       X.searchReturn = null;
@@ -2268,9 +2287,9 @@
         dt = Date.now() + 250;
         lastBackKeyDown = Date.now();
         var menuTarget = document.querySelector(".settings-item.is-selected") ||
-                         (je && je[0]) ||
-                         (t("settings-menu") && t("settings-menu").querySelector(".focusable")) ||
-                         null;
+          (je && je[0]) ||
+          (t("settings-menu") && t("settings-menu").querySelector(".focusable")) ||
+          null;
         if (menuTarget) {
           rt(menuTarget);
           return;
@@ -2311,40 +2330,40 @@
           e.preventDefault && e.preventDefault(),
           void (e.stopPropagation && e.stopPropagation()))
         : X.categoryPickerOpen
-        ? (ur(),
-          e.preventDefault && e.preventDefault(),
-          void (e.stopPropagation && e.stopPropagation()))
-        : X.episodeBrowserOpen
-          ? (zn(),
+          ? (ur(),
             e.preventDefault && e.preventDefault(),
             void (e.stopPropagation && e.stopPropagation()))
-        : catalogFilterDialog
-          ? ((dt = Date.now() + 350),
-            closeCatalogFilter(),
-            e.preventDefault && e.preventDefault(),
-            void (e.stopPropagation && e.stopPropagation()))
-          : liveFavoritePrompt
-            ? (closeLiveFavoriteConfirm(),
+          : X.episodeBrowserOpen
+            ? (zn(),
               e.preventDefault && e.preventDefault(),
               void (e.stopPropagation && e.stopPropagation()))
-        : Ut
-            ? ((dt = Date.now()),
-              zt || ea(),
-              e.preventDefault && e.preventDefault(),
-              void (e.stopPropagation && e.stopPropagation()))
-            : ji
-                ? ((dt = Date.now()),
-                  tr(),
+            : catalogFilterDialog
+              ? ((dt = Date.now() + 350),
+                closeCatalogFilter(),
+                e.preventDefault && e.preventDefault(),
+                void (e.stopPropagation && e.stopPropagation()))
+              : liveFavoritePrompt
+                ? (closeLiveFavoriteConfirm(),
                   e.preventDefault && e.preventDefault(),
                   void (e.stopPropagation && e.stopPropagation()))
-                : zi
+                : Ut
                   ? ((dt = Date.now()),
-                    On(),
+                    zt || ea(),
                     e.preventDefault && e.preventDefault(),
                     void (e.stopPropagation && e.stopPropagation()))
-                  : (ct(),
-                    e.preventDefault && e.preventDefault(),
-                    void (e.stopPropagation && e.stopPropagation()));
+                  : ji
+                    ? ((dt = Date.now()),
+                      tr(),
+                      e.preventDefault && e.preventDefault(),
+                      void (e.stopPropagation && e.stopPropagation()))
+                    : zi
+                      ? ((dt = Date.now()),
+                        On(),
+                        e.preventDefault && e.preventDefault(),
+                        void (e.stopPropagation && e.stopPropagation()))
+                      : (ct(),
+                        e.preventDefault && e.preventDefault(),
+                        void (e.stopPropagation && e.stopPropagation()));
     }
     if (Ht)
       return (
@@ -2396,6 +2415,11 @@
           return void (e.preventDefault && e.preventDefault());
         }
       }
+      var isBlueKey = (406 === t || "ColorF3Blue" === a || "Blue" === a || 457 === t || "Info" === a);
+      if (isBlueKey && "player" === X.screen) {
+        toggleTelemetryHud();
+        return void (e.preventDefault && e.preventDefault());
+      }
       var isChannelUp = (427 === t || 33 === t || "ChannelUp" === a || "PageUp" === a);
       var isChannelDown = (428 === t || 34 === t || "ChannelDown" === a || "PageDown" === a);
       if (isChannelUp || isChannelDown) {
@@ -2414,14 +2438,16 @@
       if ("player" === X.screen) {
         if (d)
           return (
+            (vodUserPaused = !1),
             xe && xe.paused && (Mr(), si("none"), pi()),
             void (e.preventDefault && e.preventDefault())
           );
         if (c) {
           if (xe && !xe.paused) {
+            vodUserPaused = !0;
             try {
               xe.pause();
-            } catch (e) {}
+            } catch (e) { }
             (si("pause"), pi());
           }
           return void (e.preventDefault && e.preventDefault());
@@ -2537,9 +2563,9 @@
             if (38 === t) {
               var visible = visibleLiveIndexes();
               var y =
-                  X.focus && void 0 !== X.focus._channel
-                    ? X.focus._channel
-                    : X.channel,
+                X.focus && void 0 !== X.focus._channel
+                  ? X.focus._channel
+                  : X.channel,
                 previous = visible.indexOf(y),
                 g = Se && Se.querySelector(".pc-btn-search");
               previous > 0
@@ -2597,15 +2623,15 @@
           : zi
             ? (Dn(), pt())
             : "player" === X.screen &&
-                "vod" === X.playerMode &&
-                X.focus === Pe &&
-                Ye
+              "vod" === X.playerMode &&
+              X.focus === Pe &&
+              Ye
               ? Ur(!0)
               : "player" === X.screen &&
-                  X.streamError &&
-                  xe &&
-                  xe.src &&
-                  !n(X.focus, ".player-channels")
+                X.streamError &&
+                xe &&
+                xe.src &&
+                !n(X.focus, ".player-channels")
                 ? (Mr(), (X.streamError = ""), jr(""))
                 : "player" === X.screen && "vod" === X.playerMode
                   ? di()
@@ -2634,8 +2660,8 @@
     }
     (e && e.classList.contains("is-active") && e.classList.remove("is-active"),
       a &&
-        !a.classList.contains("is-active") &&
-        (a.classList.add("is-active"), (X.screen = "home")));
+      !a.classList.contains("is-active") &&
+      (a.classList.add("is-active"), (X.screen = "home")));
     try {
       bt(0, !1);
     } catch (e) {
@@ -2654,7 +2680,7 @@
       n && (n.classList.add("is-on"), n.classList.remove("is-collapsed"));
       var r = t("screen-home");
       r && r.classList.add("is-rail-open");
-    } catch (e) {}
+    } catch (e) { }
   }
   function baseSeriesTitle(t) {
     if (!t) return "";
@@ -2756,309 +2782,309 @@
     return picked.length ? picked : items.slice(0, count);
   }
   var ft = [
-      function (t) {
-        ((ie = e("div", "live-main")),
-          ((Ot = document.createElement("video")).className =
-            "live-preview-video"),
-          (Ot.preload = "auto"),
-          (Ot.muted = !1),
-          (Ot.volume = 1),
-          (Ot.autoplay = !0),
-          Ot.removeAttribute("muted"),
-          Ot.setAttribute("playsinline", ""),
-          Ot.setAttribute("webkit-playsinline", ""),
-          ie.appendChild(Ot),
-          ie.appendChild(e("div", "live-frame")),
-          ie.appendChild(e("div", "live-logo")),
-          (qt = e("div", "live-preview-status")),
-          ie.appendChild(qt),
-          t.appendChild(ie));
-        var a = e("div", "live-info");
-        (((ae = e("div", "live-channel")).style.right = "112.5px"),
-          a.appendChild(ae));
-        var i = e("div", "live-fullscreen focusable");
-        ((i._activate = function () {
-          Yr("live");
-          ro();
+    function (t) {
+      ((ie = e("div", "live-main")),
+        ((Ot = document.createElement("video")).className =
+          "live-preview-video"),
+        (Ot.preload = "auto"),
+        (Ot.muted = !1),
+        (Ot.volume = 1),
+        (Ot.autoplay = !0),
+        Ot.removeAttribute("muted"),
+        Ot.setAttribute("playsinline", ""),
+        Ot.setAttribute("webkit-playsinline", ""),
+        ie.appendChild(Ot),
+        ie.appendChild(e("div", "live-frame")),
+        ie.appendChild(e("div", "live-logo")),
+        (qt = e("div", "live-preview-status")),
+        ie.appendChild(qt),
+        t.appendChild(ie));
+      var a = e("div", "live-info");
+      (((ae = e("div", "live-channel")).style.right = "112.5px"),
+        a.appendChild(ae));
+      var i = e("div", "live-fullscreen focusable");
+      ((i._activate = function () {
+        Yr("live");
+        ro();
+      }),
+        (i._onMove = function (e) {
+          if ("down" === e) {
+            var btn = document.querySelector(".live-fast .fast-btn");
+            return btn ? (rt(btn), !0) : !1;
+          }
+          if ("right" === e) {
+            var cRow = Fe.filter(function (el) { return el._channel === X.channel; })[0] || Fe[0];
+            return cRow ? (rt(cRow), !0) : !1;
+          }
+          if ("up" === e) {
+            return Ue[0] ? (rt(Ue[0]), !0) : !1;
+          }
+          return !1;
         }),
-          (i._onMove = function (e) {
-            if ("down" === e) {
-              var btn = document.querySelector(".live-fast .fast-btn");
-              return btn ? (rt(btn), !0) : !1;
-            }
-            if ("right" === e) {
-              var cRow = Fe.filter(function (el) { return el._channel === X.channel; })[0] || Fe[0];
-              return cRow ? (rt(cRow), !0) : !1;
-            }
-            if ("up" === e) {
-              return Ue[0] ? (rt(Ue[0]), !0) : !1;
-            }
-            return !1;
-          }),
-          bindMagicActivate(i),
-          a.appendChild(i),
-          ie.appendChild(a));
-        var n = e("div", "live-arrow-up"),
-          r = e("div", "live-arrow-down");
-        (t.appendChild(n),
-          t.appendChild(r),
-          (function () {
-            var a = e("div", "live-fast"),
-              i = e("button", "fast-btn f-srch focusable"),
-              r = e("button", "fast-btn f-fav focusable"),
-              o = e("button", "fast-btn f-all focusable"),
-              c = e("button", "fast-btn f-cat focusable");
-            (i.setAttribute("aria-label", "Buscar canal"),
-              r.setAttribute("aria-label", "Canales favoritos"),
-              o.setAttribute("aria-label", "Todos los canales"),
-              c.setAttribute("aria-label", "Categorías de canales"),
-              (i.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8" fill="none" stroke="currentColor" stroke-width="3"/><path d="M19 19l8 8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span>Buscar</span>'),
-              (r.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3l4 8 9 1-6.5 6 1.7 9L16 22.5 7.8 27l1.7-9L3 12l9-1z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/></svg><span>Favoritos</span>'),
-              (o.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 16h18M16 7v18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Todos</span>'),
-              (c.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 8h22M5 16h22M5 24h22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="11" cy="8" r="3" fill="currentColor"/><circle cx="22" cy="16" r="3" fill="currentColor"/><circle cx="15" cy="24" r="3" fill="currentColor"/></svg><span>Categorías</span>'),
-              r.classList.toggle("is-active", liveFavoritesOnly),
-              (i._activate = function () {
-                Yr("live");
-                no();
-                openLiveChannelSearch(i);
-              }),
-              (r._activate = function () {
-                liveFavoritesOnly = !liveFavoritesOnly;
-                syncLiveFavoriteButtons();
-                Qt(liveFavoritesOnly);
-                Yt(liveFavoritesOnly ? "Mostrando canales favoritos" : "Mostrando todos los canales");
-                rt(r);
-              }),
-              (o._activate = function () {
-                selectAllLiveChannels(o);
-              }),
-              (c._activate = function () {
-                pr(c);
-              }),
-              (i._onMove = function (e) {
-                if ("right" === e) return (rt(r), !0);
-                if ("up" === e) {
-                  var fs = document.querySelector(".live-info .live-fullscreen");
-                  if (fs) return (rt(fs), !0);
-                  return (Ue[0] ? rt(Ue[0]) : !0, !0);
-                }
-                if ("left" === e) return !0;
-                if ("down" === e) {
-                  var t = Fe.filter(function (e) {
-                    return e._channel === X.channel;
-                  })[0];
-                  return (t ? rt(t) : Fe[0] && rt(Fe[0]), !0);
-                }
-                return !1;
-              }),
-              (r._onMove = function (e) {
-                if ("left" === e) return (rt(i), !0);
-                if ("right" === e) return (rt(o), !0);
-                if ("up" === e) {
-                  var fs = document.querySelector(".live-info .live-fullscreen");
-                  if (fs) return (rt(fs), !0);
-                  return (Ue[0] ? rt(Ue[0]) : !0, !0);
-                }
-                if ("down" === e) {
-                  var t = Fe.filter(function (e) {
-                    return e._channel === X.channel;
-                  })[0];
-                  return (t ? rt(t) : Fe[0] && rt(Fe[0]), !0);
-                }
-                return !1;
-              }),
-              (o._onMove = function (e) {
-                if ("left" === e) return (rt(r), !0);
-                if ("right" === e) return (rt(c), !0);
-                if ("up" === e) {
-                  var fs = document.querySelector(".live-info .live-fullscreen");
-                  if (fs) return (rt(fs), !0);
-                  return (Ue[0] ? rt(Ue[0]) : !0, !0);
-                }
-                if ("down" === e) {
-                  var t = Fe.filter(function (e) {
-                    return e._channel === X.channel;
-                  })[0];
-                  return (t ? rt(t) : Fe[0] && rt(Fe[0]), !0);
-                }
-                return !1;
-              }),
-              (c._onMove = function (e) {
-                if ("left" === e) return (rt(o), !0);
-                if ("right" === e) {
-                  var cRow = Fe.filter(function (el) { return el._channel === X.channel; })[0] || Fe[0];
-                  return (cRow ? rt(cRow) : !0, !0);
-                }
-                if ("up" === e) {
-                  var fs = document.querySelector(".live-info .live-fullscreen");
-                  if (fs) return (rt(fs), !0);
-                  return (Ue[0] ? rt(Ue[0]) : !0, !0);
-                }
-                if ("down" === e) {
-                  var t = Fe.filter(function (e) {
-                    return e._channel === X.channel;
-                  })[0];
-                  return (t ? rt(t) : Fe[0] && rt(Fe[0]), !0);
-                }
-                return !1;
-              }),
-              bindMagicActivate(i),
-              bindMagicActivate(r),
-              bindMagicActivate(o),
-              bindMagicActivate(c),
-              a.appendChild(i),
-              a.appendChild(r),
-              a.appendChild(o),
-              a.appendChild(c),
-              t.appendChild(a));
-          })(),
-          (re = e("div", "live-list scrollable")),
-          t.appendChild(re),
-          Qt(!1),
-          Gt(),
-          ((ne = e("div", "live-focus focusable"))._onMove = function (e) {
-            if ("up" === e) {
-              var a = document.querySelector(".live-fast .f-srch");
-              return (a ? rt(a) : !0, !0);
-            }
-            if ("down" === e) {
-              X.channel < F.length - 1 && Kt(X.channel + 1);
-              var a = Fe.filter(function (e) {
-                return e._channel === X.channel;
-              })[0];
-              return (a && rt(a), !0);
-            }
-            if ("right" === e) {
-              var t = Fe.filter(function (e) {
-                return e._channel === X.channel;
-              })[0];
-              return (t ? rt(t) : Fe.length && rt(Fe[0]), !0);
-            }
-            return "left" === e && (Ue[0] && rt(Ue[0]), !0);
-          }),
-          (ne._activate = function () {
-            Yr("live");
-          }),
-          t.appendChild(ne));
-      },
-      function (e) {
-        var t = ha("destacado"),
-          heroPool = selectHeroItems(t, 10),
-          a = heroPool.slice(0, 6),
-          i = !(!a[0] || !a[0]._portal);
-        fa(e, a, { titles: i, dots: i ? 4 : 0, shade: i, pool: heroPool });
-        var n = t.filter(function (it) {
-          for (var k = 0; k < a.length; k++) if (a[k] && a[k].id === it.id) return false;
+        bindMagicActivate(i),
+        a.appendChild(i),
+        ie.appendChild(a));
+      var n = e("div", "live-arrow-up"),
+        r = e("div", "live-arrow-down");
+      (t.appendChild(n),
+        t.appendChild(r),
+        (function () {
+          var a = e("div", "live-fast"),
+            i = e("button", "fast-btn f-srch focusable"),
+            r = e("button", "fast-btn f-fav focusable"),
+            o = e("button", "fast-btn f-all focusable"),
+            c = e("button", "fast-btn f-cat focusable");
+          (i.setAttribute("aria-label", "Buscar canal"),
+            r.setAttribute("aria-label", "Canales favoritos"),
+            o.setAttribute("aria-label", "Todos los canales"),
+            c.setAttribute("aria-label", "Categorías de canales"),
+            (i.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8" fill="none" stroke="currentColor" stroke-width="3"/><path d="M19 19l8 8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span>Buscar</span>'),
+            (r.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3l4 8 9 1-6.5 6 1.7 9L16 22.5 7.8 27l1.7-9L3 12l9-1z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/></svg><span>Favoritos</span>'),
+            (o.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 16h18M16 7v18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Todos</span>'),
+            (c.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 8h22M5 16h22M5 24h22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="11" cy="8" r="3" fill="currentColor"/><circle cx="22" cy="16" r="3" fill="currentColor"/><circle cx="15" cy="24" r="3" fill="currentColor"/></svg><span>Categorías</span>'),
+            r.classList.toggle("is-active", liveFavoritesOnly),
+            (i._activate = function () {
+              Yr("live");
+              no();
+              openLiveChannelSearch(i);
+            }),
+            (r._activate = function () {
+              liveFavoritesOnly = !liveFavoritesOnly;
+              syncLiveFavoriteButtons();
+              Qt(liveFavoritesOnly);
+              Yt(liveFavoritesOnly ? "Mostrando canales favoritos" : "Mostrando todos los canales");
+              rt(r);
+            }),
+            (o._activate = function () {
+              selectAllLiveChannels(o);
+            }),
+            (c._activate = function () {
+              pr(c);
+            }),
+            (i._onMove = function (e) {
+              if ("right" === e) return (rt(r), !0);
+              if ("up" === e) {
+                var fs = document.querySelector(".live-info .live-fullscreen");
+                if (fs) return (rt(fs), !0);
+                return (Ue[0] ? rt(Ue[0]) : !0, !0);
+              }
+              if ("left" === e) return !0;
+              if ("down" === e) {
+                var t = Fe.filter(function (e) {
+                  return e._channel === X.channel;
+                })[0];
+                return (t ? rt(t) : Fe[0] && rt(Fe[0]), !0);
+              }
+              return !1;
+            }),
+            (r._onMove = function (e) {
+              if ("left" === e) return (rt(i), !0);
+              if ("right" === e) return (rt(o), !0);
+              if ("up" === e) {
+                var fs = document.querySelector(".live-info .live-fullscreen");
+                if (fs) return (rt(fs), !0);
+                return (Ue[0] ? rt(Ue[0]) : !0, !0);
+              }
+              if ("down" === e) {
+                var t = Fe.filter(function (e) {
+                  return e._channel === X.channel;
+                })[0];
+                return (t ? rt(t) : Fe[0] && rt(Fe[0]), !0);
+              }
+              return !1;
+            }),
+            (o._onMove = function (e) {
+              if ("left" === e) return (rt(r), !0);
+              if ("right" === e) return (rt(c), !0);
+              if ("up" === e) {
+                var fs = document.querySelector(".live-info .live-fullscreen");
+                if (fs) return (rt(fs), !0);
+                return (Ue[0] ? rt(Ue[0]) : !0, !0);
+              }
+              if ("down" === e) {
+                var t = Fe.filter(function (e) {
+                  return e._channel === X.channel;
+                })[0];
+                return (t ? rt(t) : Fe[0] && rt(Fe[0]), !0);
+              }
+              return !1;
+            }),
+            (c._onMove = function (e) {
+              if ("left" === e) return (rt(o), !0);
+              if ("right" === e) {
+                var cRow = Fe.filter(function (el) { return el._channel === X.channel; })[0] || Fe[0];
+                return (cRow ? rt(cRow) : !0, !0);
+              }
+              if ("up" === e) {
+                var fs = document.querySelector(".live-info .live-fullscreen");
+                if (fs) return (rt(fs), !0);
+                return (Ue[0] ? rt(Ue[0]) : !0, !0);
+              }
+              if ("down" === e) {
+                var t = Fe.filter(function (e) {
+                  return e._channel === X.channel;
+                })[0];
+                return (t ? rt(t) : Fe[0] && rt(Fe[0]), !0);
+              }
+              return !1;
+            }),
+            bindMagicActivate(i),
+            bindMagicActivate(r),
+            bindMagicActivate(o),
+            bindMagicActivate(c),
+            a.appendChild(i),
+            a.appendChild(r),
+            a.appendChild(o),
+            a.appendChild(c),
+            t.appendChild(a));
+        })(),
+        (re = e("div", "live-list scrollable")),
+        t.appendChild(re),
+        Qt(!1),
+        Gt(),
+        ((ne = e("div", "live-focus focusable"))._onMove = function (e) {
+          if ("up" === e) {
+            var a = document.querySelector(".live-fast .f-srch");
+            return (a ? rt(a) : !0, !0);
+          }
+          if ("down" === e) {
+            X.channel < F.length - 1 && Kt(X.channel + 1);
+            var a = Fe.filter(function (e) {
+              return e._channel === X.channel;
+            })[0];
+            return (a && rt(a), !0);
+          }
+          if ("right" === e) {
+            var t = Fe.filter(function (e) {
+              return e._channel === X.channel;
+            })[0];
+            return (t ? rt(t) : Fe.length && rt(Fe[0]), !0);
+          }
+          return "left" === e && (Ue[0] && rt(Ue[0]), !0);
+        }),
+        (ne._activate = function () {
+          Yr("live");
+        }),
+        t.appendChild(ne));
+    },
+    function (e) {
+      var t = ha("destacado"),
+        heroPool = selectHeroItems(t, 10),
+        a = heroPool.slice(0, 6),
+        i = !(!a[0] || !a[0]._portal);
+      fa(e, a, { titles: i, dots: i ? 4 : 0, shade: i, pool: heroPool });
+      var n = t.filter(function (it) {
+        for (var k = 0; k < a.length; k++) if (a[k] && a[k].id === it.id) return false;
+        return true;
+      });
+      n.length &&
+        ya(e, n, 860, {
+          sectionTitle: "Destacados",
+          popularTitle: "Títulos más vistos",
+          bentoItems: a,
+          fallbackRow: "Títulos destacados",
+        });
+    },
+    function (e) {
+      var t = ha("pelicula"),
+        heroPool = selectHeroItems(t, 10),
+        a = heroPool.slice(0, 6),
+        i = !(!a[0] || !a[0]._portal);
+      fa(e, a, { titles: i, dots: i ? 4 : 0, shade: i, pool: heroPool });
+      var n = t.filter(function (it) {
+        for (var k = 0; k < a.length; k++) if (a[k] && a[k].id === it.id) return false;
+        return true;
+      });
+      n.length &&
+        ya(e, n, 860, {
+          sectionTitle: "Películas",
+          popularTitle: "Películas más populares",
+          bentoItems: a,
+          fallbackRow: "Más películas",
+        });
+    },
+    function (e) {
+      var t = ha("serie"),
+        heroPool = selectHeroItems(t, 10),
+        a = heroPool.slice(0, 6),
+        i = !(!a[0] || !a[0]._portal);
+      fa(e, a, { titles: i, dots: i ? 3 : 2, shade: i, pool: heroPool });
+      var n = t.filter(function (it) {
+        for (var k = 0; k < a.length; k++) if (a[k] && a[k].id === it.id) return false;
+        return true;
+      });
+      n.length &&
+        ya(e, n, 860, {
+          sectionTitle: "Series",
+          popularTitle: "Series más populares",
+          bentoItems: a,
+          fallbackRow: "Más series",
+        });
+    },
+    function (e) {
+      var t = ha("infantil"),
+        heroPool = selectHeroItems(t, 10),
+        a = heroPool.slice(0, 6),
+        i = !(!a[0] || !a[0]._portal);
+      fa(e, a, { titles: i, dots: i ? 3 : 2, shade: i, pool: heroPool });
+      var n = t.filter(function (it) {
+        for (var k = 0; k < a.length; k++) if (a[k] && a[k].id === it.id) return false;
+        return true;
+      });
+      n.length &&
+        ya(e, n, 860, {
+          sectionTitle: "Infantil",
+          popularTitle: "Contenido infantil popular",
+          bentoItems: a,
+          fallbackRow: "Más infantil",
+        });
+    },
+    function (e) {
+      var t = ha("anime"),
+        heroPool = selectHeroItems(t, 10),
+        a = heroPool.slice(0, 6),
+        i = !(!a[0] || !a[0]._portal);
+      fa(e, a, { titles: i, dots: i ? 3 : 2, shade: i, pool: heroPool });
+      var n = t.filter(function (it) {
+        for (var k = 0; k < a.length; k++) if (a[k] && a[k].id === it.id) return false;
+        return true;
+      });
+      n.length &&
+        ya(e, n, 860, {
+          sectionTitle: "Anime",
+          popularTitle: "Anime más popular",
+          bentoItems: a,
+          fallbackRow: "Anime y animación",
+        });
+    },
+    function (t) {
+      var a = ha("novela");
+      if (a.length) {
+        var heroPool = selectHeroItems(a, 10);
+        var hero = heroPool.slice(0, 6);
+        var hasPortal = !(!hero[0] || !hero[0]._portal);
+        fa(t, hero, { titles: hasPortal, dots: hasPortal ? 3 : 2, shade: hasPortal, pool: heroPool });
+        var remaining = a.filter(function (it) {
+          for (var k = 0; k < hero.length; k++) if (hero[k] && hero[k].id === it.id) return false;
           return true;
         });
-        n.length &&
-          ya(e, n, 860, {
-            sectionTitle: "Destacados",
-            popularTitle: "Títulos más vistos",
-            bentoItems: a,
-            fallbackRow: "Títulos destacados",
+        remaining.length &&
+          ya(t, remaining, 860, {
+            sectionTitle: "Novelas",
+            popularTitle: "Novelas y Dramas más populares",
+            bentoItems: hero,
+            fallbackRow: "Más telenovelas y dramas",
           });
-      },
-      function (e) {
-        var t = ha("pelicula"),
-          heroPool = selectHeroItems(t, 10),
-          a = heroPool.slice(0, 6),
-          i = !(!a[0] || !a[0]._portal);
-        fa(e, a, { titles: i, dots: i ? 4 : 0, shade: i, pool: heroPool });
-        var n = t.filter(function (it) {
-          for (var k = 0; k < a.length; k++) if (a[k] && a[k].id === it.id) return false;
-          return true;
-        });
-        n.length &&
-          ya(e, n, 860, {
-            sectionTitle: "Películas",
-            popularTitle: "Películas más populares",
-            bentoItems: a,
-            fallbackRow: "Más películas",
-          });
-      },
-      function (e) {
-        var t = ha("serie"),
-          heroPool = selectHeroItems(t, 10),
-          a = heroPool.slice(0, 6),
-          i = !(!a[0] || !a[0]._portal);
-        fa(e, a, { titles: i, dots: i ? 3 : 2, shade: i, pool: heroPool });
-        var n = t.filter(function (it) {
-          for (var k = 0; k < a.length; k++) if (a[k] && a[k].id === it.id) return false;
-          return true;
-        });
-        n.length &&
-          ya(e, n, 860, {
-            sectionTitle: "Series",
-            popularTitle: "Series más populares",
-            bentoItems: a,
-            fallbackRow: "Más series",
-          });
-      },
-      function (e) {
-        var t = ha("infantil"),
-          heroPool = selectHeroItems(t, 10),
-          a = heroPool.slice(0, 6),
-          i = !(!a[0] || !a[0]._portal);
-        fa(e, a, { titles: i, dots: i ? 3 : 2, shade: i, pool: heroPool });
-        var n = t.filter(function (it) {
-          for (var k = 0; k < a.length; k++) if (a[k] && a[k].id === it.id) return false;
-          return true;
-        });
-        n.length &&
-          ya(e, n, 860, {
-            sectionTitle: "Infantil",
-            popularTitle: "Contenido infantil popular",
-            bentoItems: a,
-            fallbackRow: "Más infantil",
-          });
-      },
-      function (e) {
-        var t = ha("anime"),
-          heroPool = selectHeroItems(t, 10),
-          a = heroPool.slice(0, 6),
-          i = !(!a[0] || !a[0]._portal);
-        fa(e, a, { titles: i, dots: i ? 3 : 2, shade: i, pool: heroPool });
-        var n = t.filter(function (it) {
-          for (var k = 0; k < a.length; k++) if (a[k] && a[k].id === it.id) return false;
-          return true;
-        });
-        n.length &&
-          ya(e, n, 860, {
-            sectionTitle: "Anime",
-            popularTitle: "Anime más popular",
-            bentoItems: a,
-            fallbackRow: "Anime y animación",
-          });
-      },
-      function (t) {
-        var a = ha("novela");
-        if (a.length) {
-          var heroPool = selectHeroItems(a, 10);
-          var hero = heroPool.slice(0, 6);
-          var hasPortal = !(!hero[0] || !hero[0]._portal);
-          fa(t, hero, { titles: hasPortal, dots: hasPortal ? 3 : 2, shade: hasPortal, pool: heroPool });
-          var remaining = a.filter(function (it) {
-            for (var k = 0; k < hero.length; k++) if (hero[k] && hero[k].id === it.id) return false;
-            return true;
-          });
-          remaining.length &&
-            ya(t, remaining, 860, {
-              sectionTitle: "Novelas",
-              popularTitle: "Novelas y Dramas más populares",
-              bentoItems: hero,
-              fallbackRow: "Más telenovelas y dramas",
-            });
-        } else {
-          var s = e(
-            "div",
-            "catalog-empty",
-            "No se encontraron novelas en el catálogo actual."
-          );
-          (i(s, 192, 170, 1500, 80), t.appendChild(s));
-        }
-      },
-    ],
+      } else {
+        var s = e(
+          "div",
+          "catalog-empty",
+          "No se encontraron novelas en el catálogo actual."
+        );
+        (i(s, 192, 170, 1500, 80), t.appendChild(s));
+      }
+    },
+  ],
     ht = {},
     homeClockTimer = null,
     tabSwitchTimer = null;
@@ -3113,7 +3139,7 @@
           (0 === n && i.appendChild(e("div", "tabs-group", "En vivo")),
             1 === n && i.appendChild(e("div", "tabs-group", "Explorar")),
             "history" === z[n].action &&
-              i.appendChild(e("div", "tabs-group", "Tu biblioteca")));
+            i.appendChild(e("div", "tabs-group", "Tu biblioteca")));
           var r = e("div", "tab-item focusable");
           r.appendChild(e("div", "tab-pill"));
           var o = e("div", "tab-icon");
@@ -3188,26 +3214,26 @@
         a(te);
         for (
           var t = [
-              {
-                cls: "search",
-                /* SVG en lugar de PNG: los iconos de mapa de bits del APK
-                   quedaban casi invisibles en paneles de TV y se perdían al
-                   escalar. El trazo hereda currentColor. */
-                svg: '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="14" cy="14" r="8.5" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M20.5 20.5L28 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>',
-                label: "Buscar",
-              },
-              {
-                cls: "filter",
-                svg: '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 9h22M5 16h22M5 23h22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="11" cy="9" r="3.2" fill="currentColor"/><circle cx="22" cy="16" r="3.2" fill="currentColor"/><circle cx="15" cy="23" r="3.2" fill="currentColor"/></svg>',
-                label: "Filtrar catálogo",
-              },
-              {
-                cls: "personal",
-                svg: '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="11" r="5.2" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M6 27c.8-5.8 4.6-8.8 10-8.8S25.2 21.2 26 27" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>',
-                label: "Mi cuenta",
-              },
-            ],
-            i = 0;
+            {
+              cls: "search",
+              /* SVG en lugar de PNG: los iconos de mapa de bits del APK
+                 quedaban casi invisibles en paneles de TV y se perdían al
+                 escalar. El trazo hereda currentColor. */
+              svg: '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="14" cy="14" r="8.5" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M20.5 20.5L28 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>',
+              label: "Buscar",
+            },
+            {
+              cls: "filter",
+              svg: '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 9h22M5 16h22M5 23h22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="11" cy="9" r="3.2" fill="currentColor"/><circle cx="22" cy="16" r="3.2" fill="currentColor"/><circle cx="15" cy="23" r="3.2" fill="currentColor"/></svg>',
+              label: "Filtrar catálogo",
+            },
+            {
+              cls: "personal",
+              svg: '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="11" r="5.2" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M6 27c.8-5.8 4.6-8.8 10-8.8S25.2 21.2 26 27" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>',
+              label: "Mi cuenta",
+            },
+          ],
+          i = 0;
           i < t.length;
           i++
         ) {
@@ -3222,15 +3248,15 @@
             r.appendChild(o),
             "personal" === n.cls
               ? (r._activate = function () {
-                  Ha();
-                })
+                Ha();
+              })
               : "search" === n.cls
                 ? (r._activate = function () {
-                    La();
-                  })
+                  La();
+                })
                 : (r._activate = function () {
-                    openCatalogFilter(r);
-                  }),
+                  openCatalogFilter(r);
+                }),
             (r._onMove = (function (e) {
               return function (t) {
                 if ("left" === t) {
@@ -3441,10 +3467,10 @@
           if (
             isBento ||
             (s &&
-            s.bottom > -80 &&
-            s.top < aWin + 180 &&
-            s.right > -80 &&
-            s.left < tWin + 180)
+              s.bottom > -80 &&
+              s.top < aWin + 180 &&
+              s.right > -80 &&
+              s.left < tWin + 180)
           ) {
             loadImg(r);
           } else if (
@@ -3480,8 +3506,8 @@
     var l = e(
       "div",
       "poster focusable" +
-        ((s = s || {}).gold ? " gold" : "") +
-        (s.type3 ? " type3" : "")
+      ((s = s || {}).gold ? " gold" : "") +
+      (s.type3 ? " type3" : "")
     );
     if ((i(l, a, n, r, o), t.poster)) {
       var d = e("img", "p-img");
@@ -3503,7 +3529,7 @@
     }
     return (
       s.gold ||
-        (l.appendChild(e("div", "p-shade")),
+      (l.appendChild(e("div", "p-shade")),
         l.appendChild(e("div", "p-title", t.title))),
       (l._item = t),
       (l._activate = function () {
@@ -3764,7 +3790,7 @@
         var t = JSON.parse(e);
         if (Array.isArray(t) && t.length) stored = t;
       }
-    } catch (e) {}
+    } catch (e) { }
     if (stored && stored.length) {
       var map = {};
       for (var s = 0; s < stored.length; s++) {
@@ -3790,8 +3816,8 @@
                 same =
                   !!updated[q].channels &&
                   JSON.stringify(updated[q].channels) ===
-                    JSON.stringify(Tt[p].channels);
-              } catch (e) {}
+                  JSON.stringify(Tt[p].channels);
+              } catch (e) { }
               if (!same) {
                 updated[q] = Tt[p];
                 added = !0;
@@ -3804,20 +3830,20 @@
       if (added) {
         try {
           localStorage.setItem("xuper_m3u_addons", JSON.stringify(updated));
-        } catch (e) {}
+        } catch (e) { }
       }
       return updated;
     }
     var a = Tt.slice();
     try {
       localStorage.setItem("xuper_m3u_addons", JSON.stringify(a));
-    } catch (e) {}
+    } catch (e) { }
     return a;
   }
   function kt(e) {
     try {
       localStorage.setItem("xuper_m3u_addons", JSON.stringify(e || []));
-    } catch (e) {}
+    } catch (e) { }
   }
   /* Categoría propia de TV en vivo con las señales DirecTV/DSports y ESPN.
      No depende de instalar el addon: al elegirla se descarga la lista pública
@@ -3947,19 +3973,19 @@
   function jt() {
     if (
       (Nt++,
-      (Vt = ""),
-      Rt && (clearTimeout(Rt), (Rt = null)),
-      ie && ie.classList.remove("is-preview-playing", "is-preview-loading"),
-      qt && (qt.textContent = ""),
-      Ot)
+        (Vt = ""),
+        Rt && (clearTimeout(Rt), (Rt = null)),
+        ie && ie.classList.remove("is-preview-playing", "is-preview-loading"),
+        qt && (qt.textContent = ""),
+        Ot)
     ) {
       try {
         Ot.pause();
-      } catch (e) {}
+      } catch (e) { }
       Ot.removeAttribute("src");
       try {
         ((Ot.src = ""), Ot.load());
-      } catch (e) {}
+      } catch (e) { }
     }
   }
   function Wt(e) {
@@ -3985,7 +4011,7 @@
                 var a = ++Nt;
                 (ie.classList.add("is-preview-loading"),
                   qt &&
-                    (qt.textContent = "Cargando " + (e.name || "canal") + "…"),
+                  (qt.textContent = "Cargando " + (e.name || "canal") + "…"),
                   P(
                     "resolveLive",
                     e.streamUrl
@@ -4033,7 +4059,7 @@
                           Ot.setAttribute("type", "application/x-mpegurl");
                           ((Ot.src = i), Ot.load());
                           var n = Ot.play();
-                          n && n.catch && n.catch(function () {});
+                          n && n.catch && n.catch(function () { });
                         } catch (e) {
                           ie.classList.remove("is-preview-loading");
                         }
@@ -4095,8 +4121,8 @@
       hr(),
       F[0] && ae && (ae.textContent = F[0].name),
       "player" === X.screen &&
-        "live" === X.playerMode &&
-        (ao(), to(F[0], !0)),
+      "live" === X.playerMode &&
+      (ao(), to(F[0], !0)),
       done && done());
   }
   function loadAddonCategory(cat, done) {
@@ -4106,8 +4132,8 @@
         (jr(""),
           Yt(
             "No hay señales disponibles en " +
-              (cat.name || "esta categoría") +
-              " en este momento."
+            (cat.name || "esta categoría") +
+            " en este momento."
           ));
         return (F.splice(0, F.length), Qt(liveFavoritesOnly), hr(), void (done && done()));
       }
@@ -4165,7 +4191,7 @@
                 ((Et = !0),
                   X.channel >= F.length && (X.channel = 0),
                   (isFirstPage || isLastPage) &&
-                    (Qt(liveFavoritesOnly),
+                  (Qt(liveFavoritesOnly),
                     "player" === X.screen && X.channelsOpen && hr()),
                   F[X.channel] && ae && (ae.textContent = F[X.channel].name),
                   "player" === X.screen && "live" === X.playerMode
@@ -4175,49 +4201,49 @@
               if (
                 (r ||
                   ((r = !0),
-                  It ||
+                    It ||
                     (function (e) {
                       It && Lt.length
                         ? e && e(null, Lt)
                         : P("liveCategories", {}, function (t, a) {
-                            var i = [];
-                            if (a && a.categories && a.categories.length)
-                              for (var n = 0; n < a.categories.length; n++) {
-                                var r = a.categories[n],
-                                  o = r.name;
-                                (("ChannelList" !== o && 76182 !== r.id) ||
-                                  (o = "Todos"),
-                                  i.push({
-                                    id: r.id,
-                                    name: o,
-                                    code: r.code,
-                                    isAddon: !1,
-                                  }));
-                              }
-                            else
-                              i = DEFAULT_LIVE_CATEGORIES.slice();
-                            /* Categorías propias que siempre deben existir,
-                               aunque el portal entregue su propia lista. */
-                            (function () {
-                              for (var k = 0; k < i.length; k++)
-                                if (i[k] && i[k].id === DIRECTV_ESPN_CATEGORY.id)
-                                  return;
-                              i.push(DIRECTV_ESPN_CATEGORY);
-                            })();
-                            (i.push({
-                              id: "addons",
-                              name: "Addons M3U",
-                              isAddon: !0,
-                            }),
-                              (Lt = i),
-                              (It = !0),
-                              Mt || (Mt = Lt[0]),
-                              dr(),
-                              e && e(null, Lt));
-                          });
+                          var i = [];
+                          if (a && a.categories && a.categories.length)
+                            for (var n = 0; n < a.categories.length; n++) {
+                              var r = a.categories[n],
+                                o = r.name;
+                              (("ChannelList" !== o && 76182 !== r.id) ||
+                                (o = "Todos"),
+                                i.push({
+                                  id: r.id,
+                                  name: o,
+                                  code: r.code,
+                                  isAddon: !1,
+                                }));
+                            }
+                          else
+                            i = DEFAULT_LIVE_CATEGORIES.slice();
+                          /* Categorías propias que siempre deben existir,
+                             aunque el portal entregue su propia lista. */
+                          (function () {
+                            for (var k = 0; k < i.length; k++)
+                              if (i[k] && i[k].id === DIRECTV_ESPN_CATEGORY.id)
+                                return;
+                            i.push(DIRECTV_ESPN_CATEGORY);
+                          })();
+                          (i.push({
+                            id: "addons",
+                            name: "Addons M3U",
+                            isAddon: !0,
+                          }),
+                            (Lt = i),
+                            (It = !0),
+                            Mt || (Mt = Lt[0]),
+                            dr(),
+                            e && e(null, Lt));
+                        });
                     })(),
-                  t && t(o, s)),
-                !o && s && s.hasMore && l.length)
+                    t && t(o, s)),
+                  !o && s && s.hasMore && l.length)
               )
                 return (n++, void setTimeout(e, 25));
               /* Página intermedia que falló: reintentarla antes de rendirse.
@@ -4232,10 +4258,10 @@
               }
               ((At = !1),
                 o &&
-                  !Et &&
-                  setTimeout(function () {
-                    i === Dt && Gt(a);
-                  }, 2500));
+                !Et &&
+                setTimeout(function () {
+                  i === Dt && Gt(a);
+                }, 2500));
             }
           }
         );
@@ -4272,127 +4298,127 @@
           rows = liveRowsWindow(visible, null == currentChannel ? X.channel : currentChannel);
         for (var rowIndex = 0; rowIndex < rows.length; rowIndex++) {
           var i = rows[rowIndex];
-            var n = e("div", "live-row focusable");
-            n._channel = i;
-            var r = e("div", "row-icon");
-            F[i].logo &&
-              ((r.style.backgroundImage = "url(" + F[i].logo + ")"),
+          var n = e("div", "live-row focusable");
+          n._channel = i;
+          var r = e("div", "row-icon");
+          F[i].logo &&
+            ((r.style.backgroundImage = "url(" + F[i].logo + ")"),
               (r.style.backgroundSize = "contain"),
               (r.style.backgroundRepeat = "no-repeat"),
               (r.style.backgroundPosition = "center"));
-            var o = e("div", "row-play"),
-              s = e("div", "row-name", F[i].name),
-              isFav = !!(X.liveFavorites[liveChannelKey(F[i])] || F[i].fav),
-              star = e(
-                "button",
-                "channel-star focusable" + (isFav ? " is-favorite" : "")
-              );
-            star.innerHTML = starSvg(isFav);
-            (n.appendChild(r),
-              n.appendChild(o),
-              n.appendChild(s),
-              n.appendChild(star),
-              i === X.channel && n.classList.add("is-current"),
-              (n._activate = (function (e) {
-                return function () {
-                  (Kt(e, !0), Yr("live"));
-                };
-              })(i)),
-              (n._onMove = (function (e, starButton) {
-                return function (t) {
-                  if ("left" === t) {
-                    var fastAll = document.querySelector(".live-fast .f-all") || document.querySelector(".live-fast .fast-btn");
-                    return fastAll ? (rt(fastAll), !0) : (Ue[0] && rt(Ue[0]), !0);
+          var o = e("div", "row-play"),
+            s = e("div", "row-name", F[i].name),
+            isFav = !!(X.liveFavorites[liveChannelKey(F[i])] || F[i].fav),
+            star = e(
+              "button",
+              "channel-star focusable" + (isFav ? " is-favorite" : "")
+            );
+          star.innerHTML = starSvg(isFav);
+          (n.appendChild(r),
+            n.appendChild(o),
+            n.appendChild(s),
+            n.appendChild(star),
+            i === X.channel && n.classList.add("is-current"),
+            (n._activate = (function (e) {
+              return function () {
+                (Kt(e, !0), Yr("live"));
+              };
+            })(i)),
+            (n._onMove = (function (e, starButton) {
+              return function (t) {
+                if ("left" === t) {
+                  var fastAll = document.querySelector(".live-fast .f-all") || document.querySelector(".live-fast .fast-btn");
+                  return fastAll ? (rt(fastAll), !0) : (Ue[0] && rt(Ue[0]), !0);
+                }
+                if ("up" === t) {
+                  var channelPos = visible.indexOf(e),
+                    previousChannel = channelPos > 0 ? visible[channelPos - 1] : -1,
+                    previousRow = previousChannel >= 0 ? homeRows[previousChannel] : null;
+                  if (previousChannel >= 0) {
+                    previousRow || (Qt(!!currentFavorites, previousChannel), (previousRow = homeRows[previousChannel]));
+                    return previousRow ? (rt(previousRow), !0) : !0;
                   }
-                  if ("up" === t) {
-                    var channelPos = visible.indexOf(e),
-                      previousChannel = channelPos > 0 ? visible[channelPos - 1] : -1,
-                      previousRow = previousChannel >= 0 ? homeRows[previousChannel] : null;
-                    if (previousChannel >= 0) {
-                      previousRow || (Qt(!!currentFavorites, previousChannel), (previousRow = homeRows[previousChannel]));
-                      return previousRow ? (rt(previousRow), !0) : !0;
-                    }
-                    return (Ue[0] ? rt(Ue[0]) : !0, !0);
+                  return (Ue[0] ? rt(Ue[0]) : !0, !0);
+                }
+                if ("down" === t) {
+                  var channelPos = visible.indexOf(e),
+                    nextChannel = channelPos < visible.length - 1 ? visible[channelPos + 1] : -1,
+                    nextRow = nextChannel >= 0 ? homeRows[nextChannel] : null;
+                  if (nextChannel >= 0) {
+                    nextRow || (Qt(!!currentFavorites, nextChannel), (nextRow = homeRows[nextChannel]));
+                    return nextRow ? (rt(nextRow), !0) : !0;
                   }
-                  if ("down" === t) {
-                    var channelPos = visible.indexOf(e),
-                      nextChannel = channelPos < visible.length - 1 ? visible[channelPos + 1] : -1,
-                      nextRow = nextChannel >= 0 ? homeRows[nextChannel] : null;
-                    if (nextChannel >= 0) {
-                      nextRow || (Qt(!!currentFavorites, nextChannel), (nextRow = homeRows[nextChannel]));
-                      return nextRow ? (rt(nextRow), !0) : !0;
-                    }
-                    var fastBtn = document.querySelector(".live-fast .fast-btn");
-                    return fastBtn ? (rt(fastBtn), !0) : !0;
+                  var fastBtn = document.querySelector(".live-fast .fast-btn");
+                  return fastBtn ? (rt(fastBtn), !0) : !0;
+                }
+                if ("right" === t) return (rt(starButton), !0);
+                return !1;
+              };
+            })(i, star)),
+            (star._channel = i),
+            (star._activate = (function (channelIndex, t) {
+              return function () {
+                (toggleChannelFavoriteDirect(channelIndex, null),
+                  (t = Fe.filter(function (e) {
+                    return e._channel === channelIndex;
+                  })[0]),
+                  t && rt(t.querySelector(".channel-star")));
+              };
+            })(i, star)),
+            (star._onMove = (function (e, t) {
+              return function (a) {
+                if ("left" === a) return (rt(t), !0);
+                if ("up" === a || "down" === a) {
+                  var i = visible.indexOf(e),
+                    n = "up" === a ? i - 1 : i + 1,
+                    r = n >= 0 && n < visible.length ? visible[n] : -1,
+                    o = r >= 0 ? homeRows[r] : null,
+                    s = o && o.querySelector(".channel-star");
+                  if (r >= 0) {
+                    s || (Qt(currentFavorites, r), (o = homeRows[r]), (s = o && o.querySelector(".channel-star")));
+                    return s ? (rt(s), !0) : !0;
                   }
-                  if ("right" === t) return (rt(starButton), !0);
-                  return !1;
-                };
-              })(i, star)),
-              (star._channel = i),
-              (star._activate = (function (channelIndex, t) {
-                return function () {
-                  (toggleChannelFavoriteDirect(channelIndex, null),
-                    (t = Fe.filter(function (e) {
-                      return e._channel === channelIndex;
-                    })[0]),
-                    t && rt(t.querySelector(".channel-star")));
-                };
-              })(i, star)),
-              (star._onMove = (function (e, t) {
-                return function (a) {
-                  if ("left" === a) return (rt(t), !0);
-                  if ("up" === a || "down" === a) {
-                    var i = visible.indexOf(e),
-                      n = "up" === a ? i - 1 : i + 1,
-                      r = n >= 0 && n < visible.length ? visible[n] : -1,
-                      o = r >= 0 ? homeRows[r] : null,
-                      s = o && o.querySelector(".channel-star");
-                    if (r >= 0) {
-                      s || (Qt(currentFavorites, r), (o = homeRows[r]), (s = o && o.querySelector(".channel-star")));
-                      return s ? (rt(s), !0) : !0;
-                    }
-                    if ("up" === a) {
-                      var l = document.querySelector(".live-fast .f-srch");
-                      return l ? (rt(l), !0) : !0;
-                    }
-                    return !0;
+                  if ("up" === a) {
+                    var l = document.querySelector(".live-fast .f-srch");
+                    return l ? (rt(l), !0) : !0;
                   }
-                  return "right" === a;
-                };
-              })(i, n)),
-              /* En la previsualización el click del Magic Remote cambia el
-                 canal sin abrir el reproductor a pantalla completa. La tecla
-                 OK conserva su comportamiento normal (abrir TV en vivo). */
-              (n._magicActivate = (function (channelIndex) {
-                return function () {
-                  Kt(channelIndex, !0);
-                };
-              })(i)),
-              bindMagicActivate(n, n._magicActivate),
-              bindMagicActivate(star),
-              re.appendChild(n),
+                  return !0;
+                }
+                return "right" === a;
+              };
+            })(i, n)),
+            /* En la previsualización el click del Magic Remote cambia el
+               canal sin abrir el reproductor a pantalla completa. La tecla
+               OK conserva su comportamiento normal (abrir TV en vivo). */
+            (n._magicActivate = (function (channelIndex) {
+              return function () {
+                Kt(channelIndex, !0);
+              };
+            })(i)),
+            bindMagicActivate(n, n._magicActivate),
+            bindMagicActivate(star),
+            re.appendChild(n),
             (homeRows[i] = n),
             Fe.push(n));
         }
         (F[X.channel] && ae && (ae.textContent = F[X.channel].name), Jt());
-      /* Gt() vuelve a crear filas al terminar una página del catálogo. Sin
-         esto X.focus apunta a una fila destruida y desaparece el naranja. */
-      if (
-        "home" === X.screen &&
-        previousChannel >= 0 &&
-        !at(previousFocus)
-      ) {
-        var restoredRow = Fe.filter(function (row) {
-          return row._channel === previousChannel;
-        })[0];
-        if (restoredRow)
-          rt(
-            previousWasStar
-              ? restoredRow.querySelector(".channel-star") || restoredRow
-              : restoredRow
-          );
-      }
+        /* Gt() vuelve a crear filas al terminar una página del catálogo. Sin
+           esto X.focus apunta a una fila destruida y desaparece el naranja. */
+        if (
+          "home" === X.screen &&
+          previousChannel >= 0 &&
+          !at(previousFocus)
+        ) {
+          var restoredRow = Fe.filter(function (row) {
+            return row._channel === previousChannel;
+          })[0];
+          if (restoredRow)
+            rt(
+              previousWasStar
+                ? restoredRow.querySelector(".channel-star") || restoredRow
+                : restoredRow
+            );
+        }
       } else
         re.appendChild(
           e(
@@ -4426,9 +4452,9 @@
       Jt(),
       "player" === X.screen
         ? (!(function () {
-            if (!Ce) return;
-            ao();
-          })(),
+          if (!Ce) return;
+          ao();
+        })(),
           "live" === X.playerMode && to(F[e], !!t))
         : "home" === X.screen && 0 === X.tab && Wt(F[e]));
   }
@@ -4461,7 +4487,7 @@
     var i = t("app-toast");
     i ||
       (((i = e("div", "app-toast")).id = "app-toast"),
-      (t("app") || document.body).appendChild(i));
+        (t("app") || document.body).appendChild(i));
     ((i.textContent = a),
       (i.style.display = "block"),
       (i.style.opacity = "1"),
@@ -4536,22 +4562,22 @@
                           n &&
                           (n.style.width =
                             Math.min(100, Math.max(0, e.percent)) + "%"),
-                        e.message && r && (r.textContent = e.message),
-                        "success" === e.state &&
+                          e.message && r && (r.textContent = e.message),
+                          "success" === e.state &&
                           (r &&
                             (r.textContent =
                               "¡Actualización completada! Reiniciando XuperTV..."),
-                          n && (n.style.width = "100%"),
-                          setTimeout(function () {
-                            try {
-                              window.location.reload();
-                            } catch (e) {}
-                          }, 4e3)));
+                            n && (n.style.width = "100%"),
+                            setTimeout(function () {
+                              try {
+                                window.location.reload();
+                              } catch (e) { }
+                            }, 4e3)));
                     },
                     onFailure: function (t) {
                       zt = !1;
                       var i =
-                          (t && t.errorText) || "Error durante la instalación",
+                        (t && t.errorText) || "Error durante la instalación",
                         n = i;
                       if (
                         (/denied|permission|not permitted|method.*not|no existe/i.test(
@@ -4559,11 +4585,11 @@
                         ) &&
                           (n =
                             "El instalador de la TV está desactualizado. Desenchufa la TV 30 segundos, vuelve a abrir XuperTV y busca la actualización de nuevo."),
-                        r && (r.textContent = "Error: " + n),
-                        o &&
+                          r && (r.textContent = "Error: " + n),
+                          o &&
                           (o.textContent =
                             "Comprueba tu red o intenta más tarde."),
-                        s)
+                          s)
                       ) {
                         a(s);
                         var l = e(
@@ -4587,8 +4613,8 @@
                 (r &&
                   (r.textContent =
                     "Modo simulador: actualizacion solo disponible en webOS"),
-                (zt = !1),
-                s)
+                  (zt = !1),
+                  s)
               ) {
                 var d = e(
                   "button",
@@ -4674,10 +4700,10 @@
   function aa(e) {
     for (
       var t = String(e || "")
-          .replace(/^[^\d]*/, "")
-          .split("."),
-        a = [],
-        i = 0;
+        .replace(/^[^\d]*/, "")
+        .split("."),
+      a = [],
+      i = 0;
       i < t.length;
       i++
     )
@@ -4706,7 +4732,7 @@
           i = !0;
           try {
             a.abort();
-          } catch (e) {}
+          } catch (e) { }
           na(e + 1, t);
         }
       }, 12e3);
@@ -4769,13 +4795,13 @@
           String(n || "")
         )
           ? ra(a, function (a, r) {
-              if (!a && r) return i(r);
-              (t && t(n, null),
-                e ||
-                  Yt(
-                    "El módulo de actualizaciones necesita reiniciarse: desenchufa la TV 30 segundos y vuelve a intentarlo."
-                  ));
-            })
+            if (!a && r) return i(r);
+            (t && t(n, null),
+              e ||
+              Yt(
+                "El módulo de actualizaciones necesita reiniciarse: desenchufa la TV 30 segundos y vuelve a intentarlo."
+              ));
+          })
           : (t && t(n, null),
             e || Yt("No se pudo comprobar actualizaciones: " + n));
       },
@@ -4964,10 +4990,10 @@
   function da() {
     for (
       var i = t("da-presets-list"),
-        n = t("da-installed-list"),
-        r = _t(),
-        o = {},
-        s = 0;
+      n = t("da-installed-list"),
+      r = _t(),
+      o = {},
+      s = 0;
       s < r.length;
       s++
     )
@@ -4990,14 +5016,14 @@
           ((s._activate = function () {
             r ||
               ((s.textContent = "Instalando…"),
-              ca(t, function (e, t) {
-                e
-                  ? ((s.textContent = "Error"),
-                    setTimeout(function () {
-                      s.textContent = "+ Instalar";
-                    }, 2e3))
-                  : (da(), Mt && Mt.isAddon && $t());
-              }));
+                ca(t, function (e, t) {
+                  e
+                    ? ((s.textContent = "Error"),
+                      setTimeout(function () {
+                        s.textContent = "+ Instalar";
+                      }, 2e3))
+                    : (da(), Mt && Mt.isAddon && $t());
+                }));
           }),
             bindMagicActivate(s),
             a.appendChild(s),
@@ -5015,7 +5041,7 @@
                 "div",
                 "da-preset-desc",
                 (t.count ? t.count + " canales • " : "") +
-                  (t.url || "lista curada")
+                (t.url || "lista curada")
               );
             (o.appendChild(s), o.appendChild(l), i.appendChild(o));
             var d = e("button", "da-del-btn focusable", "Eliminar");
@@ -5179,9 +5205,9 @@
       s.badge && l.appendChild(e("div", "bento-badge", s.badge)),
       (l._item = t),
       t &&
-        (l._activate = function () {
-          ba(t);
-        }),
+      (l._activate = function () {
+        ba(t);
+      }),
       wt(),
       l
     );
@@ -5543,6 +5569,255 @@
         l.appendChild(moreCard));
     }
     return o + 360 + 35;
+  }
+
+  /* Carril de Continuar viendo (Watch History): muestra los contenidos en curso
+     con barra de progreso, tiempo o episodio, y reanudación a un clic. Cumple
+     con el contrato obligatorio de carrusel estilo Netflix (.catalog-rail y loop). */
+  function renderHistoryRail(t, historyList, startY) {
+    if (!historyList || !historyList.length) return startY;
+    var valid = [];
+    for (var h = 0; h < historyList.length && valid.length < 10; h++) {
+      var itm = historyList[h];
+      if (itm && itm.id && (itm.position >= 5 || itm.duration > 0)) {
+        valid.push(itm);
+      }
+    }
+    if (!valid.length) return startY;
+    var o = startY || 772,
+      s = e("div", "kids-subtitle", "Continuar viendo");
+    i(s, 48, o, 1824, 40);
+    t.appendChild(s);
+    o += 54;
+
+    var l = e("div", "catalog-rail scrollable");
+    i(l, 48, o, 1824, 380);
+    t.appendChild(l);
+    l.style.width = "1824px";
+    l.style.height = "380px";
+    l.style.position = "absolute";
+    l.style.overflowX = "auto";
+    l.style.overflowY = "hidden";
+    l.style.whiteSpace = "nowrap";
+    l.style.scrollbarWidth = "none";
+    l.style.webkitOverflowScrolling = "touch";
+    l.classList.add("catalog-rail");
+    l.style.minWidth = "1824px";
+    if (valid.length <= 4) l.classList.add("is-short-rail");
+
+    var hasMore = historyList.length > 10,
+      total = valid.length + (hasMore ? 1 : 0);
+
+    var revealRailCard = function (rail, card) {
+      if (!card) return;
+      var left = card.offsetLeft || 0,
+        width = card.offsetWidth || 244,
+        viewport = rail.clientWidth || 1824,
+        current = rail.scrollLeft || 0,
+        padding = 38,
+        next = current;
+      if (left < current + padding) next = Math.max(0, left - padding);
+      else if (left + width > current + viewport - padding)
+        next = Math.max(0, left + width - viewport + padding);
+      if (next !== current) smoothScroll(rail, next, null, 200);
+    };
+    var focusRailCard = function (rail, card) {
+      revealRailCard(rail, card);
+      rt(card);
+    };
+    var railMove = function (rail, idx) {
+      return function (dir) {
+        if ("right" === dir) {
+          if (idx < total - 1 && rail.children[idx + 1]) {
+            focusRailCard(rail, rail.children[idx + 1]);
+            return !0;
+          }
+          if (rail.children[0]) {
+            rail.scrollLeft = 0;
+            smoothScroll(rail, 0, null, 240);
+            focusRailCard(rail, rail.children[0]);
+            return !0;
+          }
+        } else if ("left" === dir) {
+          if (idx > 0 && rail.children[idx - 1]) {
+            focusRailCard(rail, rail.children[idx - 1]);
+            return !0;
+          }
+          if (Ue && Ue[X.tab]) {
+            rt(Ue[X.tab]);
+            return !0;
+          }
+        }
+        return !1;
+      };
+    };
+
+    for (var c = 0; c < valid.length; c++) {
+      var itemData = valid[c];
+      var card = e("div", "poster gold focusable history-rail-card");
+      i(card, 264 * c, 0, 244, 360);
+      if (itemData.poster) {
+        var img = e("img", "p-img");
+        img.setAttribute("data-poster-src", itemData.poster);
+        img.onerror = function () {
+          if (this.src && 0 === this.src.indexOf("https://") && !this._httpFallback) {
+            this._httpFallback = !0;
+            return void (this.src = this.src.replace("https://", "http://"));
+          }
+          this.style.display = "none";
+          if (card) card.classList.add("is-img-error");
+        };
+        card.appendChild(img);
+      }
+      card.appendChild(e("div", "p-shade"));
+      var titleText = itemData.title || "Contenido";
+      card.appendChild(e("div", "p-title", titleText));
+
+      var pct = 0;
+      if (itemData.duration > 0 && itemData.position > 0) {
+        pct = Math.min(100, Math.max(5, Math.round((itemData.position / itemData.duration) * 100)));
+      } else if (itemData.position > 0) {
+        pct = 25;
+      }
+      var progWrap = e("div", "history-rail-bar");
+      var progFill = e("div", "history-rail-fill");
+      progFill.style.width = (pct || 10) + "%";
+      progWrap.appendChild(progFill);
+      card.appendChild(progWrap);
+
+      var labelText = itemData.series
+        ? (itemData.episodeNumber ? "Ep. " + itemData.episodeNumber : "Episodio") + (itemData.position ? " · " + ai(itemData.position) : "")
+        : (itemData.position ? ai(itemData.position) : "");
+      if (labelText) {
+        card.appendChild(e("div", "history-rail-badge", labelText));
+      }
+
+      (function (savedItem) {
+        card._activate = function () {
+          cn(savedItem);
+        };
+      })(itemData);
+
+      card._onMove = railMove(l, c);
+      card._onFocus = (function (rail, cEl) {
+        return function () {
+          revealRailCard(rail, cEl);
+        };
+      })(l, card);
+      l.appendChild(card);
+    }
+
+    if (hasMore) {
+      var moreCard = e("div", "poster gold focusable see-more");
+      i(moreCard, 264 * valid.length, 0, 244, 360);
+      moreCard.appendChild(e("div", "see-more-dots", "···"));
+      moreCard.appendChild(e("div", "see-more-label", "Ver historial"));
+      moreCard.appendChild(e("div", "see-more-count", historyList.length + " títulos"));
+      moreCard._activate = function () {
+        We = "history";
+        Ha();
+        Ua(1, !0);
+      };
+      moreCard._onMove = railMove(l, valid.length);
+      moreCard._onFocus = function () {
+        revealRailCard(l, moreCard);
+      };
+      l.appendChild(moreCard);
+    }
+
+    return o + 360 + 35;
+  }
+
+  /* HUD de Telemetría ("Stats for Nerds"): overlay en vivo durante la reproducción
+     con métricas reales de buffer, Starfish readyState, frames descartados y DoH. */
+  var telemetryHudEl = null,
+    telemetryHudTimer = null;
+  function isTelemetryHudOpen() {
+    return !!telemetryHudEl;
+  }
+  function closeTelemetryHud() {
+    if (telemetryHudTimer) {
+      clearInterval(telemetryHudTimer);
+      telemetryHudTimer = null;
+    }
+    if (telemetryHudEl && telemetryHudEl.parentNode) {
+      telemetryHudEl.parentNode.removeChild(telemetryHudEl);
+    }
+    telemetryHudEl = null;
+  }
+  function updateTelemetryHudData() {
+    if (!telemetryHudEl) return;
+    try {
+      var title = (X.playerItem && (X.playerItem.title || X.playerItem.name)) ||
+        (F && F[X.channel] && F[X.channel].name) ||
+        X.playerTitle ||
+        "Emisión";
+      var epText = X.playerEpisode && (X.playerEpisode.number || X.playerEpisode.title)
+        ? " (Ep. " + (X.playerEpisode.number || X.playerEpisode.title) + ")"
+        : "";
+      var modeText = "live" === X.playerMode
+        ? "TV en Vivo (HLS)"
+        : ("smooth" === X.streamMode || "relay" === X.streamMode)
+          ? "Modo Fluido (fMP4 Relay 8787)"
+          : "Normal (Proxy Directo)";
+
+      var bufSec = 0;
+      if (xe && xe.buffered && xe.buffered.length > 0) {
+        var cur = Number(xe.currentTime) || 0;
+        var end = Number(xe.buffered.end(xe.buffered.length - 1)) || 0;
+        bufSec = Math.max(0, end - cur);
+      }
+
+      var dropped = 0;
+      if (xe) {
+        if (typeof xe.webkitDroppedFrameCount === "number") {
+          dropped = xe.webkitDroppedFrameCount;
+        } else if (xe.getVideoPlaybackQuality) {
+          var q = xe.getVideoPlaybackQuality();
+          dropped = (q && q.droppedVideoFrames) || 0;
+        }
+      }
+
+      var res = (xe && xe.videoWidth && xe.videoHeight)
+        ? (xe.videoWidth + "x" + xe.videoHeight)
+        : "Auto / En buffer";
+
+      var rStates = ["0 (Vacío)", "1 (Metadata)", "2 (Cuadro actual)", "3 (Suficiente)", "4 (Buffer lleno)"];
+      var rState = xe ? (rStates[xe.readyState] || xe.readyState) : "-";
+
+      var nStates = ["0 (Vacío)", "1 (Inactivo/OK)", "2 (Cargando datos)", "3 (Sin señal)"];
+      var nState = xe ? (nStates[xe.networkState] || xe.networkState) : "-";
+
+      var bufColor = bufSec >= 8 ? "#4ade80" : (bufSec >= 3 ? "#facc15" : "#f87171");
+
+      var html = '<div class="thud-header">' +
+        '<span class="thud-title">⚡ TELEMETRÍA XUPERTV</span>' +
+        '<span class="thud-close-hint">[Tecla Azul / Back: Cerrar]</span>' +
+        '</div>' +
+        '<div class="thud-body">' +
+        '<div class="thud-row"><span class="thud-label">Canal / Título:</span> <span class="thud-val thud-highlight">' + String(title + epText).slice(0, 42) + '</span></div>' +
+        '<div class="thud-row"><span class="thud-label">Modo reproducción:</span> <span class="thud-val">' + modeText + '</span></div>' +
+        '<div class="thud-row"><span class="thud-label">Resolución video:</span> <span class="thud-val">' + res + '</span></div>' +
+        '<div class="thud-row"><span class="thud-label">Buffer disponible:</span> <span class="thud-val" style="color:' + bufColor + '; font-weight:bold;">' + bufSec.toFixed(1) + ' seg</span></div>' +
+        '<div class="thud-row"><span class="thud-label">Frames descartados:</span> <span class="thud-val">' + dropped + '</span></div>' +
+        '<div class="thud-row"><span class="thud-label">ReadyState:</span> <span class="thud-val">' + rState + '</span></div>' +
+        '<div class="thud-row"><span class="thud-label">NetworkState:</span> <span class="thud-val">' + nState + '</span></div>' +
+        '<div class="thud-row"><span class="thud-label">Anti-Censura DNS:</span> <span class="thud-val" style="color:#38bdf8;">DoH Anycast Activo</span></div>' +
+        '</div>';
+      telemetryHudEl.innerHTML = html;
+    } catch (err) { }
+  }
+  function toggleTelemetryHud() {
+    if (telemetryHudEl) {
+      closeTelemetryHud();
+      return;
+    }
+    var playerScreen = t("screen-player");
+    if (!playerScreen) return;
+    telemetryHudEl = e("div", "telemetry-hud");
+    playerScreen.appendChild(telemetryHudEl);
+    updateTelemetryHudData();
+    telemetryHudTimer = setInterval(updateTelemetryHudData, 800);
   }
   var sectionCatalogCache = {},
     sectionCatalogLoading = {},
@@ -6025,9 +6300,9 @@
     var popItems = [];
     if (i.popularTitle) {
       var f = t.slice().sort(function (e, t) {
-          var a = parseFloat(e && e.score) || 0;
-          return (parseFloat(t && t.score) || 0) - a;
-        }),
+        var a = parseFloat(e && e.score) || 0;
+        return (parseFloat(t && t.score) || 0) - a;
+      }),
         h = [];
       for (r = 0; r < f.length && h.length < 40; r++) {
         var m = f[r];
@@ -6050,57 +6325,57 @@
       }
     }
     var w = {
-        "2026 Peliculas teatrales": "Estrenos en cartelera",
-        2026: "Novedades 2026",
-        "Novedades 2025": "Novedades y estrenos 2025",
-        "Estrenos en cartelera": "Estrenos en cartelera",
-        "Máscara perfecta": "Máscara perfecta (Especial)",
-        "Asesino en serie": "Suspense y asesinos en serie",
-        "Películas TOP15 clasificadas": "Películas TOP 15",
-        "Dramas clasificados TOP15": "Series y dramas TOP 15",
-        "HBO Movie": "Películas HBO",
-        "Prime Video Movie": "Películas Prime Video",
-        "Apple TV+ Movie": "Películas Apple TV+",
-        "Paramount + Movie": "Películas Paramount+",
-        "Hulu Movie": "Películas Hulu",
-        "Netflix Movie": "Películas Netflix",
-        "Disney Movie": "Películas Disney",
-        "Netflix Series": "Series Netflix",
-        "Disney Series": "Series Disney",
-        "HBO Series": "Series HBO",
-        "Prime Video Series": "Series Prime Video",
-        "Apple TV+ Series": "Series Apple TV+",
-        "Paramount + Series": "Series Paramount+",
-        "Hulu Series": "Series Hulu",
-        "TV Series": "Series de televisión",
-        "Series de televisión": "Series de televisión",
-        "Serie Turquía": "Series turcas",
-        "Drama Coreano": "Dramas coreanos (K-Drama)",
-        Telenovelas: "Telenovelas populares",
-        "Vida familiar famosa": "Familias famosas y dramas",
-        Acción: "Acción y aventura",
-        Comedia: "Comedias destacadas",
-        Horror: "Terror y horror",
-        Drama: "Dramas y romance",
-        Dramas: "Dramas destacados",
-        Aventuras: "Aventura y acción",
-        "Ciencia ficción": "Ciencia ficción y fantasía",
-        Suspenso: "Suspense y misterio",
-        Crimen: "Crimen y policíaco",
-        Familia: "Películas en familia",
-        Fantastico: "Fantasía épica",
-        Romántico: "Romance y drama",
-        "Animación Clásica": "Animación clásica",
-        "Película de Animación": "Películas de animación",
-        "Serie de Animación": "Series animadas",
-        "Dragon Ball Collection": "Colección Dragon Ball",
-        "Colección de Marvel": "Colección Marvel",
-        "Coalition for DC": "Universo DC",
-        "Anime Asiático": "Anime asiático",
-        "Anime Europeo y Americano": "Anime internacional",
-        "Película de Anime": "Películas de anime",
-        "Serie de Anime": "Series de anime",
-      },
+      "2026 Peliculas teatrales": "Estrenos en cartelera",
+      2026: "Novedades 2026",
+      "Novedades 2025": "Novedades y estrenos 2025",
+      "Estrenos en cartelera": "Estrenos en cartelera",
+      "Máscara perfecta": "Máscara perfecta (Especial)",
+      "Asesino en serie": "Suspense y asesinos en serie",
+      "Películas TOP15 clasificadas": "Películas TOP 15",
+      "Dramas clasificados TOP15": "Series y dramas TOP 15",
+      "HBO Movie": "Películas HBO",
+      "Prime Video Movie": "Películas Prime Video",
+      "Apple TV+ Movie": "Películas Apple TV+",
+      "Paramount + Movie": "Películas Paramount+",
+      "Hulu Movie": "Películas Hulu",
+      "Netflix Movie": "Películas Netflix",
+      "Disney Movie": "Películas Disney",
+      "Netflix Series": "Series Netflix",
+      "Disney Series": "Series Disney",
+      "HBO Series": "Series HBO",
+      "Prime Video Series": "Series Prime Video",
+      "Apple TV+ Series": "Series Apple TV+",
+      "Paramount + Series": "Series Paramount+",
+      "Hulu Series": "Series Hulu",
+      "TV Series": "Series de televisión",
+      "Series de televisión": "Series de televisión",
+      "Serie Turquía": "Series turcas",
+      "Drama Coreano": "Dramas coreanos (K-Drama)",
+      Telenovelas: "Telenovelas populares",
+      "Vida familiar famosa": "Familias famosas y dramas",
+      Acción: "Acción y aventura",
+      Comedia: "Comedias destacadas",
+      Horror: "Terror y horror",
+      Drama: "Dramas y romance",
+      Dramas: "Dramas destacados",
+      Aventuras: "Aventura y acción",
+      "Ciencia ficción": "Ciencia ficción y fantasía",
+      Suspenso: "Suspense y misterio",
+      Crimen: "Crimen y policíaco",
+      Familia: "Películas en familia",
+      Fantastico: "Fantasía épica",
+      Romántico: "Romance y drama",
+      "Animación Clásica": "Animación clásica",
+      "Película de Animación": "Películas de animación",
+      "Serie de Animación": "Series animadas",
+      "Dragon Ball Collection": "Colección Dragon Ball",
+      "Colección de Marvel": "Colección Marvel",
+      "Coalition for DC": "Universo DC",
+      "Anime Asiático": "Anime asiático",
+      "Anime Europeo y Americano": "Anime internacional",
+      "Película de Anime": "Películas de anime",
+      "Serie de Anime": "Series de anime",
+    },
       S = !1;
 
     var secTitle = (i && i.sectionTitle) || "Catálogo";
@@ -6129,6 +6404,10 @@
       categoryMap: secCategoryMap,
       categoryTitles: secCategoryTitles
     };
+
+    if (i && i.sectionTitle === "Destacados" && Q && Q.history && Q.history.length) {
+      u = renderHistoryRail(e, Q.history, u);
+    }
 
     if (popItems.length) {
       u = ga(e, popItems, u, i.popularTitle, sectionInfoFor(i.popularTitle, ""), sectionCtx, i.popularTitle);
@@ -6170,12 +6449,12 @@
   function ba(e) {
     if (
       ((X.resumePosition = 0),
-      (X.detail = e),
-      (X.detailReturn = { screen: X.screen, focus: X.focus }),
-      (X.detailRange = 0),
-      (X.detailSeason = 0),
-      (X.detailEpisode = null),
-      e.seasons && e.seasons.length)
+        (X.detail = e),
+        (X.detailReturn = { screen: X.screen, focus: X.focus }),
+        (X.detailRange = 0),
+        (X.detailSeason = 0),
+        (X.detailEpisode = null),
+        e.seasons && e.seasons.length)
     )
       for (var a = 0; a < e.seasons.length; a++)
         if (e.seasons[a].id === e.id) {
@@ -6199,11 +6478,11 @@
       e._detailsLoaded
         ? void 0
         : U(e, function (item) {
-            item &&
-              "detail" === X.screen &&
-              X.detail === item &&
-              (dn(item), Ca(item));
-          }));
+          item &&
+            "detail" === X.screen &&
+            X.detail === item &&
+            (dn(item), Ca(item));
+        }));
   }
   window.openMovieDetail = ba;
   function getBaseSeriesTitle(t) {
@@ -6224,8 +6503,8 @@
     var targetCat = String(target.category || "").toLowerCase();
     var targetCountry = String(target.country || "").toLowerCase().trim();
     var isAnime = targetCat.indexOf("anime") >= 0 ||
-                  targetGenres.indexOf("anime") >= 0 ||
-                  /jap[oó]n|japan|tokyo/i.test(targetCountry);
+      targetGenres.indexOf("anime") >= 0 ||
+      /jap[oó]n|japan|tokyo/i.test(targetCountry);
     var isTargetSeries = x(target);
 
     var scored = [];
@@ -6246,8 +6525,8 @@
       var itemCountry = String(item.country || "").toLowerCase().trim();
       var isItemSeries = x(item);
       var isItemAnime = cat.indexOf("anime") >= 0 ||
-                        itemGenres.indexOf("anime") >= 0 ||
-                        /jap[oó]n|japan|tokyo/i.test(itemCountry);
+        itemGenres.indexOf("anime") >= 0 ||
+        /jap[oó]n|japan|tokyo/i.test(itemCountry);
 
       /* Si estamos viendo Anime: afinidad máxima hacia Anime y producciones japonesas/asiáticas */
       if (isAnime) {
@@ -6392,7 +6671,7 @@
         p = /S(\d+)/i.exec(n.alias || "") || /T(\d+)/i.exec(n.title || "");
       if (
         (p && (c = parseInt(p[1], 10) || 0),
-        !c && n.seasons && n.seasons.length)
+          !c && n.seasons && n.seasons.length)
       ) {
         var u = n.seasons[X.detailSeason] || n.seasons[0];
         c = (u && u.number) || 1;
@@ -6515,7 +6794,7 @@
       "favorite" === T[_].kind &&
         X.favs[String(n.id)] &&
         (k.classList.add("is-selected"),
-        (k.querySelector(".detail-btn-label").textContent = "En favoritos"));
+          (k.querySelector(".detail-btn-label").textContent = "En favoritos"));
       (k._activate = (function (e, t) {
         return function () {
           if ("fullscreen" === e) Kr(t, X.detailEpisode);
@@ -6596,95 +6875,103 @@
       }),
       le.appendChild(M),
       (function (t) {
-        var isMovie = (1 === X.tab) || ("movie" === t.type) || ("película" === t.kind) || ("pelicula" === t.category);
-        var isSeries = !isMovie && x(t) && ((t.episodes && t.episodes.length > 1) || (t.seasons && t.seasons.length > 1));
+        var hasSeasonsList = (t.seasons && t.seasons.length > 1) || (t._catalogSeasons && t._catalogSeasons.length > 1);
+        var isMovie = !hasSeasonsList && ((1 === X.tab) || ("movie" === t.type) || ("película" === t.kind) || ("pelicula" === t.category));
+        var isSeries = hasSeasonsList || (!isMovie && x(t) && ((t.episodes && t.episodes.length > 1) || (t.seasons && t.seasons.length > 1)));
         var a = isSeries && t.episodes ? t.episodes : [],
           n = isSeries && a.length > 1,
           r = wa(a.length);
         X.detailRange >= r.length && (X.detailRange = 0);
-        var hasMultiSeasons = isSeries && t.seasons && t.seasons.length > 1;
+        var hasMultiSeasons = hasSeasonsList || (isSeries && t.seasons && t.seasons.length > 1);
         var showRanges = !hasMultiSeasons && n && a.length > 20;
         var rangesCont = null;
         var seasonsRail = null;
         if (hasMultiSeasons) {
-          if (hasMultiSeasons) {
-            seasonsRail = e("div", "detail-seasons-rail scrollable");
-            for (var sIdx = 0; sIdx < t.seasons.length; sIdx++) {
-              (function (sNum) {
-                var sItem = t.seasons[sNum];
-                var sBtn = e(
-                  "div",
-                  "detail-season-btn focusable" +
-                    (sNum === X.detailSeason ? " is-selected" : ""),
-                  "Temporada " + (sItem.number || sNum + 1)
-                );
-                sBtn._seasonIdx = sNum;
-                sBtn._onFocus = function () {
-                  if (seasonsRail) {
-                    var cLeft = seasonsRail.scrollLeft,
-                      cWidth = seasonsRail.clientWidth,
-                      oLeft = sBtn.offsetLeft,
-                      oWidth = sBtn.offsetWidth;
-                    if (oLeft < cLeft + 40) {
-                      smoothScroll(seasonsRail, Math.max(0, oLeft - 40), null, 180);
-                    } else if (oLeft + oWidth > cLeft + cWidth - 40) {
-                      smoothScroll(seasonsRail, oLeft + oWidth - cWidth + 40, null, 180);
-                    }
-                  }
-                };
-                sBtn._activate = function () {
-                  if (X.detailSeason !== sNum) {
-                    X.detailSeason = sNum;
-                    X.detailRange = 0;
-                    X.detailEpisode = null;
-                    jr("Cargando temporada…");
-                    P("detail", { contentId: sItem.id }, function (err, res) {
-                      if (!err && res && !1 !== res.returnValue) {
-                        res.item && H(t, res.item);
-                        t.episodes = res.episodes || [];
-                        t.seasonId = sItem.id;
-                        sItem._episodes = t.episodes;
-                        X.detailEpisode = t.episodes[0] || null;
-                      }
-                      Ca(t);
-                      var newRail = de ? de.querySelector(".detail-seasons-rail") : null;
-                      var newBtn = newRail ? newRail.children[sNum] : null;
-                      newBtn && rt(newBtn);
-                    });
-                  }
-                };
-                sBtn._onMove = function (dir) {
-                  if ("left" === dir) {
-                    if (sNum > 0 && seasonsRail.children[sNum - 1]) {
-                      rt(seasonsRail.children[sNum - 1]);
-                      return !0;
-                    }
-                    return !0;
-                  }
-                  if ("right" === dir) {
-                    if (sNum < t.seasons.length - 1 && seasonsRail.children[sNum + 1]) {
-                      rt(seasonsRail.children[sNum + 1]);
-                      return !0;
-                    }
-                    return !0;
-                  }
-                  if ("down" === dir) {
-                    var ep = de ? (de.querySelector(".detail-episode.is-playing") || de.querySelector(".detail-episode")) : null;
-                    return ep ? (rt(ep), !0) : !0;
-                  }
-                  if ("up" === dir) {
-                    var dBtn = le ? le.querySelector(".detail-btn") : null;
-                    return dBtn ? (rt(dBtn), !0) : !0;
-                  }
-                  return !1;
-                };
-                seasonsRail.appendChild(sBtn);
-              })(sIdx);
-            }
-            de.appendChild(seasonsRail);
-          } else {
-            /* Serie de temporada única: no agregar botón redundante que choque con rangos */
+          if (!t.seasons || t.seasons.length < 2) {
+            t.seasons = t._catalogSeasons || t.seasons;
           }
+          seasonsRail = e("div", "detail-seasons-rail scrollable");
+          for (var sIdx = 0; sIdx < t.seasons.length; sIdx++) {
+            (function (sNum) {
+              var sItem = t.seasons[sNum];
+              var sBtn = e(
+                "div",
+                "detail-season-btn focusable" +
+                (sNum === X.detailSeason ? " is-selected" : ""),
+                "Temporada " + (sItem.number || sNum + 1)
+              );
+              sBtn._seasonIdx = sNum;
+              sBtn._onFocus = function () {
+                if (seasonsRail) {
+                  var cLeft = seasonsRail.scrollLeft,
+                    cWidth = seasonsRail.clientWidth,
+                    oLeft = sBtn.offsetLeft,
+                    oWidth = sBtn.offsetWidth;
+                  if (oLeft < cLeft + 40) {
+                    smoothScroll(seasonsRail, Math.max(0, oLeft - 40), null, 180);
+                  } else if (oLeft + oWidth > cLeft + cWidth - 40) {
+                    smoothScroll(seasonsRail, oLeft + oWidth - cWidth + 40, null, 180);
+                  }
+                }
+              };
+              sBtn._activate = function () {
+                if (X.detailSeason !== sNum) {
+                  X.detailSeason = sNum;
+                  X.detailRange = 0;
+                  X.detailEpisode = null;
+                  jr("Cargando temporada…");
+                  P("detail", { contentId: sItem.id }, function (err, res) {
+                    if (!err && res && !1 !== res.returnValue) {
+                      var pSeasons = (t.seasons && t.seasons.length > 1) ? t.seasons : t._catalogSeasons;
+                      var pCat = t._catalogSeasons;
+                      res.item && H(t, res.item);
+                      if (pCat) t._catalogSeasons = pCat;
+                      if (pSeasons && pSeasons.length) {
+                        t.seasons = pSeasons;
+                        t.kind = "serie";
+                        t.type = "teleplay";
+                      }
+                      t.episodes = res.episodes || [];
+                      t.seasonId = sItem.id;
+                      sItem._episodes = t.episodes;
+                      X.detailEpisode = t.episodes[0] || null;
+                    }
+                    Ca(t);
+                    var newRail = de ? de.querySelector(".detail-seasons-rail") : null;
+                    var newBtn = newRail ? newRail.children[sNum] : null;
+                    newBtn && rt(newBtn);
+                  });
+                }
+              };
+              sBtn._onMove = function (dir) {
+                if ("left" === dir) {
+                  if (sNum > 0 && seasonsRail.children[sNum - 1]) {
+                    rt(seasonsRail.children[sNum - 1]);
+                    return !0;
+                  }
+                  return !0;
+                }
+                if ("right" === dir) {
+                  if (sNum < t.seasons.length - 1 && seasonsRail.children[sNum + 1]) {
+                    rt(seasonsRail.children[sNum + 1]);
+                    return !0;
+                  }
+                  return !0;
+                }
+                if ("down" === dir) {
+                  var ep = de ? (de.querySelector(".detail-episode.is-playing") || de.querySelector(".detail-episode")) : null;
+                  return ep ? (rt(ep), !0) : !0;
+                }
+                if ("up" === dir) {
+                  var dBtn = le ? le.querySelector(".detail-btn") : null;
+                  return dBtn ? (rt(dBtn), !0) : !0;
+                }
+                return !1;
+              };
+              seasonsRail.appendChild(sBtn);
+            })(sIdx);
+          }
+          de.appendChild(seasonsRail);
         }
         if (showRanges) {
           rangesCont = e("div", "detail-ranges scrollable");
@@ -6693,7 +6980,7 @@
               var rangeBtn = e(
                 "div",
                 "detail-range focusable" +
-                  (rangeIdx === X.detailRange ? " is-selected" : ""),
+                (rangeIdx === X.detailRange ? " is-selected" : ""),
                 r[rangeIdx].start + 1 + "-" + r[rangeIdx].end
               );
               rangeBtn._onFocus = function () {
@@ -6991,7 +7278,15 @@
             jr("Cargando temporada…");
             P("detail", { contentId: sData.id }, function (err, res) {
               if (!err && res && !1 !== res.returnValue) {
+                var pSeasons = (item.seasons && item.seasons.length > 1) ? item.seasons : item._catalogSeasons;
+                var pCat = item._catalogSeasons;
                 res.item && H(item, res.item);
+                if (pCat) item._catalogSeasons = pCat;
+                if (pSeasons && pSeasons.length) {
+                  item.seasons = pSeasons;
+                  item.kind = "serie";
+                  item.type = "teleplay";
+                }
                 item.episodes = res.episodes || [];
                 item.seasonId = sData.id;
                 sData._episodes = item.episodes;
@@ -7075,7 +7370,7 @@
     me.onkeydown = function (e) {
       var k = e.keyCode || e.which;
       if (13 === k) {
-        try { me.blur(); } catch (err) {}
+        try { me.blur(); } catch (err) { }
         Pa();
         var res = ot(he) || (t("search-suggestions") && ot(t("search-suggestions")));
         if (res) rt(res);
@@ -7106,8 +7401,8 @@
       }
       if ("right" === dir) {
         var rightTarget = (pe && pe.querySelector(".search-hot-refresh")) ||
-                          (ue && ot(ue)) ||
-                          (pe && ot(pe));
+          (ue && ot(ue)) ||
+          (pe && ot(pe));
         if (rightTarget) {
           rt(rightTarget);
           return !0;
@@ -7118,13 +7413,13 @@
     ce.appendChild(me);
     for (
       var i = e("div", "kb-actions"),
-        n = [
-          { cls: "switch", w: 100.5 },
-          { cls: "clear", w: 100.5 },
-          { cls: "del", w: 100.5 },
-          { cls: "go", w: 120 },
-        ],
-        r = 0;
+      n = [
+        { cls: "switch", w: 100.5 },
+        { cls: "clear", w: 100.5 },
+        { cls: "del", w: 100.5 },
+        { cls: "go", w: 120 },
+      ],
+      r = 0;
       r < n.length;
       r++
     ) {
@@ -7163,13 +7458,13 @@
     (ce.appendChild(i), (Be = []));
     for (
       var s = [
-          ["A", "Á", "B", "C", "D", "E", "É"],
-          ["F", "G", "H", "I", "Í", "J", "K"],
-          ["L", "M", "N", "Ñ", "O", "Ó", "P"],
-          ["Q", "R", "S", "T", "U", "Ú", "Ü"],
-          ["V", "W", "X", "Y", "Z", " "],
-        ],
-        l = 0;
+        ["A", "Á", "B", "C", "D", "E", "É"],
+        ["F", "G", "H", "I", "Í", "J", "K"],
+        ["L", "M", "N", "Ñ", "O", "Ó", "P"],
+        ["Q", "R", "S", "T", "U", "Ú", "Ü"],
+        ["V", "W", "X", "Y", "Z", " "],
+      ],
+      l = 0;
       l < s.length;
       l++
     ) {
@@ -7194,7 +7489,7 @@
       ce.appendChild(d);
     }
     var u = e("div", "kb-feedback focusable", "Feedback");
-    ((u._activate = function () {}),
+    ((u._activate = function () { }),
       bindMagicActivate(u),
       ce.appendChild(u));
     var hotRef = document.querySelector(".search-hot-refresh");
@@ -7433,7 +7728,7 @@
           var el = catalogFilterDialog || a;
           catalogFilterDialog = null;
           if (el && el.parentNode) {
-            try { el.parentNode.removeChild(el); } catch (err) {}
+            try { el.parentNode.removeChild(el); } catch (err) { }
           }
           catalogFilterReturn = null;
         }
@@ -7552,8 +7847,8 @@
     ((X.searchQuery = e), Ea(), Pa());
   }
   function Da() {
-    try { if (me && me.blur) me.blur(); } catch (err) {}
-    try { if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); } catch (err) {}
+    try { if (me && me.blur) me.blur(); } catch (err) { }
+    try { if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); } catch (err) { }
     (X.searchTimer && (clearTimeout(X.searchTimer), (X.searchTimer = null)),
       (X.searchQuery = ""),
       Ea(),
@@ -7614,8 +7909,8 @@
       }
       if (
         (qa(a),
-        X.searchTimer && clearTimeout(X.searchTimer),
-        "portal" === p.mode && t.length >= 2)
+          X.searchTimer && clearTimeout(X.searchTimer),
+          "portal" === p.mode && t.length >= 2)
       ) {
         var s = ++X.searchSeq;
         X.searchTimer = setTimeout(function () {
@@ -7652,9 +7947,9 @@
     var i = X.searchMatches || [];
     if (
       (pe.classList.add("is-hidden"),
-      ue.classList.add("is-active"),
-      a(he),
-      0 === i.length)
+        ue.classList.add("is-active"),
+        a(he),
+        0 === i.length)
     )
       return (
         ve.classList.add("is-active"),
@@ -7705,17 +8000,17 @@
     var t = ce.querySelector(".kb-action.switch .ico");
     t &&
       (t.className = "ico ico-switch",
-      (t.textContent = X.searchNumeric ? "ABC" : "123"));
+        (t.textContent = X.searchNumeric ? "ABC" : "123"));
     var a = ce.querySelectorAll(".kb-row:not(.kb-row-num)");
     if (X.searchNumeric) {
       for (var i = 0; i < a.length; i++) a[i].classList.add("hidden");
       if (!ce.querySelector(".kb-row-num"))
         for (
           var n = [
-              ["1", "2", "3", "4", "5", "6", "7"],
-              ["8", "9", "0", " "],
-            ],
-            r = 0;
+            ["1", "2", "3", "4", "5", "6", "7"],
+            ["8", "9", "0", " "],
+          ],
+          r = 0;
           r < n.length;
           r++
         ) {
@@ -7783,253 +8078,263 @@
         je.push(l));
     }
     for (var p in (((ze = {}).profile = za()),
-    (ze.history = ja()),
-    (ze.addons = Wa()),
-    (ze.share = (function () {
-      var t = e("div", "settings-panel share-panel");
-      (t.appendChild(e("div", "share-head", "Compartir XuperTV")),
-        t.appendChild(
-          e(
-            "div",
-            "share-sub",
-            "Instala XuperTV en cualquier otro televisor LG webOS de tu hogar o de tus amigos directamente desde el instalador IPK."
-          )
-        ));
-      var a = e("div", "share-free");
-      (a.appendChild(e("div", "share-free-badge", "100% GRATIS")),
-        a.appendChild(
-          e(
-            "div",
-            "share-free-text",
-            "Esta aplicación es y siempre será gratuita y sin fines de lucro. No compres suscripciones ni pagues a intermediarios."
-          )
-        ),
-        t.appendChild(a));
-      var i = e("div", "share-warning");
-      (i.appendChild(
-        e(
-          "div",
-          "share-warning-title",
-          "Protege a tu comunidad contra revendedores"
-        )
-      ),
-        i.appendChild(
-          e(
-            "div",
-            "share-warning-text",
-            "Si alguien intentó cobrarte por esta app, repórtalo en nuestra comunidad. El código y las descargas son abiertas."
-          )
-        ),
-        t.appendChild(i));
-      var n = e("div", "share-qr-box"),
-        r = e("img", "share-qr");
-      ((r.src = "assets/original/settings/qr_telegram.png"),
-        (r.alt = "Telegram QR"),
-        n.appendChild(r));
-      var o = e("div", "share-qr-text");
-      return (
-        o.appendChild(
-          e("div", "share-qr-title", "Canal oficial de novedades y soporte")
-        ),
-        o.appendChild(
-          e(
-            "div",
-            "share-qr-line",
-            "Únete a nuestro canal para descargar las versiones más recientes, reportar incidencias y conocer nuevas funciones."
-          )
-        ),
-        o.appendChild(e("div", "share-qr-handle", "@CristiancoDEV")),
-        o.appendChild(
-          e(
-            "div",
-            "share-qr-url",
-            "https://github.com/cristianco7/XUPER-HYDRA-PORT-WEBOS"
-          )
-        ),
-        n.appendChild(o),
-        t.appendChild(n),
-        t
-      );
-    })()),
-    (ze.playback = (function () {
-      var t = Fa("Configuración global de reproducción");
-      (t.appendChild(
-        e(
-          "div",
-          "sp-global-note",
-          "Estas preferencias se aplican automáticamente a todas las películas y series nuevas."
-        )
-      ),
-        t.appendChild(i(e("div", "sp-hr"), 0, 168, 1478, 1)),
-        Ba(
-          t,
-          188,
-          "Reproductor",
-          ["Normal (directo)", "Modo fluido"],
-          "streamMode",
-          "smooth" === X.playback.streamMode ? 1 : 0
-        ),
-        Ba(
-          t,
-          284,
-          "Formato de pantalla",
-          ["Pantalla completa", "Normal", "16:9", "4:3"],
-          "screen",
-          X.playback.screen
-        ),
-        Ba(
-          t,
-          380,
-          "Audio preferido",
-          ["Español", "Portugués", "Inglés"],
-          "audio",
-          X.playback.audio
-        ),
-        t.appendChild(i(e("div", "sp-hr"), 0, 476, 1478, 1)),
-        t.appendChild(e("div", "sp-subtitle-h", "Subtítulos")));
-      var a = e(
-        "div",
-        "sp-switch focusable " + (X.playback.subtitle ? "on" : "off")
-      );
-      return (
-        (a._activate = function () {
-          ((X.playback.subtitle = !X.playback.subtitle),
-            (a.className =
-              "sp-switch focusable " + (X.playback.subtitle ? "on" : "off")),
-            Y(),
-            rt(a));
-        }),
-        t.appendChild(a),
-        Ba(
-          t,
-          562,
-          "Idioma",
-          ["Español", "Portugués", "Inglés"],
-          "subLang",
-          X.playback.subLang
-        ),
-        Ba(
-          t,
-          658,
-          "Tamaño",
-          ["Normal", "Grande", "Pequeño"],
-          "size",
-          X.playback.size
-        ),
-        (function (t, a) {
-          var i = e("div", "pb-row");
-          ((i.style.top = a + "px"),
-            i.appendChild(e("div", "pb-label", "Estilo")));
-          var curStyleIdx = ["white", "yellow", "cyan"].indexOf(X.playback.style);
-          if (curStyleIdx < 0) curStyleIdx = 0;
-          for (var n = ["#ffffff", "#f6e33f", "#ffffff"], r = 0; r < 3; r++) {
-            var o = e(
+      (ze.history = ja()),
+      (ze.addons = Wa()),
+      (ze.share = (function () {
+        var t = e("div", "settings-panel share-panel");
+        (t.appendChild(e("div", "share-head", "Compartir XuperTV")),
+          t.appendChild(
+            e(
               "div",
-              "pb-opt focusable" +
-                (r === curStyleIdx ? " is-checked" : "")
-            );
-            ((o.style.marginLeft = (0 === r ? 0 : 28) + "px"),
-              o.appendChild(e("div", "radio")));
-            var s = e("span", null, "Aa");
-            ((s.style.color = n[r]),
-              2 === r &&
-                ((s.style.background = "#000000"),
-                (s.style.display = "inline-block"),
-                (s.style.width = "94px"),
-                (s.style.height = "50px"),
-                (s.style.lineHeight = "50px"),
-                (s.style.fontSize = "28px")),
-              o.appendChild(s),
-              (o._group = "style"),
-              (o._index = r),
-              (o._activate = function () {
-                ((X.playback.style =
-                  ["white", "yellow", "cyan"][this._index] || "white"),
-                nn(),
-                Y());
-                for (
-                  var e = t.querySelectorAll(".pb-opt"), a = 0;
-                  a < e.length;
-                  a++
-                )
-                  "style" === e[a]._group &&
-                    e[a].classList.toggle(
-                      "is-checked",
-                      e[a]._index === this._index
-                    );
-              }),
-              i.appendChild(o));
-          }
-          t.appendChild(i);
-        })(t, 754),
-        t
-      );
-    })()),
-    (ze.netdiag = (function () {
-      var t = Fa("Diagnóstico de red");
-      (t.appendChild(
-        e(
+              "share-sub",
+              "Instala XuperTV en cualquier otro televisor LG webOS de tu hogar o de tus amigos directamente desde el instalador IPK."
+            )
+          ));
+        var a = e("div", "share-free");
+        (a.appendChild(e("div", "share-free-badge", "100% GRATIS")),
+          a.appendChild(
+            e(
+              "div",
+              "share-free-text",
+              "Esta aplicación es y siempre será gratuita y sin fines de lucro. No compres suscripciones ni pagues a intermediarios."
+            )
+          ),
+          t.appendChild(a));
+        var i = e("div", "share-warning");
+        (i.appendChild(
+          e(
+            "div",
+            "share-warning-title",
+            "Protege a tu comunidad contra revendedores"
+          )
+        ),
+          i.appendChild(
+            e(
+              "div",
+              "share-warning-text",
+              "Si alguien intentó cobrarte por esta app, repórtalo en nuestra comunidad. El código y las descargas son abiertas."
+            )
+          ),
+          t.appendChild(i));
+        var n = e("div", "share-qr-box"),
+          r = e("img", "share-qr");
+        ((r.src = "assets/original/settings/qr_telegram.png"),
+          (r.alt = "Telegram QR"),
+          n.appendChild(r));
+        var o = e("div", "share-qr-text");
+        return (
+          o.appendChild(
+            e("div", "share-qr-title", "Canal oficial de novedades y soporte")
+          ),
+          o.appendChild(
+            e(
+              "div",
+              "share-qr-line",
+              "Únete a nuestro canal para descargar las versiones más recientes, reportar incidencias y conocer nuevas funciones."
+            )
+          ),
+          o.appendChild(e("div", "share-qr-handle", "@CristiancoDEV")),
+          o.appendChild(
+            e(
+              "div",
+              "share-qr-url",
+              "https://github.com/cristianco7/XUPER-HYDRA-PORT-WEBOS"
+            )
+          ),
+          n.appendChild(o),
+          t.appendChild(n),
+          t
+        );
+      })()),
+      (ze.playback = (function () {
+        var t = Fa("Configuración global de reproducción");
+        (t.appendChild(
+          e(
+            "div",
+            "sp-global-note",
+            "Estas preferencias se aplican automáticamente a todas las películas y series nuevas."
+          )
+        ),
+          t.appendChild(i(e("div", "sp-hr"), 0, 168, 1478, 1)),
+          Ba(
+            t,
+            188,
+            "Reproductor",
+            ["Normal (directo)", "Modo fluido"],
+            "streamMode",
+            "smooth" === X.playback.streamMode ? 1 : 0
+          ),
+          Ba(
+            t,
+            272,
+            "Calidad preferida",
+            ["Automática (hasta 4K)", "1080p (Recomendada)", "720p (Ahorro)"],
+            "quality",
+            "1080" === X.playback.quality ? 1 : "720" === X.playback.quality ? 2 : 0
+          ),
+          Ba(
+            t,
+            356,
+            "Formato de pantalla",
+            ["Pantalla completa", "Normal", "16:9", "4:3"],
+            "screen",
+            X.playback.screen
+          ),
+          Ba(
+            t,
+            440,
+            "Audio preferido",
+            ["Español", "Portugués", "Inglés"],
+            "audio",
+            X.playback.audio
+          ),
+          t.appendChild(i(e("div", "sp-hr"), 0, 524, 1478, 1)),
+          t.appendChild(e("div", "sp-subtitle-h", "Subtítulos")));
+        var a = e(
           "div",
-          "dg-note",
-          "Comprueba si tu operador de internet está bloqueando los servidores de XuperTV. La app ya usa un DNS seguro (DNS-over-HTTPS) para evitarlo; esta prueba solo lo muestra."
-        )
-      ),
-        t.appendChild(i(e("div", "sp-hr"), 0, 168, 1478, 1)));
-      var n = e("div", "dg-btn focusable", "Analizar red");
-      i(n, 52, 188, 280, 60);
-      var r = e("div", "dg-btn dg-report-btn focusable", "Generar reporte");
-      i(r, 346, 188, 320, 60);
-      var q = e("div", "dg-btn dg-report-btn focusable", "Ver TV en vivo");
-      i(q, 680, 188, 300, 60);
-      var o = e("div", "dg-summary", 'Pulsa "Analizar red" para empezar.');
-      i(o, 52, 262, 1380, 64);
-      var s = e("div", "dg-head");
-      (i(s, 52, 340, 1380, 44),
-        s.appendChild(e("span", "dg-host", "Dominio")),
-        s.appendChild(e("span", "dg-local", "DNS del televisor")),
-        s.appendChild(e("span", "dg-state", "Estado")),
-        s.appendChild(e("span", "dg-ip", "Dirección real (DNS seguro)")));
-      var l = e("div", "dg-list");
-      i(l, 52, 388, 1380, 420);
-      var d = e("div", "dg-env", "");
-      (i(d, 52, 816, 1380, 30), ($a = d));
-      var c = e(
-        "div",
-        "dg-foot",
-        'Si el estado dice "Bloqueado", tu operador está interceptando el nombre del servidor, pero la app ya conecta por la dirección real. El reproductor Normal y el Modo Fluido usan este mismo DNS seguro. Si el vídeo sigue sin abrir con la conexión en verde, el bloqueo es por dirección: hace falta un túnel (VPN local).'
-      );
-      return (
-        i(c, 52, 852, 1380, 110),
-        (n._activate = function () {
-          Za(n, o, l);
-        }),
-        (q._activate = function () {
-          P(
-            "liveLog",
-            { events: [] },
-            function (err, data) {
-              var evs = (data && data.events) || [],
-                ps = data && data.proxyStats,
-                lines = [];
-              (lines.push("REPRODUCCION TV EN VIVO"),
-                lines.push("Version: " + APP_VERSION),
-                lines.push(
-                  "Ahora: " +
+          "sp-switch focusable " + (X.playback.subtitle ? "on" : "off")
+        );
+        return (
+          (a._activate = function () {
+            ((X.playback.subtitle = !X.playback.subtitle),
+              (a.className =
+                "sp-switch focusable " + (X.playback.subtitle ? "on" : "off")),
+              Y(),
+              rt(a));
+          }),
+          t.appendChild(a),
+          Ba(
+            t,
+            598,
+            "Idioma",
+            ["Español", "Portugués", "Inglés"],
+            "subLang",
+            X.playback.subLang
+          ),
+          Ba(
+            t,
+            682,
+            "Tamaño",
+            ["Normal", "Grande", "Pequeño"],
+            "size",
+            X.playback.size
+          ),
+          (function (t, a) {
+            var i = e("div", "pb-row");
+            ((i.style.top = a + "px"),
+              i.appendChild(e("div", "pb-label", "Estilo")));
+            var curStyleIdx = ["white", "yellow", "cyan"].indexOf(X.playback.style);
+            if (curStyleIdx < 0) curStyleIdx = 0;
+            for (var n = ["#ffffff", "#f6e33f", "#ffffff"], r = 0; r < 3; r++) {
+              var o = e(
+                "div",
+                "pb-opt focusable" +
+                (r === curStyleIdx ? " is-checked" : "")
+              );
+              ((o.style.marginLeft = (0 === r ? 0 : 28) + "px"),
+                o.appendChild(e("div", "radio")));
+              var s = e("span", null, "Aa");
+              ((s.style.color = n[r]),
+                2 === r &&
+                ((s.style.background = "#000000"),
+                  (s.style.display = "inline-block"),
+                  (s.style.width = "94px"),
+                  (s.style.height = "50px"),
+                  (s.style.lineHeight = "50px"),
+                  (s.style.fontSize = "28px")),
+                o.appendChild(s),
+                (o._group = "style"),
+                (o._index = r),
+                (o._activate = function () {
+                  ((X.playback.style =
+                    ["white", "yellow", "cyan"][this._index] || "white"),
+                    nn(),
+                    Y());
+                  for (
+                    var e = t.querySelectorAll(".pb-opt"), a = 0;
+                    a < e.length;
+                    a++
+                  )
+                    "style" === e[a]._group &&
+                      e[a].classList.toggle(
+                        "is-checked",
+                        e[a]._index === this._index
+                      );
+                }),
+                i.appendChild(o));
+            }
+            t.appendChild(i);
+          })(t, 754),
+          t
+        );
+      })()),
+      (ze.netdiag = (function () {
+        var t = Fa("Diagnóstico de red");
+        (t.appendChild(
+          e(
+            "div",
+            "dg-note",
+            "Comprueba si tu operador de internet está bloqueando los servidores de XuperTV. La app ya usa un DNS seguro (DNS-over-HTTPS) para evitarlo; esta prueba solo lo muestra."
+          )
+        ),
+          t.appendChild(i(e("div", "sp-hr"), 0, 168, 1478, 1)));
+        var n = e("div", "dg-btn focusable", "Analizar red");
+        i(n, 52, 188, 280, 60);
+        var r = e("div", "dg-btn dg-report-btn focusable", "Generar reporte");
+        i(r, 346, 188, 320, 60);
+        var q = e("div", "dg-btn dg-report-btn focusable", "Ver TV en vivo");
+        i(q, 680, 188, 300, 60);
+        var btnReset = e("div", "dg-btn dg-report-btn focusable", "Nueva Identidad");
+        i(btnReset, 994, 188, 300, 60);
+        var o = e("div", "dg-summary", 'Pulsa "Analizar red" para empezar.');
+        i(o, 52, 262, 1380, 64);
+        var s = e("div", "dg-head");
+        (i(s, 52, 340, 1380, 44),
+          s.appendChild(e("span", "dg-host", "Dominio")),
+          s.appendChild(e("span", "dg-local", "DNS del televisor")),
+          s.appendChild(e("span", "dg-state", "Estado")),
+          s.appendChild(e("span", "dg-ip", "Dirección real (DNS seguro)")));
+        var l = e("div", "dg-list");
+        i(l, 52, 388, 1380, 420);
+        var d = e("div", "dg-env", "");
+        (i(d, 52, 816, 1380, 30), ($a = d));
+        var c = e(
+          "div",
+          "dg-foot",
+          'Si el estado dice "Bloqueado", tu operador está interceptando el nombre del servidor, pero la app ya conecta por la dirección real. El reproductor Normal y el Modo Fluido usan este mismo DNS seguro. Si el vídeo sigue sin abrir con la conexión en verde, el bloqueo es por dirección: hace falta un túnel (VPN local).'
+        );
+        return (
+          i(c, 52, 852, 1380, 110),
+          (n._activate = function () {
+            Za(n, o, l);
+          }),
+          (q._activate = function () {
+            P(
+              "liveLog",
+              { events: [] },
+              function (err, data) {
+                var evs = (data && data.events) || [],
+                  ps = data && data.proxyStats,
+                  lines = [];
+                (lines.push("REPRODUCCION TV EN VIVO"),
+                  lines.push("Version: " + APP_VERSION),
+                  lines.push(
+                    "Ahora: " +
                     (X.playerMode || "sin reproduccion") +
                     " | modo " +
                     (X.streamMode || "normal") +
                     (X.streamError ? " | error " + Ka(X.streamError) : "")
-                ),
-                lines.push(""));
-              if (err) lines.push("Servicio: " + Ka(err));
-              else if (!evs.length)
-                lines.push(
-                  "Sin eventos todavia. Abre un canal de TV, espera un rato y vuelve aqui."
-                );
-              for (var k = Math.max(0, evs.length - 16); k < evs.length; k++) {
-                var ev = evs[k] || {};
-                lines.push(
-                  Ka(ev.ev || "?") +
+                  ),
+                  lines.push(""));
+                if (err) lines.push("Servicio: " + Ka(err));
+                else if (!evs.length)
+                  lines.push(
+                    "Sin eventos todavia. Abre un canal de TV, espera un rato y vuelve aqui."
+                  );
+                for (var k = Math.max(0, evs.length - 16); k < evs.length; k++) {
+                  var ev = evs[k] || {};
+                  lines.push(
+                    Ka(ev.ev || "?") +
                     "  t=" +
                     (ev.t || 0) +
                     "s  rs=" +
@@ -8041,12 +8346,12 @@
                     (ev.b0 ? "-" + ev.b0 : "") +
                     (ev.ns ? "  ns=" + ev.ns : "") +
                     (ev.ch ? "  " + Ka(ev.ch) : "")
-                );
-              }
-              lines.push("");
-              if (ps)
-                lines.push(
-                  "PROXY CDN: peticiones " +
+                  );
+                }
+                lines.push("");
+                if (ps)
+                  lines.push(
+                    "PROXY CDN: peticiones " +
                     (ps.reqs || 0) +
                     " | errores " +
                     (ps.errors || 0) +
@@ -8055,17 +8360,17 @@
                     " | HTTP>=400 " +
                     (ps.badStatus || 0) +
                     (ps.lastError ? " | ultimo: " + Ka(ps.lastError) : "")
-                );
-              if (ps && ps.hls && ps.hls.length) {
-                var hlsTxt = [];
-                for (
-                  var hi = Math.max(0, ps.hls.length - 4);
-                  hi < ps.hls.length;
-                  hi++
-                ) {
-                  var hh = ps.hls[hi] || {};
-                  hlsTxt.push(
-                    "segs=" +
+                  );
+                if (ps && ps.hls && ps.hls.length) {
+                  var hlsTxt = [];
+                  for (
+                    var hi = Math.max(0, ps.hls.length - 4);
+                    hi < ps.hls.length;
+                    hi++
+                  ) {
+                    var hh = ps.hls[hi] || {};
+                    hlsTxt.push(
+                      "segs=" +
                       (hh.segs || 0) +
                       "/" +
                       (hh.out || hh.segs || 0) +
@@ -8080,20 +8385,20 @@
                       "/" +
                       (hh.oms || hh.ms || "?") +
                       (hh.st ? " start=" + hh.st : "")
-                  );
+                    );
+                  }
+                  lines.push("HLS: " + hlsTxt.join(" | "));
                 }
-                lines.push("HLS: " + hlsTxt.join(" | "));
-              }
-              if (ps && ps.seg && ps.seg.length) {
-                var segTxt = [];
-                for (
-                  var si = Math.max(0, ps.seg.length - 4);
-                  si < ps.seg.length;
-                  si++
-                ) {
-                  var sg = ps.seg[si] || {};
-                  segTxt.push(
-                    "hace " +
+                if (ps && ps.seg && ps.seg.length) {
+                  var segTxt = [];
+                  for (
+                    var si = Math.max(0, ps.seg.length - 4);
+                    si < ps.seg.length;
+                    si++
+                  ) {
+                    var sg = ps.seg[si] || {};
+                    segTxt.push(
+                      "hace " +
                       Math.max(0, Math.round((Date.now() - (sg.at || 0)) / 1e3)) +
                       "s c=" +
                       (sg.code || 0) +
@@ -8103,127 +8408,150 @@
                       (sg.ms || 0) +
                       "ms" +
                       (sg.err ? " " + Ka(sg.err) : "")
-                  );
+                    );
+                  }
+                  lines.push("SEG: " + segTxt.join(" | "));
                 }
-                lines.push("SEG: " + segTxt.join(" | "));
+                lines.push(
+                  "Foto de esta pantalla = lo que necesito para ver el corte."
+                );
+                var box = e("div", "dg-report", lines.join("\n"));
+                while (l.firstChild) l.removeChild(l.firstChild);
+                (l.appendChild(box),
+                  (o.className = "dg-summary ok"),
+                  (o.textContent = "Log listo. Toma una foto de esta pantalla."),
+                  rt(q));
+              },
+              8e3
+            );
+          }),
+          (btnReset._activate = function () {
+            (o.className = "dg-summary"),
+              (o.textContent = "Restableciendo identidad y renovando sesión...");
+            P(
+              "setSession",
+              { action: "reset" },
+              function (err, res) {
+                if (err) {
+                  (o.className = "dg-summary err"),
+                    (o.textContent =
+                      "Error al restablecer identidad: " + Ka((err && err.message) || err));
+                  Yt("Error al restablecer identidad");
+                } else {
+                  (o.className = "dg-summary ok"),
+                    (o.textContent =
+                      "Identidad restablecida con éxito. Nueva sesión activa.");
+                  Yt("Nueva identidad asignada");
+                }
+                rt(btnReset);
+              },
+              15e3
+            );
+          }),
+          (r._activate = function () {
+            !(function (t, i) {
+              if (!Xa.report) {
+                (Xa.runId++, (Xa.running = !1));
+                var n = window.__xuperViewport || {};
+                Xa.report = {
+                  version:
+                    (document.querySelector(".welcome-version") || {})
+                      .textContent || "desconocida",
+                  verdict: "sin respuesta",
+                  partial: !0,
+                  pending: !0,
+                  screen: {
+                    w: n.w || 0,
+                    h: n.h || 0,
+                    scale: n.scale || 0,
+                    panelW: n.panelW || 0,
+                    panelH: n.panelH || 0,
+                  },
+                  layers: {},
+                  hosts: [],
+                };
               }
-              lines.push(
-                "Foto de esta pantalla = lo que necesito para ver el corte."
-              );
-              var box = e("div", "dg-report", lines.join("\n"));
-              while (l.firstChild) l.removeChild(l.firstChild);
-              (l.appendChild(box),
-                (o.className = "dg-summary ok"),
-                (o.textContent = "Log listo. Toma una foto de esta pantalla."),
-                rt(q));
-            },
-            8e3
-          );
-        }),
-        (r._activate = function () {
-          !(function (t, i) {
-            if (!Xa.report) {
-              (Xa.runId++, (Xa.running = !1));
-              var n = window.__xuperViewport || {};
-              Xa.report = {
-                version:
-                  (document.querySelector(".welcome-version") || {})
-                    .textContent || "desconocida",
-                verdict: "sin respuesta",
-                partial: !0,
-                pending: !0,
-                screen: {
-                  w: n.w || 0,
-                  h: n.h || 0,
-                  scale: n.scale || 0,
-                  panelW: n.panelW || 0,
-                  panelH: n.panelH || 0,
-                },
-                layers: {},
-                hosts: [],
-              };
-            }
-            a(i);
-            var r = e(
-              "div",
-              "dg-report",
-              (function (e) {
-                var t = [],
-                  a = e.screen || {},
-                  i = e.layers || {},
-                  n = e.hosts || [];
-                (t.push("REPORTE DE SOPORTE XUPERTV"),
-                  t.push("Versión: " + (e.version || "desconocida")),
-                  t.push(
-                    "Pantalla: " +
+              a(i);
+              var r = e(
+                "div",
+                "dg-report",
+                (function (e) {
+                  var t = [],
+                    a = e.screen || {},
+                    i = e.layers || {},
+                    n = e.hosts || [];
+                  (t.push("REPORTE DE SOPORTE XUPERTV"),
+                    t.push("Versión: " + (e.version || "desconocida")),
+                    t.push(
+                      "Pantalla: " +
                       (a.w && a.h ? a.w + "×" + a.h : "sin datos") +
                       (a.panelW && a.panelH
                         ? " | panel " + a.panelW + "×" + a.panelH
                         : "") +
                       (a.scale ? " | escala " + a.scale : "")
-                  ),
-                  t.push(
-                    "Red: " +
+                    ),
+                    t.push(
+                      "Red: " +
                       (e.verdict || "sin resultado") +
                       (e.partial ? " (parcial)" : "")
-                  ),
-                  e.pending &&
+                    ),
+                    e.pending &&
                     t.push(
                       "Diagnóstico: sin respuesta / detenido para generar este reporte"
                     ));
-                e.serviceError && t.push("Servicio: " + Ka(e.serviceError));
-                (t.push("Portal: " + Ya(i.portal)),
-                  t.push("Sesión: " + Ya(i.session)),
-                  t.push("TV en vivo: " + Ya(i.live)),
-                  t.push("Películas/series: " + Ya(i.vod)),
-                  t.push(
-                    "Reproductor: " +
+                  e.serviceError && t.push("Servicio: " + Ka(e.serviceError));
+                  (t.push("Portal: " + Ya(i.portal)),
+                    t.push("Sesión: " + Ya(i.session)),
+                    t.push("TV en vivo: " + Ya(i.live)),
+                    t.push("Películas/series: " + Ya(i.vod)),
+                    t.push(
+                      "Reproductor: " +
                       (X.playerMode || "sin reproducción") +
                       " | modo " +
                       (X.streamMode || "normal") +
                       (X.streamError ? " | error " + Ka(X.streamError) : "")
-                  ));
-                var dm = (e && e.devMode) || X.devMode;
-                if (dm) {
-                  t.push(
-                    "Modo Dev LG: " +
+                    ));
+                  var dm = (e && e.devMode) || X.devMode;
+                  if (dm) {
+                    t.push(
+                      "Modo Dev LG: " +
                       (dm.enabled
                         ? dm.registered
                           ? "Renovación automática activa 24/7 (lg.pirate.vodka)"
                           : dm.message || "Activo"
                         : "No detectado en esta TV")
-                  );
-                }
-                /* Tiempos reales de arranque: permiten ver de un vistazo si la
-                   demora está en resolver la señal o en que el reproductor
-                   reciba el primer cuadro (relay/ffmpeg o CDN lento). */
-                var pt = window.__xuperTiming || {};
-                if (typeof pt.resolveMs === "number" && pt.resolveMs >= 0)
-                  t.push(
-                    "Tiempos: resolver " +
+                    );
+                  }
+                  /* Tiempos reales de arranque: permiten ver de un vistazo si la
+                     demora está en resolver la señal o en que el reproductor
+                     reciba el primer cuadro (relay/ffmpeg o CDN lento). */
+                  var pt = window.__xuperTiming || {};
+                  if (typeof pt.resolveMs === "number" && pt.resolveMs >= 0)
+                    t.push(
+                      "Tiempos: resolver " +
                       Math.round(pt.resolveMs) +
                       " ms | primer cuadro " +
                       (typeof pt.firstFrameMs === "number" && pt.firstFrameMs >= 0
                         ? Math.round(pt.firstFrameMs / 100) / 10 + " s"
                         : "pendiente")
-                  );
-                for (var r = 0; r < n.length && r < 5; r++)
-                  t.push(
-                    "Host " +
+                    );
+                  for (var r = 0; r < n.length && r < 5; r++)
+                    t.push(
+                      "Host " +
                       (r + 1) +
                       ": " +
                       Ka(n[r].host) +
                       " — " +
                       Ga(n[r])
-                  );
-                var lg = e.liveLog || [];
-                if (lg.length) {
-                  t.push("");
-                  t.push("TV EN VIVO (ultimos eventos):");
-                  for (var k = 0; k < lg.length && k < 14; k++) {
-                    var ev = lg[k] || {};
-                    t.push(
-                      "  " +
+                    );
+                  var lg = e.liveLog || [];
+                  if (lg.length) {
+                    t.push("");
+                    t.push("TV EN VIVO (ultimos eventos):");
+                    for (var k = 0; k < lg.length && k < 14; k++) {
+                      var ev = lg[k] || {};
+                      t.push(
+                        "  " +
                         Ka(ev.ev || "?") +
                         " t=" +
                         (ev.t || 0) +
@@ -8236,14 +8564,14 @@
                         (ev.b0 ? "-" + ev.b0 : "") +
                         (ev.ns ? " ns=" + ev.ns : "") +
                         (ev.ch ? " " + Ka(ev.ch) : "")
-                    );
+                      );
+                    }
                   }
-                }
-                var ps = e.proxyStats;
-                if (ps)
-                  t.push(
-                    "",
-                    "PROXY CDN: peticiones " +
+                  var ps = e.proxyStats;
+                  if (ps)
+                    t.push(
+                      "",
+                      "PROXY CDN: peticiones " +
                       (ps.reqs || 0) +
                       " | errores " +
                       (ps.errors || 0) +
@@ -8252,18 +8580,18 @@
                       " | HTTP>=400 " +
                       (ps.badStatus || 0) +
                       (ps.lastError ? " | ultimo: " + Ka(ps.lastError) : "")
-                  );
-                var hlsR = e.proxyStats && e.proxyStats.hls;
-                if (hlsR && hlsR.length) {
-                  var hlsRTxt = [];
-                  for (
-                    var hri = Math.max(0, hlsR.length - 4);
-                    hri < hlsR.length;
-                    hri++
-                  ) {
-                    var hrh = hlsR[hri] || {};
-                    hlsRTxt.push(
-                      "segs=" +
+                    );
+                  var hlsR = e.proxyStats && e.proxyStats.hls;
+                  if (hlsR && hlsR.length) {
+                    var hlsRTxt = [];
+                    for (
+                      var hri = Math.max(0, hlsR.length - 4);
+                      hri < hlsR.length;
+                      hri++
+                    ) {
+                      var hrh = hlsR[hri] || {};
+                      hlsRTxt.push(
+                        "segs=" +
                         (hrh.segs || 0) +
                         "/" +
                         (hrh.out || hrh.segs || 0) +
@@ -8278,21 +8606,21 @@
                         "/" +
                         (hrh.oms || hrh.ms || "?") +
                         (hrh.st ? " start=" + hrh.st : "")
-                    );
+                      );
+                    }
+                    t.push("HLS: " + hlsRTxt.join(" | "));
                   }
-                  t.push("HLS: " + hlsRTxt.join(" | "));
-                }
-                var segR = e.proxyStats && e.proxyStats.seg;
-                if (segR && segR.length) {
-                  var segRTxt = [];
-                  for (
-                    var sri = Math.max(0, segR.length - 4);
-                    sri < segR.length;
-                    sri++
-                  ) {
-                    var srh = segR[sri] || {};
-                    segRTxt.push(
-                      "hace " +
+                  var segR = e.proxyStats && e.proxyStats.seg;
+                  if (segR && segR.length) {
+                    var segRTxt = [];
+                    for (
+                      var sri = Math.max(0, segR.length - 4);
+                      sri < segR.length;
+                      sri++
+                    ) {
+                      var srh = segR[sri] || {};
+                      segRTxt.push(
+                        "hace " +
                         Math.max(
                           0,
                           Math.round((Date.now() - (srh.at || 0)) / 1e3)
@@ -8305,242 +8633,243 @@
                         (srh.ms || 0) +
                         "ms" +
                         (srh.err ? " " + Ka(srh.err) : "")
-                    );
+                      );
+                    }
+                    t.push("SEG: " + segRTxt.join(" | "));
                   }
-                  t.push("SEG: " + segRTxt.join(" | "));
-                }
-                var rl = e.relay;
-                if (rl) {
-                  t.push(
-                    "",
-                    "MODO FLUIDO: " +
+                  var rl = e.relay;
+                  if (rl) {
+                    t.push(
+                      "",
+                      "MODO FLUIDO: " +
                       Ka(rl.state || "?") +
                       (rl.error ? " (" + Ka(rl.error) + ")" : "") +
                       (rl.running ? " | relay activo" : " | relay detenido")
+                    );
+                    var rlLog = rl.log || [];
+                    for (var rli = 0; rli < rlLog.length; rli++)
+                      t.push("  " + Ka(rlLog[rli]));
+                  }
+                  return (
+                    t.push(""),
+                    t.push(
+                      "Privacidad: este reporte no incluye enlaces, tokens, cabeceras ni historial."
+                    ),
+                    t.push(
+                      "Toma una foto de esta pantalla y envíala al soporte."
+                    ),
+                    t.join("\n")
                   );
-                  var rlLog = rl.log || [];
-                  for (var rli = 0; rli < rlLog.length; rli++)
-                    t.push("  " + Ka(rlLog[rli]));
-                }
-                return (
-                  t.push(""),
-                  t.push(
-                    "Privacidad: este reporte no incluye enlaces, tokens, cabeceras ni historial."
-                  ),
-                  t.push(
-                    "Toma una foto de esta pantalla y envíala al soporte."
-                  ),
-                  t.join("\n")
-                );
-              })(Xa.report)
-            );
-            (i.appendChild(r),
-              (t.className = "dg-summary ok"),
-              (t.textContent =
-                "Reporte listo. Toma una foto de esta pantalla y envíala al soporte."));
-          })(o, l);
-        }),
-        (t._ensureDiag = function () {
-          Xa.report ? Ja(o, l, Xa.report) : Za(n, o, l);
-        }),
-        t.appendChild(n),
-        t.appendChild(r),
-        t.appendChild(q),
-        t.appendChild(o),
-        t.appendChild(s),
-        t.appendChild(l),
-        t.appendChild(d),
-        t.appendChild(c),
-        t
-      );
-    })()),
-    (ze.parent = (function () {
-      var t = e("div", "settings-panel");
-      (t.appendChild(
-        e("div", "pl-title", "Contenido para adultos (+18)")
-      ),
-        t.appendChild(
-          e(
-            "div",
-            "pl-tip",
-            "Elige si deseas mostrar contenido y canales clasificados para mayores de edad en este televisor."
-          )
+                })(Xa.report)
+              );
+              (i.appendChild(r),
+                (t.className = "dg-summary ok"),
+                (t.textContent =
+                  "Reporte listo. Toma una foto de esta pantalla y envíala al soporte."));
+            })(o, l);
+          }),
+          (t._ensureDiag = function () {
+            Xa.report ? Ja(o, l, Xa.report) : Za(n, o, l);
+          }),
+          t.appendChild(n),
+          t.appendChild(r),
+          t.appendChild(q),
+          t.appendChild(btnReset),
+          t.appendChild(o),
+          t.appendChild(s),
+          t.appendChild(l),
+          t.appendChild(d),
+          t.appendChild(c),
+          t
+        );
+      })()),
+      (ze.parent = (function () {
+        var t = e("div", "settings-panel");
+        (t.appendChild(
+          e("div", "pl-title", "Contenido para adultos (+18)")
         ),
-        t.appendChild(e("div", "pl-label", "Contenido +18")));
-      var a = e(
+          t.appendChild(
+            e(
+              "div",
+              "pl-tip",
+              "Elige si deseas mostrar contenido y canales clasificados para mayores de edad en este televisor."
+            )
+          ),
+          t.appendChild(e("div", "pl-label", "Contenido +18")));
+        var a = e(
           "div",
           "sp-switch focusable " + (X.adultEnabled ? "on" : "off")
         ),
-        i = e(
-          "div",
-          "pl-note",
-          X.adultEnabled
-            ? "Activo: se mostrarán categorías y canales +18."
-            : "Desactivado: se ocultarán categorías y canales +18."
-        );
-      return (
-        (a._activate = function () {
-          ((X.adultEnabled = !X.adultEnabled),
-            (Q.adultEnabled = X.adultEnabled),
-            K($, Q),
-            (a.className =
-              "sp-switch focusable " + (X.adultEnabled ? "on" : "off")),
-            (i.textContent = X.adultEnabled
+          i = e(
+            "div",
+            "pl-note",
+            X.adultEnabled
               ? "Activo: se mostrarán categorías y canales +18."
-              : "Desactivado: se ocultarán categorías y canales +18."),
-            Qt(liveFavoritesOnly),
-            hr(X.channel),
-            Yt(X.adultEnabled ? "Contenido +18 habilitado" : "Contenido +18 oculto"),
-            rt(a));
-        }),
-        t.appendChild(a),
-        t.appendChild(i),
-        t
-      );
-    })()),
-    (ze.display = (function () {
-      var t = Fa("Pantalla y compatibilidad"),
-        a = e(
-          "div",
-          "sp-global-note",
-          "La compatibilidad 720p se aplica al instalar esta versión. Este ajuste no reduce ni modifica la superficie de vídeo."
-        ),
-        i = e("div", "pb-row"),
-        n = [
-          { id: "auto", label: "Automático" },
-          { id: "hd", label: "Compatibilidad HD" },
-        ];
-      (t.appendChild(a),
-        (i.style.top = "210px"));
-      var uiLabel = e("div", "pb-label", "Tamaño de interfaz");
-      /* "Tamaño de interfaz" no cabe en los 212 px del TextView original y se
-         partía en dos líneas montándose sobre el primer botón. */
-      ((uiLabel.style.width = "400px"),
-        (uiLabel.style.minWidth = "400px"),
-        (uiLabel.style.whiteSpace = "nowrap"));
-      i.appendChild(uiLabel);
-      for (var r = 0; r < n.length; r++)
-        (function (a) {
-          var r = e(
-            "div",
-            "pb-opt focusable" +
-              (Q.uiScaleMode === a.id ? " is-checked" : "")
+              : "Desactivado: se ocultarán categorías y canales +18."
           );
-          ((r.style.marginLeft = 0 === a.index ? 0 : 28 + "px"),
-            r.appendChild(e("div", "radio")),
-            r.appendChild(e("span", null, a.label)),
-            (r._activate = function () {
-              ((Q.uiScaleMode = a.id),
-                K($, Q),
-                oo(),
-                Yt(
-                  "hd" === a.id
-                    ? "Compatibilidad HD activada"
-                    : "Tamaño automático restaurado"
-                ));
-              for (var e = i.querySelectorAll(".pb-opt"), t = 0; t < e.length; t++)
-                e[t].classList.toggle("is-checked", e[t] === r);
-              rt(r);
-            }),
-            i.appendChild(r));
-        })({ id: n[r].id, label: n[r].label, index: r });
-      return (t.appendChild(i), t);
-    })()),
-    (ze.feedback = (function () {
-      var t = e("div", "settings-panel");
-      (t.appendChild(e("div", "fb-title", "Ayuda y Feedback")),
-        t.appendChild(e("div", "fb-hr")),
-        t.appendChild(
-          e(
+        return (
+          (a._activate = function () {
+            ((X.adultEnabled = !X.adultEnabled),
+              (Q.adultEnabled = X.adultEnabled),
+              K($, Q),
+              (a.className =
+                "sp-switch focusable " + (X.adultEnabled ? "on" : "off")),
+              (i.textContent = X.adultEnabled
+                ? "Activo: se mostrarán categorías y canales +18."
+                : "Desactivado: se ocultarán categorías y canales +18."),
+              Qt(liveFavoritesOnly),
+              hr(X.channel),
+              Yt(X.adultEnabled ? "Contenido +18 habilitado" : "Contenido +18 oculto"),
+              rt(a));
+          }),
+          t.appendChild(a),
+          t.appendChild(i),
+          t
+        );
+      })()),
+      (ze.display = (function () {
+        var t = Fa("Pantalla y compatibilidad"),
+          a = e(
             "div",
-            "fb-contact",
-            "Si tiene alguna duda, puede ponerse en contacto con nosotros a través de los siguientes medios:"
-          )
+            "sp-global-note",
+            "La compatibilidad 720p se aplica al instalar esta versión. Este ajuste no reduce ni modifica la superficie de vídeo."
+          ),
+          i = e("div", "pb-row"),
+          n = [
+            { id: "auto", label: "Automático" },
+            { id: "hd", label: "Compatibilidad HD" },
+          ];
+        (t.appendChild(a),
+          (i.style.top = "210px"));
+        var uiLabel = e("div", "pb-label", "Tamaño de interfaz");
+        /* "Tamaño de interfaz" no cabe en los 212 px del TextView original y se
+           partía en dos líneas montándose sobre el primer botón. */
+        ((uiLabel.style.width = "400px"),
+          (uiLabel.style.minWidth = "400px"),
+          (uiLabel.style.whiteSpace = "nowrap"));
+        i.appendChild(uiLabel);
+        for (var r = 0; r < n.length; r++)
+          (function (a) {
+            var r = e(
+              "div",
+              "pb-opt focusable" +
+              (Q.uiScaleMode === a.id ? " is-checked" : "")
+            );
+            ((r.style.marginLeft = 0 === a.index ? 0 : 28 + "px"),
+              r.appendChild(e("div", "radio")),
+              r.appendChild(e("span", null, a.label)),
+              (r._activate = function () {
+                ((Q.uiScaleMode = a.id),
+                  K($, Q),
+                  oo(),
+                  Yt(
+                    "hd" === a.id
+                      ? "Compatibilidad HD activada"
+                      : "Tamaño automático restaurado"
+                  ));
+                for (var e = i.querySelectorAll(".pb-opt"), t = 0; t < e.length; t++)
+                  e[t].classList.toggle("is-checked", e[t] === r);
+                rt(r);
+              }),
+              i.appendChild(r));
+          })({ id: n[r].id, label: n[r].label, index: r });
+        return (t.appendChild(i), t);
+      })()),
+      (ze.feedback = (function () {
+        var t = e("div", "settings-panel");
+        (t.appendChild(e("div", "fb-title", "Ayuda y Feedback")),
+          t.appendChild(e("div", "fb-hr")),
+          t.appendChild(
+            e(
+              "div",
+              "fb-contact",
+              "Si tiene alguna duda, puede ponerse en contacto con nosotros a través de los siguientes medios:"
+            )
+          ),
+          t.appendChild(
+            e(
+              "div",
+              "fb-qr-note",
+              "Escanee el código QR para enviar sugerencias o comentarios."
+            )
+          ));
+        var a = e("div", "fb-qr");
+        var img = e("img", "fb-qr-img");
+        ((img.src = "assets/original/settings/qr_telegram.png"),
+          (img.alt = "WebOs PortXuper Chat"),
+          a.appendChild(img),
+          t.appendChild(a));
+        var i = e("div", "fb-help focusable", "Ayuda");
+        return ((i._activate = function () { }), t.appendChild(i), t);
+      })()),
+      (ze.about = (function () {
+        var t = e("div", "settings-panel");
+        (t.appendChild(e("div", "sp-title plain", "Sobre nosotros")),
+          t.appendChild(i(e("div", "sp-hr soft"), 0, 165, 1498, 1)),
+          t.appendChild(
+            e(
+              "div",
+              "sp-about-body",
+              "Xuper TV se dedica a ofrecer a los usuarios una amplia variedad de recursos de alta calidad. Aquí encontrarás miles de películas, series, animes y canales en vivo, todo reunido en un solo lugar. Brindamos una experiencia estable, diversa y siempre actualizada, además de contenidos gratuitos para disfrutar."
+            )
+          ));
+        var a = e(
+          "div",
+          "sp-about-port",
+          "Port para LG webOS realizado por CristiancoDEV"
+        );
+        ((a.style.top = "380px"), t.appendChild(a));
+        var n = e("div", "sp-about-mail"),
+          r = e("img");
+        ((r.src = "assets/original/settings/vod_email_icon.png"),
+          (r.alt = ""),
+          n.appendChild(r),
+          n.appendChild(e("span", null, "escuchamos-tv@outlook.com")),
+          t.appendChild(n));
+        var o = e("div", "sp-about-update-box");
+        (o.appendChild(
+          e("div", "sp-about-update-title", "Actualizaciones de XuperTV")
         ),
-        t.appendChild(
-          e(
-            "div",
-            "fb-qr-note",
-            "Escanee el código QR para enviar sugerencias o comentarios."
-          )
-        ));
-      var a = e("div", "fb-qr");
-      var img = e("img", "fb-qr-img");
-      ((img.src = "assets/original/settings/qr_telegram.png"),
-        (img.alt = "WebOs PortXuper Chat"),
-        a.appendChild(img),
-        t.appendChild(a));
-      var i = e("div", "fb-help focusable", "Ayuda");
-      return ((i._activate = function () {}), t.appendChild(i), t);
-    })()),
-    (ze.about = (function () {
-      var t = e("div", "settings-panel");
-      (t.appendChild(e("div", "sp-title plain", "Sobre nosotros")),
-        t.appendChild(i(e("div", "sp-hr soft"), 0, 165, 1498, 1)),
-        t.appendChild(
-          e(
-            "div",
-            "sp-about-body",
-            "Xuper TV se dedica a ofrecer a los usuarios una amplia variedad de recursos de alta calidad. Aquí encontrarás miles de películas, series, animes y canales en vivo, todo reunido en un solo lugar. Brindamos una experiencia estable, diversa y siempre actualizada, además de contenidos gratuitos para disfrutar."
-          )
-        ));
-      var a = e(
-        "div",
-        "sp-about-port",
-        "Port para LG webOS realizado por CristiancoDEV"
-      );
-      ((a.style.top = "380px"), t.appendChild(a));
-      var n = e("div", "sp-about-mail"),
-        r = e("img");
-      ((r.src = "assets/original/settings/vod_email_icon.png"),
-        (r.alt = ""),
-        n.appendChild(r),
-        n.appendChild(e("span", null, "escuchamos-tv@outlook.com")),
-        t.appendChild(n));
-      var o = e("div", "sp-about-update-box");
-      (o.appendChild(
-        e("div", "sp-about-update-title", "Actualizaciones de XuperTV")
-      ),
-        o.appendChild(
-          e(
-            "div",
-            "sp-about-update-desc",
-            "Versión instalada: v" + APP_VERSION + ". Puedes actualizar la app directamente desde tu televisor sin necesidad de usar un PC."
-          )
-        ));
-      var s = e("div", "sp-about-update-row"),
-        l = e(
-          "button",
-          "sp-about-update-btn focusable",
-          "Buscar actualizaciones"
-        ),
-        d = e("span", "sp-about-update-msg");
-      return (
-        (l._activate = function () {
-          ((l.textContent = "Comprobando..."),
-            (d.textContent = ""),
-            oa(!1, function (e, t) {
-              ((l.textContent = "Buscar actualizaciones"),
-                e
-                  ? ((d.textContent = "Error: " + ((e && e.message) || e)),
-                    (d.style.color = "#ef4444"))
-                  : t && t.updateAvailable
-                    ? ((d.textContent =
+          o.appendChild(
+            e(
+              "div",
+              "sp-about-update-desc",
+              "Versión instalada: v" + APP_VERSION + ". Puedes actualizar la app directamente desde tu televisor sin necesidad de usar un PC."
+            )
+          ));
+        var s = e("div", "sp-about-update-row"),
+          l = e(
+            "button",
+            "sp-about-update-btn focusable",
+            "Buscar actualizaciones"
+          ),
+          d = e("span", "sp-about-update-msg");
+        return (
+          (l._activate = function () {
+            ((l.textContent = "Comprobando..."),
+              (d.textContent = ""),
+              oa(!1, function (e, t) {
+                ((l.textContent = "Buscar actualizaciones"),
+                  e
+                    ? ((d.textContent = "Error: " + ((e && e.message) || e)),
+                      (d.style.color = "#ef4444"))
+                    : t && t.updateAvailable
+                      ? ((d.textContent =
                         "¡Nueva versión disponible: v" + t.latestVersion + "!"),
-                      (d.style.color = "#22c55e"))
-                    : ((d.textContent =
+                        (d.style.color = "#22c55e"))
+                      : ((d.textContent =
                         "Tienes la versión más reciente (v" + APP_VERSION + ")."),
-                      (d.style.color = "#38bdf8")));
-            }));
-        }),
-        s.appendChild(l),
-        s.appendChild(d),
-        o.appendChild(s),
-        t.appendChild(o),
-        t
-      );
-    })()),
-    ze))
+                        (d.style.color = "#38bdf8")));
+              }));
+          }),
+          s.appendChild(l),
+          s.appendChild(d),
+          o.appendChild(s),
+          t.appendChild(o),
+          t
+        );
+      })()),
+      ze))
       ze.hasOwnProperty(p) && be.appendChild(ze[p]);
   }
   function Ha() {
@@ -8558,7 +8887,7 @@
       r = t("screen-settings");
     if (
       (r && r.classList.toggle("is-history-view", "history" === n),
-      "profile" === n && ze.profile && be)
+        "profile" === n && ze.profile && be)
     ) {
       var o = za();
       (be.replaceChild(o, ze.profile), (ze.profile = o));
@@ -8597,10 +8926,12 @@
         (d._activate = function () {
           ("streamMode" === this._group
             ? ((X.playback.streamMode =
-                1 === this._index ? "smooth" : "normal"),
+              1 === this._index ? "smooth" : "normal"),
               (Cn = {}),
               X.playerItem && xn(X.playerItem))
-            : (X.playback[this._group] = this._index),
+            : "quality" === this._group
+              ? (X.playback.quality = 1 === this._index ? "1080" : 2 === this._index ? "720" : "auto")
+              : (X.playback[this._group] = this._index),
             nn(),
             Y());
           for (var e = t.querySelectorAll(".pb-opt"), a = 0; a < e.length; a++)
@@ -8690,12 +9021,12 @@
   function ja() {
     for (
       var t = e("div", "settings-panel history-panel"),
-        a = e("div", "history-tabs"),
-        i = [
-          { id: "history", label: "Historia" },
-          { id: "favs", label: "Mi favoritos" },
-        ],
-        n = 0;
+      a = e("div", "history-tabs"),
+      i = [
+        { id: "history", label: "Historia" },
+        { id: "favs", label: "Mi favoritos" },
+      ],
+      n = 0;
       n < i.length;
       n++
     )
@@ -8739,8 +9070,8 @@
             a.appendChild(i));
           var n = t.series
             ? "Ya miró hasta " +
-              (t.episodeNumber ? "epis. " + t.episodeNumber : "un episodio") +
-              (t.position ? " · " + ai(t.position) : "")
+            (t.episodeNumber ? "epis. " + t.episodeNumber : "un episodio") +
+            (t.position ? " · " + ai(t.position) : "")
             : "Ya miró hasta " + ai(t.position || 0);
           (a.appendChild(e("div", "history-progress", n)),
             a.appendChild(
@@ -8833,9 +9164,9 @@
       ? "ok" === e.verdict
         ? "ok"
         : "dns-distinto" === e.verdict ||
-            "dns-local-falla" === e.verdict ||
-            "sin-tiempo" === e.verdict ||
-            e.timeout
+          "dns-local-falla" === e.verdict ||
+          "sin-tiempo" === e.verdict ||
+          e.timeout
           ? "warn"
           : "bad"
       : "";
@@ -8950,15 +9281,15 @@
       i.appendChild(C));
     for (
       var S = n.layers || {},
-        x = [
-          { key: "portal", label: "Portal" },
-          { key: "session", label: "Sesión" },
-          { key: "live", label: "Live CDN" },
-          { key: "vod", label: "VOD CDN" },
-        ],
-        T = !1,
-        _ = !1,
-        k = 0;
+      x = [
+        { key: "portal", label: "Portal" },
+        { key: "session", label: "Sesión" },
+        { key: "live", label: "Live CDN" },
+        { key: "vod", label: "VOD CDN" },
+      ],
+      T = !1,
+      _ = !1,
+      k = 0;
       k < x.length;
       k++
     ) {
@@ -8968,9 +9299,9 @@
         ("live" !== L.key || M.ok || M.timeout || (T = !0),
           "vod" !== L.key || M.ok || M.timeout || (_ = !0));
         var I = e(
-            "div",
-            "dg-row " + (M.ok ? "ok" : M.timeout ? "warn" : "bad")
-          ),
+          "div",
+          "dg-row " + (M.ok ? "ok" : M.timeout ? "warn" : "bad")
+        ),
           E =
             M.error || (M.status ? "HTTP " + M.status : M.ok ? "OK" : "Error");
         "session" === L.key &&
@@ -9002,14 +9333,14 @@
               : "las películas") +
           " no se pueden abrir: tu operador bloquea las direcciones de vídeo (bloqueo por IP/SNI). Ese bloqueo no se arregla desde la app; hace falta una VPN en el router.",
       }),
-      (t.textContent = r.text),
-      (t.className = "dg-summary " + r.cls));
+        (t.textContent = r.text),
+        (t.className = "dg-summary " + r.cls));
     if (
       (n.partial &&
         "bad" !== r.cls &&
         (t.textContent +=
           " (La prueba no terminó a tiempo: vuelve a analizar.)"),
-      $a)
+        $a)
     ) {
       var D = n.screen || {},
         P = [];
@@ -9058,29 +9389,29 @@
       Xa.runId === r &&
         Xa.running &&
         ((Xa.running = !1),
-        Xa.runId++,
-        (Xa.report = {
-          version:
-            (document.querySelector(".welcome-version") || {}).textContent ||
-            "desconocida",
-          verdict: "servicio-sin-respuesta",
-          partial: !0,
-          serviceError: e,
-          screen:
-            ((a = window.__xuperViewport || {}),
-            {
-              w: a.w || 0,
-              h: a.h || 0,
-              scale: a.scale || 0,
-              panelW: a.panelW || 0,
-              panelH: a.panelH || 0,
-            }),
-          layers: {},
-          hosts: [],
-          providers: [],
-        }),
-        (t.textContent = "Analizar de nuevo"),
-        Ja(i, n, Xa.report));
+          Xa.runId++,
+          (Xa.report = {
+            version:
+              (document.querySelector(".welcome-version") || {}).textContent ||
+              "desconocida",
+            verdict: "servicio-sin-respuesta",
+            partial: !0,
+            serviceError: e,
+            screen:
+              ((a = window.__xuperViewport || {}),
+              {
+                w: a.w || 0,
+                h: a.h || 0,
+                scale: a.scale || 0,
+                panelW: a.panelW || 0,
+                panelH: a.panelH || 0,
+              }),
+            layers: {},
+            hosts: [],
+            providers: [],
+          }),
+          (t.textContent = "Analizar de nuevo"),
+          Ja(i, n, Xa.report));
     }
     ((Xa.runId = r),
       (Xa.running = !0),
@@ -9095,7 +9426,7 @@
       l = setTimeout(function () {
         s ||
           ((s = !0),
-          o("ping no respondió en 25 segundos (el servicio no arrancó)"));
+            o("ping no respondió en 25 segundos (el servicio no arrancó)"));
       }, 25e3);
     P(
       "ping",
@@ -9106,17 +9437,17 @@
         }
         s ||
           ((s = !0),
-          clearTimeout(l),
-          (!e && t) || o("ping falló: " + Ka(e || "sin respuesta")));
+            clearTimeout(l),
+            (!e && t) || o("ping falló: " + Ka(e || "sin respuesta")));
       },
       24e3
     );
     var d = setTimeout(function () {
-        Xa.running &&
-          Xa.runId === r &&
-          (i.textContent =
-            "Analizando… tu red está respondiendo lento, espera un momento.");
-      }, 9e3),
+      Xa.running &&
+        Xa.runId === r &&
+        (i.textContent =
+          "Analizando… tu red está respondiendo lento, espera un momento.");
+    }, 9e3),
       c = setTimeout(function () {
         Xa.running &&
           Xa.runId === r &&
@@ -9151,13 +9482,13 @@
         if (Xa.runId === r)
           if (
             (clearTimeout(d),
-            clearTimeout(c),
-            (Xa.running = !1),
-            (t.textContent = "Analizar de nuevo"),
-            t.parentNode &&
+              clearTimeout(c),
+              (Xa.running = !1),
+              (t.textContent = "Analizar de nuevo"),
+              t.parentNode &&
               -1 !== t.parentNode.className.indexOf("is-active") &&
               rt(t),
-            !e && a)
+              !e && a)
           )
             ((Xa.report = a), Ja(i, n, a));
           else {
@@ -9168,14 +9499,14 @@
               ? (i.textContent = E)
               : /exist|not found|no disponible/i.test(o)
                 ? (i.textContent =
-                    "El servicio de fondo no está instalado en la TV. Reinstala la app usando el instalador .bat")
+                  "El servicio de fondo no está instalado en la TV. Reinstala la app usando el instalador .bat")
                 : /timeout|tiempo|espera/i.test(o)
                   ? (i.textContent =
-                      "Tiempo de espera agotado. La conexión es muy lenta o el DNS de tu operador no responde.")
+                    "Tiempo de espera agotado. La conexión es muy lenta o el DNS de tu operador no responde.")
                   : (i.textContent =
-                      "No se pudo ejecutar la prueba (" +
-                      (o || "el servicio no respondió") +
-                      ").");
+                    "No se pudo ejecutar la prueba (" +
+                    (o || "el servicio no respondió") +
+                    ").");
           }
       },
       45e3
@@ -9240,16 +9571,16 @@
           X.playerEpisode &&
           X.playerEpisode.duration &&
           (a = ii(X.playerEpisode.duration)),
-        !a &&
+          !a &&
           X.playerItem &&
           X.playerItem.duration &&
           (a = ii(X.playerItem.duration)),
-        !a &&
+          !a &&
           xe &&
           isFinite(xe.duration) &&
           xe.duration > 0 &&
           (a = xe.duration),
-        !a && pn && pn.length)
+          !a && pn && pn.length)
       ) {
         var i = pn[pn.length - 1];
         i && i.end > 0 && (a = Math.round(i.end + 60));
@@ -9260,35 +9591,35 @@
       var n = Math.min(100, Math.max(0, (e / a) * 100));
       if (
         ((Oe.style.width = n.toFixed(2) + "%"),
-        Ne && (Ne.style.left = n.toFixed(2) + "%"),
-        xe && xe.buffered && xe.buffered.length > 0)
+          Ne && (Ne.style.left = n.toFixed(2) + "%"),
+          xe && xe.buffered && xe.buffered.length > 0)
       )
         try {
           var r = xe.buffered.end(xe.buffered.length - 1);
           br && (r += Cr);
           var o = Math.min(100, Math.max(0, (r / a) * 100));
           qe && (qe.style.width = o.toFixed(2) + "%");
-        } catch (e) {}
+        } catch (e) { }
     }
   }
   function si(e) {
     (Re || (Re = t("player-osd-icon")),
       Re &&
-        (ti && (clearTimeout(ti), (ti = null)),
+      (ti && (clearTimeout(ti), (ti = null)),
         "pause" === e
           ? ((Re.style.backgroundImage =
-              "url(assets/original/common/icon_status_pause.png)"),
+            "url(assets/original/common/icon_status_pause.png)"),
             Re.classList.add("is-active"))
           : "forward" === e
             ? ((Re.style.backgroundImage =
-                "url(assets/original/common/icon_status_forward.png)"),
+              "url(assets/original/common/icon_status_forward.png)"),
               Re.classList.add("is-active"),
               (ti = setTimeout(function () {
                 Re.classList.remove("is-active");
               }, 900)))
             : "backward" === e
               ? ((Re.style.backgroundImage =
-                  "url(assets/original/common/icon_status_backward.png)"),
+                "url(assets/original/common/icon_status_backward.png)"),
                 Re.classList.add("is-active"),
                 (ti = setTimeout(function () {
                   Re.classList.remove("is-active");
@@ -9303,11 +9634,11 @@
         i = Math.max(0, Math.min(t, a + e));
       try {
         xe.currentTime = i;
-      } catch (e) {}
+      } catch (e) { }
       ("live" === X.playerMode &&
         ((liveGuardUntil = Date.now() + 8e3),
-        (liveGuardLastTime = i),
-        (liveGuardLastWall = Date.now())),
+          (liveGuardLastTime = i),
+          (liveGuardLastWall = Date.now())),
         oi(i, xe.duration),
         pi(),
         si(e > 0 ? "forward" : "backward"));
@@ -9316,12 +9647,17 @@
   function di() {
     if (xe)
       if (xe.paused) {
-        ("live" === X.playerMode && (liveUserPaused = !1), Mr(), si("none"), pi());
+        ((vodUserPaused = !1),
+          "live" === X.playerMode && (liveUserPaused = !1),
+          Mr(),
+          si("none"),
+          pi());
       } else {
-        ("live" === X.playerMode && (liveUserPaused = !0));
+        ((vodUserPaused = !0),
+          "live" === X.playerMode && (liveUserPaused = !0));
         try {
           xe.pause();
-        } catch (e) {}
+        } catch (e) { }
         (si("pause"), pi());
       }
   }
@@ -9423,7 +9759,7 @@
       Ki || (Ji = !!X.playback.subtitle),
       Zn(
         ["cover", "contain", "16-9", "4-3"][Number(X.playback.screen) || 0] ||
-          "contain"
+        "contain"
       ),
       gn());
   }
@@ -9447,22 +9783,22 @@
         an = n;
         for (
           var r = X.playerEpisode,
-            o = String(i.id),
-            s = [
-              {
-                id: o,
-                title: i.title || i.name || "Contenido",
-                poster: i.poster || i.cover || "",
-                series: !!x(i),
-                episodeId: r && r.id ? String(r.id) : "",
-                episodeNumber: (r && (r.number || r.seriesNumber)) || "",
-                position: Math.floor(e),
-                duration: Math.floor(t || i.duration || 0),
-                updatedAt: n,
-              },
-            ],
-            l = Q.history || [],
-            d = 0;
+          o = String(i.id),
+          s = [
+            {
+              id: o,
+              title: i.title || i.name || "Contenido",
+              poster: i.poster || i.cover || "",
+              series: !!x(i),
+              episodeId: r && r.id ? String(r.id) : "",
+              episodeNumber: (r && (r.number || r.seriesNumber)) || "",
+              position: Math.floor(e),
+              duration: Math.floor(t || i.duration || 0),
+              updatedAt: n,
+            },
+          ],
+          l = Q.history || [],
+          d = 0;
           d < l.length && s.length < 30;
           d++
         )
@@ -9474,6 +9810,15 @@
   var ln = null;
   function dn(e) {
     var t = ln;
+    if (!t || String(t.id) !== String(e && e.id)) {
+      var hist = (Q && Q.history) || [];
+      for (var h = 0; h < hist.length; h++) {
+        if (String(hist[h].id) === String(e && e.id)) {
+          t = hist[h];
+          break;
+        }
+      }
+    }
     if (t && e && String(t.id) === String(e.id)) {
       X.resumePosition = Math.max(0, Number(t.position) || 0);
       if (!(t.episodeId && e.episodes)) return;
@@ -9550,10 +9895,10 @@
               if (!e) return t;
               for (
                 var a = e
-                    .replace(/\r\n/g, "\n")
-                    .replace(/\r/g, "\n")
-                    .split("\n\n"),
-                  i = 0;
+                  .replace(/\r\n/g, "\n")
+                  .replace(/\r/g, "\n")
+                  .split("\n\n"),
+                i = 0;
                 i < a.length;
                 i++
               ) {
@@ -9578,22 +9923,22 @@
             })(a.responseText));
         }),
         a.send());
-    } catch (e) {}
+    } catch (e) { }
   }
   function gn() {
     Bi &&
       (Bi.classList.remove("size-small", "size-normal", "size-big"),
-      Bi.classList.add("size-" + Zi),
-      Bi.classList.remove(
-        "color-white",
-        "color-yellow",
-        "color-cyan",
-        "color-lime",
-        "color-black"
-      ),
-      Bi.classList.add("color-" + en),
-      Bi.classList.remove("bg-outline", "bg-none", "bg-box"),
-      Bi.classList.add("bg-" + enBg));
+        Bi.classList.add("size-" + Zi),
+        Bi.classList.remove(
+          "color-white",
+          "color-yellow",
+          "color-cyan",
+          "color-lime",
+          "color-black"
+        ),
+        Bi.classList.add("color-" + en),
+        Bi.classList.remove("bg-outline", "bg-none", "bg-box"),
+        Bi.classList.add("bg-" + enBg));
   }
   function yn(e) {
     if (Bi)
@@ -9631,7 +9976,7 @@
     t && Cn.hasOwnProperty(t)
       ? (X.streamMode = Cn[t] ? "smooth" : "normal")
       : (X.streamMode =
-          "smooth" === X.playback.streamMode ? "smooth" : "normal");
+        "smooth" === X.playback.streamMode ? "smooth" : "normal");
   }
   function Tn(e, t) {
     var a = Sn(e);
@@ -9669,7 +10014,7 @@
     return t && t.id ? t.id : e.id || "";
   }
   function Mn(e, t) {
-    if (((t = t || function () {}), !e)) return t(null);
+    if (((t = t || function () { }), !e)) return t(null);
     var a = Ln(e);
     if (!a) return t(null);
     if (un[a]) return (An(un[a]), t(un[a]));
@@ -9688,7 +10033,7 @@
           for (var r = 0; r < i.length; r++)
             try {
               i[r](n);
-            } catch (e) {}
+            } catch (e) { }
         }));
     }
   }
@@ -9705,7 +10050,7 @@
       /(?:latino|latam|américa latina|america latina)/.test(t)
       ? "es-lat"
       : /^(?:es|spa|esp)(?:[-_ ]?(?:es|españa|espana|castellano))\b/.test(t) ||
-          /(?:españa|espana|castellano)/.test(t)
+        /(?:españa|espana|castellano)/.test(t)
         ? "es-es"
         : /^(?:es|spa|esp)\b/.test(t)
           ? "es"
@@ -9852,14 +10197,14 @@
       a = e && X.focus ? X.focus.textContent : "";
     if (
       (Rn(),
-      (function () {
-        if (!Si) return;
-        Si.classList.remove("is-hidden");
-      })(),
-      Kn(),
-      Yn(),
-      Nn(),
-      zi && t && hi)
+        (function () {
+          if (!Si) return;
+          Si.classList.remove("is-hidden");
+        })(),
+        Kn(),
+        Yn(),
+        Nn(),
+        zi && t && hi)
     )
       for (var i = hi.querySelectorAll(".psv-row"), r = 0; r < i.length; r++)
         if (i[r].id === t) {
@@ -9895,9 +10240,9 @@
             n = i[X.playerSeasonIndex] || i[0],
             r =
               n &&
-              n.id === (t.seasonId || t.id) &&
-              t.episodes &&
-              t.episodes.length
+                n.id === (t.seasonId || t.id) &&
+                t.episodes &&
+                t.episodes.length
                 ? t.episodes
                 : (n && n._episodes) || t.episodes || [];
           if (r.length) {
@@ -9916,8 +10261,8 @@
               (X.playerEpisodeRange = Math.floor(o / 20));
             for (
               var d = l[X.playerEpisodeRange] || l[0],
-                c = e("div", "psv-episode-numbers scrollable"),
-                p = d.start;
+              c = e("div", "psv-episode-numbers scrollable"),
+              p = d.start;
               p < d.end;
               p++
             )
@@ -9952,7 +10297,7 @@
                 var i = e(
                   "button",
                   "psv-range-btn focusable" +
-                    (t === X.playerEpisodeRange ? " is-selected" : ""),
+                  (t === X.playerEpisodeRange ? " is-selected" : ""),
                   a.start + 1 + "-" + a.end
                 );
                 ((i._activate = function () {
@@ -10007,7 +10352,7 @@
   }
   function Hn(e, t, a) {
     return (
-      (a = a || function () {}),
+      (a = a || function () { }),
       e && t
         ? t.id === (e.seasonId || e.id) && e.episodes && e.episodes.length
           ? ((t._episodes = e.episodes), a(e.episodes))
@@ -10029,7 +10374,7 @@
                   for (var r = 0; r < n.length; r++)
                     try {
                       n[r](i);
-                    } catch (e) {}
+                    } catch (e) { }
                 }))
         : a([])
     );
@@ -10044,7 +10389,7 @@
       r && 0 === n.indexOf(r) && (n = n.substring(r.length)),
       ((n = n.replace(/^[\s\-–_:.]+/, "").trim()) &&
         !/^(?:[TtSs]?\d+[\s\-–_.:]*)+$/.test(n)) ||
-        (n = "Episodio " + i),
+      (n = "Episodio " + i),
       n
     );
   }
@@ -10069,16 +10414,16 @@
                 t.episodes &&
                 t.episodes.length &&
                 ((X.playerEpisode = t.episodes[0]),
-                (X.detailEpisode = t.episodes[0])),
-              Bn());
+                  (X.detailEpisode = t.episodes[0])),
+                Bn());
           })
         );
       (!X.playerEpisode &&
         t.episodes &&
         t.episodes.length &&
         ((X.playerEpisode = t.episodes[0]),
-        (X.detailEpisode = t.episodes[0]),
-        (X.playerSeasonIndex = X.detailSeason || 0)),
+          (X.detailEpisode = t.episodes[0]),
+          (X.playerSeasonIndex = X.detailSeason || 0)),
         (X.episodeBrowserOpen = !0),
         (X.browserSeason = X.playerSeasonIndex || 0),
         ki.classList.add("is-active"),
@@ -10184,8 +10529,8 @@
     ki &&
       X.episodeBrowserOpen &&
       ((X.episodeBrowserOpen = !1),
-      ki.classList.remove("is-active"),
-      !skipFocus && "player" === X.screen && Ce && rt(Ce));
+        ki.classList.remove("is-active"),
+        !skipFocus && "player" === X.screen && Ce && rt(Ce));
   }
   function changeEpisodePage(e, t) {
     var a = X.playerItem;
@@ -10263,8 +10608,8 @@
               return "left" === e
                 ? (Ii && rt(Ii.children[X.browserSeason] || ot(Ii)), !0)
                 : ("right" === e || "down" === e) &&
-                    a === t.length - 1 &&
-                    s + 1 < Math.ceil(r.length / o)
+                  a === t.length - 1 &&
+                  s + 1 < Math.ceil(r.length / o)
                   ? changeEpisodePage(1, 0)
                   : ("left" === e || "right" === e ? !0 : !1);
             }),
@@ -10289,22 +10634,23 @@
     if (
       i[e] &&
       ((X.browserSeason = e),
-      (X.episodeBrowserPage = 0),
-      (function () {
-        if (Ii)
-          for (var e = Ii.children, t = 0; t < e.length; t++)
-            e[t].classList.toggle("is-selected", t === X.browserSeason);
-      })(),
-      Di &&
+        (X.episodeBrowserPage = 0),
+        (function () {
+          if (Ii)
+            for (var e = Ii.children, t = 0; t < e.length; t++)
+              e[t].classList.toggle("is-selected", t === X.browserSeason);
+        })(),
+        Di &&
         (Di.textContent = "Episodios · Temporada " + (i[e].number || e + 1)),
-      jn(a, i[e]),
-      t)
+        jn(a, i[e]),
+        t)
     ) {
       var n = Ai ? Ai.querySelector(".pe-ep.is-current") || ot(Ai) : null;
       n && rt(n);
     }
   }
   function Xn(e) {
+    autoNextKey = "";
     var t = X.playerItem;
     if (t && e) {
       var a = Vn(t),
@@ -10315,15 +10661,15 @@
         t.episodes.length &&
         (i._episodes = t.episodes);
       var n =
-          void 0 !== X.playerSeasonIndex && null !== X.playerSeasonIndex
-            ? X.playerSeasonIndex
-            : X.browserSeason || 0,
+        void 0 !== X.playerSeasonIndex && null !== X.playerSeasonIndex
+          ? X.playerSeasonIndex
+          : X.browserSeason || 0,
         r = a[n];
       (r &&
         (X.detailSeason !== n &&
           ((X.detailSeason = n), (X.detailNeedsRebuild = !0)),
-        r.id && (t.seasonId = r.id),
-        r._episodes && (t.episodes = r._episodes)),
+          r.id && (t.seasonId = r.id),
+          r._episodes && (t.episodes = r._episodes)),
         zn(),
         zi && On(),
         $n(t, e));
@@ -10335,7 +10681,7 @@
         (X.playerEpisode = t),
         (X.detailEpisode = t),
         (X.playerSeasonIndex = X.detailSeason || 0),
-        (autoNextKey = ""),
+        (X.resumePosition = 0),
         Ce && we && ao(),
         Jn(e),
         X.episodeSwitchTimer && clearTimeout(X.episodeSwitchTimer),
@@ -10350,6 +10696,7 @@
         }, 600)));
     }
   }
+  var loadingBackdropTimer = null;
   function showLoadingBackdrop(e, text) {
     if ((ke || (ke = t("next-episode-loading")), ke)) {
       var a = (e && (e.backdrop || e.landscape || e.poster)) || "";
@@ -10365,34 +10712,70 @@
         }
       }
       ke.classList.add("is-active");
+      if (loadingBackdropTimer) clearTimeout(loadingBackdropTimer);
+      loadingBackdropTimer = setTimeout(function () {
+        loadingBackdropTimer = null;
+        Gn();
+      }, 3500);
     }
   }
   function Gn() {
+    if (loadingBackdropTimer) {
+      clearTimeout(loadingBackdropTimer);
+      loadingBackdropTimer = null;
+    }
     (ke || (ke = t("next-episode-loading")),
       ke &&
-        (ke.classList.remove("is-active"), (ke.style.backgroundImage = "")));
+      (ke.classList.remove("is-active"), (ke.style.backgroundImage = "")));
   }
   var autoNextKey = "";
   function Qn() {
     var e = X.playerItem;
     if (e && x(e) && "player" === X.screen) {
+      /* Protección 1: No cambiar de capítulo si el video no terminó de verdad.
+         Si el CDN o relay se desconectó a mitad del capítulo, el navegador dispara 'ended'
+         porque se cerró la conexión HTTP. En ese caso NO se debe cambiar de capítulo,
+         sino reconectar la emisión en el segundo actual. */
+      var cur = 0,
+        dur = Hr();
+      if (xe) {
+        cur = br ? Cr + (xe.currentTime || 0) : xe.currentTime || 0;
+      }
+      if (dur > 60 && cur < Math.min(dur * 0.95, dur - 30)) {
+        console.warn(
+          "[vod] onended prematuro a los " +
+            Math.round(cur) +
+            "s de " +
+            Math.round(dur) +
+            "s. Reconectando capítulo actual..."
+        );
+        if (cur > 3) {
+          X.resumePosition = Math.floor(cur);
+        }
+        jr("Reconectando vídeo…");
+        sr();
+        return;
+      }
       var t =
         String(e.id || "") + "|" + String((X.playerEpisode && X.playerEpisode.id) || "");
-      if (t && t === autoNextKey) return;
+      if (t && t === autoNextKey) {
+        console.warn("[vod] Bloqueado salto repetido para capítulo " + t);
+        return;
+      }
       autoNextKey = t;
       for (
         var a = (function (e) {
-            var t = Vn(e),
-              a = t[X.playerSeasonIndex] || t[0];
-            return a
-              ? a.id === (e.seasonId || e.id) && e.episodes && e.episodes.length
-                ? e.episodes
-                : a._episodes || []
-              : [];
-          })(e),
-          i = X.playerEpisode,
-          n = -1,
-          r = 0;
+          var t = Vn(e),
+            a = t[X.playerSeasonIndex] || t[0];
+          return a
+            ? a.id === (e.seasonId || e.id) && e.episodes && e.episodes.length
+              ? e.episodes
+              : a._episodes || []
+            : [];
+        })(e),
+        i = X.playerEpisode,
+        n = -1,
+        r = 0;
         r < a.length;
         r++
       )
@@ -10403,7 +10786,7 @@
       if (!(n < 0))
         if (
           (showLoadingBackdrop(e, "El siguiente capítulo se está<br>cargando..."),
-          n + 1 < a.length)
+            n + 1 < a.length)
         )
           $n(e, a[n + 1]);
         else {
@@ -10469,12 +10852,12 @@
   function Zn(e) {
     ((tn = e || "contain"),
       xe &&
-        (xe.classList.remove(
-          "aspect-cover",
-          "aspect-contain",
-          "aspect-16-9",
-          "aspect-4-3"
-        ),
+      (xe.classList.remove(
+        "aspect-cover",
+        "aspect-contain",
+        "aspect-16-9",
+        "aspect-4-3"
+      ),
         xe.classList.add("aspect-" + tn)),
       Yn());
   }
@@ -10581,6 +10964,14 @@
       seen[h] = !0;
       heights.push(h);
     }
+    if (!seen[1080]) {
+      seen[1080] = !0;
+      heights.push(1080);
+    }
+    if (!seen[720]) {
+      seen[720] = !0;
+      heights.push(720);
+    }
     heights.sort(function (a, b) {
       return b - a;
     });
@@ -10624,10 +11015,10 @@
     }
     if (
       (qi && qi.classList.toggle("is-visible", Ji && t.length > 0),
-      Ni && Ni.classList.toggle("is-visible", Ji && t.length > 0),
-      Ri && Ri.classList.toggle("is-visible", Ji && t.length > 0),
-      ZiRowBg && ZiRowBg.classList.toggle("is-visible", Ji && t.length > 0),
-      Ji)
+        Ni && Ni.classList.toggle("is-visible", Ji && t.length > 0),
+        Ri && Ri.classList.toggle("is-visible", Ji && t.length > 0),
+        ZiRowBg && ZiRowBg.classList.toggle("is-visible", Ji && t.length > 0),
+        Ji)
     ) {
       if (Vi) {
         a(Vi);
@@ -10681,25 +11072,25 @@
         ? "Español España"
         : /^(spa|esp|es|castellano|latino|lat|latam)$/.test(t)
           ? "Español"
-      : /^(eng|ing|en)$/.test(t)
-        ? "Inglés"
-        : /^(jpn|jap|ja)$/.test(t)
-          ? "Japonés"
-          : /^(kor|cor|ko)$/.test(t)
-            ? "Coreano"
-            : /^(por|pt)$/.test(t)
-              ? "Portugués"
-              : /^(fra|fre|fr|franc)$/.test(t)
-                ? "Francés"
-                : /^(ita|it)$/.test(t)
-                  ? "Italiano"
-                  : /^(deu|ger|de)$/.test(t)
-                    ? "Alemán"
-                    : /^(chi|zho|zh)$/.test(t)
-                      ? "Chino"
-                      : t
-                        ? t.charAt(0).toUpperCase() + t.slice(1)
-                        : "Pista";
+          : /^(eng|ing|en)$/.test(t)
+            ? "Inglés"
+            : /^(jpn|jap|ja)$/.test(t)
+              ? "Japonés"
+              : /^(kor|cor|ko)$/.test(t)
+                ? "Coreano"
+                : /^(por|pt)$/.test(t)
+                  ? "Portugués"
+                  : /^(fra|fre|fr|franc)$/.test(t)
+                    ? "Francés"
+                    : /^(ita|it)$/.test(t)
+                      ? "Italiano"
+                      : /^(deu|ger|de)$/.test(t)
+                        ? "Alemán"
+                        : /^(chi|zho|zh)$/.test(t)
+                          ? "Chino"
+                          : t
+                            ? t.charAt(0).toUpperCase() + t.slice(1)
+                            : "Pista";
   }
   function rr(e) {
     if (!xe) return !1;
@@ -10775,17 +11166,17 @@
         var t = window.PalmSystem.deviceInfo;
         ("string" == typeof t && (t = JSON.parse(t)),
           t &&
-            (t.platformVersion
-              ? (e = String(t.platformVersion))
-              : t.version
-                ? (e = String(t.version))
-                : void 0 !== t.platformVersionMajor &&
-                    null !== t.platformVersionMajor
-                  ? (e =
-                      String(t.platformVersionMajor) +
-                      "." +
-                      String(t.platformVersionMinor || 0))
-                  : t.sdkVersion && (e = String(t.sdkVersion))));
+          (t.platformVersion
+            ? (e = String(t.platformVersion))
+            : t.version
+              ? (e = String(t.version))
+              : void 0 !== t.platformVersionMajor &&
+                null !== t.platformVersionMajor
+                ? (e =
+                  String(t.platformVersionMajor) +
+                  "." +
+                  String(t.platformVersionMinor || 0))
+                : t.sdkVersion && (e = String(t.sdkVersion))));
       } catch (t) {
         e = "";
       }
@@ -10828,7 +11219,7 @@
         webOS.deviceInfo(function (e) {
           e && e.uhd && (panelHevc = !0);
         });
-    } catch (e) {}
+    } catch (e) { }
     return panelHevc;
   }
   function xUhdPanel() {
@@ -10846,7 +11237,7 @@
           webOS.deviceInfo(function (e) {
             e && "boolean" == typeof e.uhd && (panelUhd = e.uhd);
           });
-      } catch (e) {}
+      } catch (e) { }
     }
     return panelUhd;
   }
@@ -10855,15 +11246,15 @@
        capacidad real del panel (UHD / HEVC) y no el valor provisional. */
     xHevcCapable();
     xUhdPanel();
-  } catch (e) {}
+  } catch (e) { }
   function xNextCopy() {
     var e = X.playerItem;
     if (!e) return !1;
     var t = Ln(e) + "|" + ((X.playerEpisode && X.playerEpisode.id) || "");
     t !== copyTryKey && ((copyTryKey = t), (copyTryCount = 0));
     var a =
-        (window.__xuperStreamInfo && window.__xuperStreamInfo.availableTracks) ||
-        [],
+      (window.__xuperStreamInfo && window.__xuperStreamInfo.availableTracks) ||
+      [],
       i = (X.trackIndex || 0) + 1;
     if (copyTryCount >= 2 || i >= a.length) return !1;
     copyTryCount++;
@@ -10872,8 +11263,8 @@
     return (
       jr(
         "Probando otra copia compatible" +
-          (n.height ? " (" + n.height + "p " + (n.codec || "") + ")" : "") +
-          "…"
+        (n.height ? " (" + n.height + "p " + (n.codec || "") + ")" : "") +
+        "…"
       ),
       setTimeout(function () {
         "vod" === X.playerMode && X.playerItem === e && sr();
@@ -10895,7 +11286,7 @@
             } else if ((Gr(t), e > 0))
               try {
                 xe.currentTime = e;
-              } catch (e) {}
+              } catch (e) { }
           } else X.streamError || jr("Sin fuente de reproducción");
         }));
     }
@@ -10922,47 +11313,47 @@
   function lr() {
     if (
       ((Ce = t("player-stage")),
-      (we = t("player-infobar")),
-      (Me = t("player-vod-infobar")),
-      (Se = t("player-channels")),
-      ($e = t("player-categories")),
-      (Ge = t("pcat-grid")),
-      (Qe = t("pcat-sub")),
-      (xe = t("player-video")),
-      (_e = t("player-status")),
-      (ke = t("next-episode-loading")),
-      (Le = t("player-mode-hint")),
-      (Re = t("player-osd-icon")),
-      (Te = Ce ? Ce.querySelector(".player-frame") : null),
-      (Ie = t("vod-infobar-poster")),
-      (Ee = t("vod-infobar-title")),
-      (Ae = t("vod-time-current")),
-      (De = t("vod-time-total")),
-      (Pe = t("vod-seekbar")),
-      (Oe = t("vod-seek-progress")),
-      (qe = t("vod-seek-buffered")),
-      (Ne = t("vod-seek-thumb")),
-      Pe &&
+        (we = t("player-infobar")),
+        (Me = t("player-vod-infobar")),
+        (Se = t("player-channels")),
+        ($e = t("player-categories")),
+        (Ge = t("pcat-grid")),
+        (Qe = t("pcat-sub")),
+        (xe = t("player-video")),
+        (_e = t("player-status")),
+        (ke = t("next-episode-loading")),
+        (Le = t("player-mode-hint")),
+        (Re = t("player-osd-icon")),
+        (Te = Ce ? Ce.querySelector(".player-frame") : null),
+        (Ie = t("vod-infobar-poster")),
+        (Ee = t("vod-infobar-title")),
+        (Ae = t("vod-time-current")),
+        (De = t("vod-time-total")),
+        (Pe = t("vod-seekbar")),
+        (Oe = t("vod-seek-progress")),
+        (qe = t("vod-seek-buffered")),
+        (Ne = t("vod-seek-thumb")),
+        Pe &&
         (Pe.classList.add("focusable"),
-        (Pe._activate = function (evt) {
-          if (evt && typeof evt.clientX === "number") {
+          (Pe._activate = function (evt) {
+            if (evt && typeof evt.clientX === "number") {
+              seekByPointer(evt);
+              return;
+            }
+            Ur(!0);
+          }),
+          Pe.addEventListener("click", function (evt) {
             seekByPointer(evt);
-            return;
-          }
-          Ur(!0);
-        }),
-        Pe.addEventListener("click", function (evt) {
-          seekByPointer(evt);
-          evt.stopPropagation();
-        }),
-        (Pe._onMove = function (e) {
-          return "left" === e
-            ? (Br(-1), !0)
-            : "right" === e
-              ? (Br(1), !0)
-              : ("down" === e || "up" === e) && (Ur(!1), !0);
-        })),
-      Pe &&
+            evt.stopPropagation();
+          }),
+          (Pe._onMove = function (e) {
+            return "left" === e
+              ? (Br(-1), !0)
+              : "right" === e
+                ? (Br(1), !0)
+                : ("down" === e || "up" === e) && (Ur(!1), !0);
+          })),
+        Pe &&
         Pe.parentNode &&
         Pe.parentNode.addEventListener &&
         Pe.parentNode.addEventListener("click", function (evt) {
@@ -10971,48 +11362,48 @@
             evt.stopPropagation();
           }
         }),
-      (hi = t("player-playsetting-view")),
-      (gi = t("psv-sec-selection")),
-      (yi = t("psv-episodes-row")),
-      (_i = t("psv-btn-episodes")),
-      (bi = t("psv-btn-config")),
-      (Ci = t("psv-btn-p1")),
-      (wi = t("psv-btn-p2")),
-      (Si = t("psv-sec-audio")),
-      t("psv-sec-quality"),
-      t("psv-quality-row"),
-      t("psv-sec-aspect"),
-      t("psv-sec-player"),
-      (xi = t("psv-btn-feedback")),
-      (Ti = t("psv-aspect-row")),
-      (ki = t("player-episodes")),
-      (Li = t("pe-title")),
-      (Mi = t("pe-sub")),
-      (Ii = t("pe-seasons")),
-      (Ei = t("pe-seasons-col")),
-      (Ai = t("pe-episodes")),
-      (Di = t("pe-season-label")),
-      _i &&
+        (hi = t("player-playsetting-view")),
+        (gi = t("psv-sec-selection")),
+        (yi = t("psv-episodes-row")),
+        (_i = t("psv-btn-episodes")),
+        (bi = t("psv-btn-config")),
+        (Ci = t("psv-btn-p1")),
+        (wi = t("psv-btn-p2")),
+        (Si = t("psv-sec-audio")),
+        t("psv-sec-quality"),
+        t("psv-quality-row"),
+        t("psv-sec-aspect"),
+        t("psv-sec-player"),
+        (xi = t("psv-btn-feedback")),
+        (Ti = t("psv-aspect-row")),
+        (ki = t("player-episodes")),
+        (Li = t("pe-title")),
+        (Mi = t("pe-sub")),
+        (Ii = t("pe-seasons")),
+        (Ei = t("pe-seasons-col")),
+        (Ai = t("pe-episodes")),
+        (Di = t("pe-season-label")),
+        _i &&
         (_i._activate = function () {
           Bn();
         }),
-      xi &&
+        xi &&
         (xi._activate = function () {
           Dn();
         }),
-      bi &&
+        bi &&
         (bi._activate = function () {
           er();
         }),
-      Ci &&
+        Ci &&
         (Ci._activate = function () {
           (Tn(bn(), !0), Kn(), Dn(), sr());
         }),
-      wi &&
+        wi &&
         (wi._activate = function () {
           (Tn(bn(), !1), Kn(), Dn(), sr());
         }),
-      Ti)
+        Ti)
     )
       for (var i = Ti.querySelectorAll(".psv-btn"), n = 0; n < i.length; n++)
         (function (e) {
@@ -11022,20 +11413,20 @@
         })(i[n]);
     if (
       ((mi = t("dialog-playsettings")),
-      (Pi = t("dps-audio-options")),
-      (Oi = t("dps-sub-switch")),
-      (qi = t("dps-row-lang")),
-      (Ni = t("dps-row-size")),
-      (Ri = t("dps-row-style")),
-      (ZiRowBg = t("dps-row-bg")),
-      (Vi = t("dps-lang-options")),
-      (Hi = t("dps-size-options")),
-      (Ui = t("dps-style-options")),
-      (ZiOptsBg = t("dps-bg-options")),
-      (ZiOptsQuality = t("dps-quality-options")),
-      (Fi = t("dps-btn-exit")),
-      (Bi = t("player-subtitles")),
-      Oi &&
+        (Pi = t("dps-audio-options")),
+        (Oi = t("dps-sub-switch")),
+        (qi = t("dps-row-lang")),
+        (Ni = t("dps-row-size")),
+        (Ri = t("dps-row-style")),
+        (ZiRowBg = t("dps-row-bg")),
+        (Vi = t("dps-lang-options")),
+        (Hi = t("dps-size-options")),
+        (Ui = t("dps-style-options")),
+        (ZiOptsBg = t("dps-bg-options")),
+        (ZiOptsQuality = t("dps-quality-options")),
+        (Fi = t("dps-btn-exit")),
+        (Bi = t("player-subtitles")),
+        Oi &&
         (Oi._activate = function () {
           if (((Ki = !0), (Ji = !Ji))) {
             var e = En(un[Ln(bn())]);
@@ -11047,7 +11438,7 @@
           Y();
           (ir(), Dn());
         }),
-      Hi)
+        Hi)
     )
       for (var r = Hi.querySelectorAll(".dps-btn"), o = 0; o < r.length; o++)
         (function (e) {
@@ -11138,17 +11529,17 @@
       we.appendChild(e("div", "pi-func", "Selecion de función")));
     for (
       var v = e("div", "pi-actions"),
-        f = [
-          { label: "Pip", right: 446, w: 67, hidden: !0 },
-          { label: "HD", right: 389, w: 67 },
-          { label: "Anterior", right: 333, w: 67 },
-          { label: "Formato", right: 249, w: 120 },
-          { label: "Favorito", right: 219, w: 67 },
-          { label: "Reproductor 1", right: 151, w: 90 },
-          { label: "Bloquear", right: 107, w: 67 },
-          { label: "Feedback", right: 50, w: 67 },
-        ],
-        h = 0;
+      f = [
+        { label: "Pip", right: 446, w: 67, hidden: !0 },
+        { label: "HD", right: 389, w: 67 },
+        { label: "Anterior", right: 333, w: 67 },
+        { label: "Formato", right: 249, w: 120 },
+        { label: "Favorito", right: 219, w: 67 },
+        { label: "Reproductor 1", right: 151, w: 90 },
+        { label: "Bloquear", right: 107, w: 67 },
+        { label: "Feedback", right: 50, w: 67 },
+      ],
+      h = 0;
       h < f.length;
       h++
     ) {
@@ -11174,12 +11565,12 @@
                 var a = F[X.channel];
                 a &&
                   (toggleLiveFavorite(a),
-                  hr(X.channel),
-                  Yt(
-                    X.liveFavorites[liveChannelKey(a)]
-                      ? "Canal agregado a favoritos"
-                      : "Canal quitado de favoritos"
-                  ));
+                    hr(X.channel),
+                    Yt(
+                      X.liveFavorites[liveChannelKey(a)]
+                        ? "Canal agregado a favoritos"
+                        : "Canal quitado de favoritos"
+                    ));
               }
             };
           })(m.label)),
@@ -11293,11 +11684,11 @@
         return "left" === e || "up" === e
           ? (closeLiveChannelSearch(returnFocus), !0)
           : "down" === e &&
-              (function () {
-                var e = visibleLiveIndexes(),
-                  t = e.indexOf(X.channel) >= 0 ? X.channel : e[0];
-                return void 0 !== t && fr(t), !0;
-              })();
+          (function () {
+            var e = visibleLiveIndexes(),
+              t = e.indexOf(X.channel) >= 0 ? X.channel : e[0];
+            return void 0 !== t && fr(t), !0;
+          })();
       }),
       (input._activate = function () {
         hr(X.channel);
@@ -11328,7 +11719,7 @@
       setTimeout(function () {
         try {
           input.focus();
-        } catch (e) {}
+        } catch (e) { }
       }, 0));
   }
   function dr() {
@@ -11336,17 +11727,17 @@
       var t = Se.querySelector(".pc-categories");
       if (t) {
         var i =
-            Lt && Lt.length
-              ? Lt
-              : [
-                  { id: 76182, name: "Todos" },
-                  { id: 76206, name: "Deportes" },
-                  { id: 76205, name: "Cine y Series" },
-                  { id: 76188, name: "Colombia" },
-                  { id: 76191, name: "España" },
-                  { id: 76197, name: "México" },
-                  { id: "addons", name: "Addons M3U", isAddon: !0 },
-                ];
+          Lt && Lt.length
+            ? Lt
+            : [
+              { id: 76182, name: "Todos" },
+              { id: 76206, name: "Deportes" },
+              { id: 76205, name: "Cine y Series" },
+              { id: 76188, name: "Colombia" },
+              { id: 76191, name: "España" },
+              { id: 76197, name: "México" },
+              { id: "addons", name: "Addons M3U", isAddon: !0 },
+            ];
         X.adultEnabled ||
           (i = i.filter(function (e) {
             return !!(e && (e.isAddon || !isAdultLiveChannel(e)));
@@ -11713,8 +12104,8 @@
         currentPosition < 0 && (currentPosition = 0);
         for (
           var l = Math.max(0, currentPosition - Math.floor(Ke / 2)),
-            d = Math.min(visible.length, l + Ke),
-            c = (l = Math.max(0, d - Ke));
+          d = Math.min(visible.length, l + Ke),
+          c = (l = Math.max(0, d - Ke));
           c < d;
           c++
         ) {
@@ -11724,18 +12115,18 @@
           var u = e("div", "ic");
           F[channelIndex].logo &&
             ((u.style.backgroundImage = "url(" + F[channelIndex].logo + ")"),
-            (u.style.backgroundSize = "contain"),
-            (u.style.backgroundRepeat = "no-repeat"),
-            (u.style.backgroundPosition = "center"));
+              (u.style.backgroundSize = "contain"),
+              (u.style.backgroundRepeat = "no-repeat"),
+              (u.style.backgroundPosition = "center"));
           var v = e("div", "num", r(F[channelIndex].index || channelIndex + 1)),
             f = e("div", "nm", F[channelIndex].name),
             h = e("div", "epg", F[channelIndex].now || "En vivo"),
             m = e(
               "button",
               "pc-channel-fav focusable" +
-                (X.liveFavorites[liveChannelKey(F[channelIndex])] || F[channelIndex].fav
-                  ? " is-favorite"
-                  : "")
+              (X.liveFavorites[liveChannelKey(F[channelIndex])] || F[channelIndex].fav
+                ? " is-favorite"
+                : "")
             );
           m.innerHTML = starSvg(
             !!(X.liveFavorites[liveChannelKey(F[channelIndex])] || F[channelIndex].fav)
@@ -11825,7 +12216,7 @@
           rt(
             previousWasFavorite
               ? Xe[previousChannel].querySelector(".pc-channel-fav") ||
-                Xe[previousChannel]
+              Xe[previousChannel]
               : Xe[previousChannel]
           );
       }
@@ -11866,15 +12257,21 @@
       var base = br,
         at = Math.max(0, Math.floor(Cr + (xe.currentTime || 0)));
       wr = !1;
+      var pausedDuration = vodPauseTime > 0 ? Date.now() - vodPauseTime : 0;
+      vodPauseTime = 0;
+      if (pausedDuration > 6000 || xe.ended || xe.readyState < 2) {
+        var a = base + "?start=" + at;
+        return (Xi && (a += "&a=" + Xi), jr("Reanudando vídeo…"), void Gr(a));
+      }
       if (!xe.ended && xe.readyState > 0) {
         /* Reanudación instantánea: el relay sigue entregando datos, así que
            basta con play(). Antes siempre se reiniciaba ffmpeg (varios
            segundos de espera al quitar la pausa). Sólo si el vídeo no avanza
-           en 2,5 s se reinicia el relay en la misma posición. */
+           en 1.8 s se reinicia el relay en la misma posición. */
         try {
           var pr = xe.play();
-          pr && pr.catch && pr.catch(function () {});
-        } catch (e) {}
+          pr && pr.catch && pr.catch(function () { });
+        } catch (e) { }
         var before = xe.currentTime || 0,
           startedAt = Date.now();
         setTimeout(function () {
@@ -11882,12 +12279,12 @@
           if (xe.paused || xe.ended) return;
           if ((xe.currentTime || 0) > before + 0.2 || xe.readyState >= 3)
             return;
-          if (Date.now() - startedAt < 1500) return;
+          if (Date.now() - startedAt < 1200) return;
           var url = base + "?start=" + at;
           Xi && (url += "&a=" + Xi);
           jr("Reanudando vídeo…");
           Gr(url);
-        }, 2500);
+        }, 1800);
         return;
       }
       var a = base + "?start=" + at;
@@ -11895,8 +12292,8 @@
     }
     try {
       var i = xe.play();
-      i && i.catch && i.catch(function () {});
-    } catch (e) {}
+      i && i.catch && i.catch(function () { });
+    } catch (e) { }
   }
   var Ir = 0,
     Er = null,
@@ -11910,11 +12307,11 @@
       Ar = setTimeout(function () {
         ((Ar = null),
           X.streamError ||
-            !xe ||
-            xe.paused ||
-            xe.readyState >= 3 ||
-            (xe.currentTime || 0) > t + 0.35 ||
-            jr(e));
+          !xe ||
+          xe.paused ||
+          xe.readyState >= 3 ||
+          (xe.currentTime || 0) > t + 0.35 ||
+          jr(e));
       }, 700);
     }
   }
@@ -11939,8 +12336,8 @@
         Ir = 0;
         var a = ii(
           (X.playerItem && X.playerItem.duration) ||
-            (X.playerEpisode && X.playerEpisode.duration) ||
-            0
+          (X.playerEpisode && X.playerEpisode.duration) ||
+          0
         );
         (!a &&
           xe &&
@@ -11969,7 +12366,7 @@
       (n < 0 && (n = 0), r > 0 && n > r - 1 && (n = r - 1));
       try {
         xe.currentTime = n;
-      } catch (e) {}
+      } catch (e) { }
     } else Ir = 0;
   }
   function li(e) {
@@ -11993,18 +12390,13 @@
     return xe ? (br ? Cr + (xe.currentTime || 0) : xe.currentTime || 0) : 0;
   }
   function Hr() {
+    var meta =
+      (X.playerEpisode && X.playerEpisode.duration && ii(X.playerEpisode.duration)) ||
+      (X.playerItem && X.playerItem.duration && ii(X.playerItem.duration)) ||
+      0;
+    if (br && meta > 0) return meta;
     var e = xe && isFinite(xe.duration) && xe.duration > 0 ? xe.duration : 0;
-    return (
-      !e &&
-        X.playerEpisode &&
-        X.playerEpisode.duration &&
-        (e = ii(X.playerEpisode.duration)),
-      !e &&
-        X.playerItem &&
-        X.playerItem.duration &&
-        (e = ii(X.playerItem.duration)),
-      e || 0
-    );
+    return meta || e || 0;
   }
   function Ur(e) {
     if (Ye) {
@@ -12047,10 +12439,10 @@
         xe && isFinite(xe.duration) && xe.duration > 0
           ? xe.duration
           : ii(
-              (X.playerEpisode && X.playerEpisode.duration) ||
-                (X.playerItem && X.playerItem.duration) ||
-                0
-            ),
+            (X.playerEpisode && X.playerEpisode.duration) ||
+            (X.playerItem && X.playerItem.duration) ||
+            0
+          ),
         !0
       );
     ((X.streamError = ""),
@@ -12080,10 +12472,10 @@
         try {
           var i = new XMLHttpRequest();
           (i.open("GET", e + "/media/abort", !0), i.send());
-        } catch (e) {}
+        } catch (e) { }
       try {
-        P("abortMedia", {}, function () {});
-      } catch (e) {}
+        P("abortMedia", {}, function () { });
+      } catch (e) { }
     }
     if (((gr = ""), (mr = ""), xe)) {
       ((xe.onerror = null),
@@ -12100,15 +12492,15 @@
         (xe.onplay = null));
       try {
         xe.pause();
-      } catch (e) {}
+      } catch (e) { }
       try {
         xe.currentTime = 0;
-      } catch (e) {}
+      } catch (e) { }
       xe.removeAttribute("src");
       try {
         xe.src = "";
         xe.load();
-      } catch (e) {}
+      } catch (e) { }
       for (; xe.firstChild;) xe.removeChild(xe.firstChild);
       (xe.classList.remove("is-active"),
         Te && (Te.style.display = "block"),
@@ -12122,9 +12514,9 @@
   function jr(e) {
     (_e || (_e = t("player-status")),
       _e &&
-        (e
-          ? ((_e.textContent = e), _e.classList.add("is-active"))
-          : ((_e.textContent = ""), _e.classList.remove("is-active"))));
+      (e
+        ? ((_e.textContent = e), _e.classList.add("is-active"))
+        : ((_e.textContent = ""), _e.classList.remove("is-active"))));
   }
   var Wr = null,
     Xr = "";
@@ -12141,20 +12533,20 @@
         String((X.playerEpisode && X.playerEpisode.id) || "");
       ("|" !== a && a === Xr) ||
         ((Xr = a),
-        (Le.textContent = ""),
-        Le.appendChild(e("span", "pmh-title", "Modo Fluido activado")),
-        Le.appendChild(
-          e(
-            "span",
-            "pmh-sub",
-            "Úsalo cuando las películas van trabadas o se cortan. Si tu TV las reproduce bien en Normal, déjalo en Normal para ver mejor imagen."
-          )
-        ),
-        Le.classList.add("is-active"),
-        Wr && clearTimeout(Wr),
-        (Wr = setTimeout(function () {
-          ((Wr = null), Le && Le.classList.remove("is-active"));
-        }, 9e3)));
+          (Le.textContent = ""),
+          Le.appendChild(e("span", "pmh-title", "Modo Fluido activado")),
+          Le.appendChild(
+            e(
+              "span",
+              "pmh-sub",
+              "Úsalo cuando las películas van trabadas o se cortan. Si tu TV las reproduce bien en Normal, déjalo en Normal para ver mejor imagen."
+            )
+          ),
+          Le.classList.add("is-active"),
+          Wr && clearTimeout(Wr),
+          (Wr = setTimeout(function () {
+            ((Wr = null), Le && Le.classList.remove("is-active"));
+          }, 9e3)));
     }
   }
   function Gr(e, t) {
@@ -12164,7 +12556,7 @@
       try {
         var ptT = window.__xuperTiming || (window.__xuperTiming = {});
         ((ptT.playT0 = Date.now()), (ptT.firstFrameMs = -1));
-      } catch (e) {}
+      } catch (e) { }
       (zr(!!kr(e)), (wr = !1), (gr = e));
       "live" === X.playerMode && resetLiveLatencyGuard();
       var i = /^(http:\/\/127\.0\.0\.1:\d+)/.exec(e);
@@ -12183,30 +12575,30 @@
             wkey !== xrKey && ((xrKey = wkey), (xr = !1));
             (Lr(),
               kr(e) &&
-                !xr &&
-                (Sr = setTimeout(function () {
-                  ((Sr = null),
-                    !xe ||
-                      xe.readyState >= 2 ||
-                      (console.warn(
-                        "[relay] Watchdog: Modo Fluido no arrancó en 15 s, volviendo a Modo Normal..."
-                      ),
-                      (xr = !0),
-                      (X.streamMode = "normal"),
-                      K(STREAM_MODE_KEY, "normal"),
-                      /* No rebotar Normal → Fluido para este título: ya se
-                         comprobó que el relay no arranca aquí. */
-                      (wn =
-                        Ln(X.playerItem) || Sn(X.playerItem) || wn),
-                      jr("Modo Fluido no respondió, usando Modo Normal…"),
-                      sr()));
-                }, 15e3)));
+              !xr &&
+              (Sr = setTimeout(function () {
+                ((Sr = null),
+                  !xe ||
+                  xe.readyState >= 2 ||
+                  (console.warn(
+                    "[relay] Watchdog: Modo Fluido no arrancó en 15 s, volviendo a Modo Normal..."
+                  ),
+                    (xr = !0),
+                    (X.streamMode = "normal"),
+                    K(STREAM_MODE_KEY, "normal"),
+                    /* No rebotar Normal → Fluido para este título: ya se
+                       comprobó que el relay no arranca aquí. */
+                    (wn =
+                      Ln(X.playerItem) || Sn(X.playerItem) || wn),
+                    jr("Modo Fluido no respondió, usando Modo Normal…"),
+                    sr()));
+              }, 15e3)));
           })(e));
       } else ((br = ""), (Cr = 0), Lr());
       (jr("Conectando con el vídeo…"), (X.streamError = ""));
       try {
         xe.preload = "auto";
-      } catch (e) {}
+      } catch (e) { }
       var r = (X.playerItem && X.playerItem.streamMime) || "",
         o =
           -1 !== e.indexOf(".m3u8") ||
@@ -12239,11 +12631,11 @@
           );
         }
         /* Modo Fluido es la red de seguridad: si el relay no entrega un vídeo
-           que la TV pueda decodificar (err 2/3/4), se vuelve a Modo Normal una
+           que la TV pueda decodificar (err 2/3/4/6 o cualquier código de error), se vuelve a Modo Normal una
            sola vez por título en lugar de terminar en "no se pudo abrir el
-           stream (código 4)". Se fija wn para no rebotar Normal → Fluido. */
+           stream (código 6)". Se fija wn para no rebotar Normal → Fluido. */
         if (
-          (2 === t || 3 === t || 4 === t) &&
+          t &&
           "vod" === X.playerMode &&
           ("smooth" === X.streamMode || "relay" === X.streamMode) &&
           X.playerItem
@@ -12286,7 +12678,7 @@
            reproductor nativo. Así muchas películas se ven en Normal sin que
            el espectador tenga que activar nada. */
         if (
-          (3 === t || 4 === t) &&
+          (3 === t || 4 === t || 6 === t) &&
           "vod" === X.playerMode &&
           "normal" === X.streamMode &&
           X.playerItem &&
@@ -12295,7 +12687,7 @@
         )
           return;
         if (
-          4 === t &&
+          (4 === t || 6 === t) &&
           "vod" === X.playerMode &&
           "normal" === X.streamMode &&
           X.playerItem
@@ -12316,7 +12708,7 @@
             );
         }
         if (
-          (3 === t || 4 === t) &&
+          (3 === t || 4 === t || 6 === t) &&
           "vod" === X.playerMode &&
           X.playerItem &&
           xNextCopy()
@@ -12329,13 +12721,13 @@
           jr(X.streamError));
       }),
         (xe.onloadeddata = function () {
-          (v(), $r());
+          (Gn(), v(), $r());
         }),
         (xe.oncanplay = function () {
-          (Nr(), v());
+          (Nr(), Gn(), v());
         }),
         (xe.onloadedmetadata = function () {
-          if ((v(), "vod" === X.playerMode && "normal" === X.streamMode)) {
+          if ((Gn(), v(), "vod" === X.playerMode && "normal" === X.streamMode)) {
             var e = X.playerItem && X.playerItem.streamAudioInfo,
               t = preferredAudioIndex(e);
             rr(t) && (Xi = t);
@@ -12350,55 +12742,32 @@
             try {
               xe.currentTime = resumeAt;
               jr("Reanudando desde " + ai(resumeAt) + "…");
-            } catch (e) {}
+            } catch (e) { }
           }
           if ("vod" === X.playerMode) {
-            var a = br ? Cr : xe.currentTime || 0,
-              i =
-                xe && isFinite(xe.duration) && xe.duration > 0
-                  ? xe.duration
-                  : 0,
-              n =
-                X.playerEpisode && X.playerEpisode.duration
-                  ? ii(X.playerEpisode.duration)
-                  : 0,
-              r =
-                X.playerItem && X.playerItem.duration
-                  ? ii(X.playerItem.duration)
-                  : 0;
-            oi(a, i || n || r || 0);
+            var a = br ? Cr : xe.currentTime || 0;
+            oi(a, Hr());
           }
         }),
         (xe.ondurationchange = function () {
           if ("vod" === X.playerMode) {
-            var e = br ? Cr + (xe.currentTime || 0) : xe.currentTime || 0,
-              t =
-                xe && isFinite(xe.duration) && xe.duration > 0
-                  ? xe.duration
-                  : 0,
-              a =
-                X.playerEpisode && X.playerEpisode.duration
-                  ? ii(X.playerEpisode.duration)
-                  : 0,
-              i =
-                X.playerItem && X.playerItem.duration
-                  ? ii(X.playerItem.duration)
-                  : 0;
-            oi(e, t || a || i || 0);
+            var e = br ? Cr + (xe.currentTime || 0) : xe.currentTime || 0;
+            oi(e, Hr());
           }
         }),
         (xe.onplaying = function () {
+          vodUserPaused = !1;
           try {
             var ptP = window.__xuperTiming;
             ptP &&
               ptP.playT0 &&
               !(ptP.firstFrameMs >= 0) &&
               (ptP.firstFrameMs = Date.now() - ptP.playT0);
-          } catch (e) {}
+          } catch (e) { }
           (clearLiveStallWatch(),
             "live" === X.playerMode && logLive("play"),
             "live" === X.playerMode &&
-              (resetLiveLatencyGuard(),
+            (resetLiveLatencyGuard(),
               (liveStallLastTime = Number(xe.currentTime) || 0)),
             Lr(),
             Gn(),
@@ -12426,74 +12795,116 @@
                   }
                 }
               })(),
-            !X.streamError &&
+              !X.streamError &&
               (xe.currentTime > 0 || xe.readyState >= 2) &&
               ("live" === X.playerMode
                 ? (liveStallTimer || watchLiveStall(20e3), v())
-                : (clearLiveStallWatch(), v())),
-            "vod" === X.playerMode)
+                : (clearLiveStallWatch(), Gn(), v())),
+              "vod" === X.playerMode)
           ) {
             var e = br ? Cr + (xe.currentTime || 0) : xe.currentTime || 0,
-              t =
-                xe && isFinite(xe.duration) && xe.duration > 0
-                  ? xe.duration
-                  : 0,
-              a =
-                X.playerEpisode && X.playerEpisode.duration
-                  ? ii(X.playerEpisode.duration)
-                  : 0,
-              i =
-                X.playerItem && X.playerItem.duration
-                  ? ii(X.playerItem.duration)
-                  : 0,
-              n = t || a || i || 0;
+              n = Hr();
             (oi(e, n), yn(e), sn(e, n));
           }
         }),
         (xe.onpause = function () {
-          (ri(), "vod" === X.playerMode) &&
-            (sn(
+          vodPauseTime = Date.now();
+          ("vod" === X.playerMode) &&
+            sn(
               br ? Cr + (xe.currentTime || 0) : xe.currentTime || 0,
-              xe && isFinite(xe.duration) && xe.duration > 0
-                ? xe.duration
-                : ii(
-                    (X.playerEpisode && X.playerEpisode.duration) ||
-                      (X.playerItem && X.playerItem.duration) ||
-                      0
-                  ),
+              Hr(),
               !0
-            ),
+            );
+          if ("vod" === X.playerMode && !vodUserPaused && "player" === X.screen && !X.streamError) {
+            Pr("Cargando buffer…");
+            try {
+              var pr = xe.play();
+              if (pr && pr.catch) {
+                pr.catch(function () {
+                  setTimeout(function () {
+                    if (xe && xe.paused && !vodUserPaused && "vod" === X.playerMode) {
+                      var p2 = xe.play();
+                      p2 && p2.catch && p2.catch(function () { });
+                    }
+                  }, 250);
+                });
+              }
+            } catch (e) { }
+            return;
+          }
+          (ri(),
             si("pause"),
             br && (wr = !0));
         }),
         (xe.onplay = function () {
+          vodUserPaused = !1;
           "vod" === X.playerMode &&
             (si("none"),
-            ri(),
-            (ni = setInterval(function () {
-              if (
-                "player" === X.screen &&
-                "vod" === X.playerMode &&
-                xe &&
-                !xe.paused
-              ) {
-                var e = br ? Cr + (xe.currentTime || 0) : xe.currentTime || 0,
-                  t =
-                    xe && isFinite(xe.duration) && xe.duration > 0
-                      ? xe.duration
-                      : 0,
-                  a =
-                    X.playerEpisode && X.playerEpisode.duration
-                      ? ii(X.playerEpisode.duration)
-                      : 0,
-                  i =
-                    X.playerItem && X.playerItem.duration
-                      ? ii(X.playerItem.duration)
-                      : 0,
-                  n = t || a || i || 0;
-                (oi(e, n), yn(e), sn(e, n));
-              }
-            }, 500)));
+              ri(),
+              (ni = setInterval(function () {
+                if (
+                  "player" === X.screen &&
+                  "vod" === X.playerMode &&
+                  xe &&
+                  !xe.paused
+                ) {
+                  var e = br ? Cr + (xe.currentTime || 0) : xe.currentTime || 0,
+                    n = Hr();
+                  (oi(e, n), yn(e), sn(e, n));
+                  /* Watchdog de pantalla negra / solo audio:
+                     Si el video arranca en Modo Normal, ya lleva >= 3.5 s reproduciéndose (audio suena),
+                     pero videoWidth === 0 (el decodificador de video no puede demuxar la pista de imagen),
+                     se activa automáticamente Modo Fluido para rescatar la imagen sin que el usuario deba hacer nada. */
+                  if (
+                    "player" === X.screen &&
+                    "vod" === X.playerMode &&
+                    "normal" === X.streamMode &&
+                    xe &&
+                    !xe.paused &&
+                    (xe.currentTime || 0) >= 3.5 &&
+                    xe.videoWidth === 0 &&
+                    X.playerItem
+                  ) {
+                    var noVideoKey = (Ln(X.playerItem) || Sn(X.playerItem)) + "|no_video";
+                    if (wn !== noVideoKey) {
+                      wn = noVideoKey;
+                      X.streamMode = "smooth";
+                      Lr();
+                      jr("Optimizando imagen con Modo Fluido…");
+                      setTimeout(function () {
+                        "vod" === X.playerMode &&
+                          "smooth" === X.streamMode &&
+                          sr();
+                      }, 0);
+                      return;
+                    }
+                  }
+                  /* Watchdog de pantalla negra en Modo Fluido:
+                     Si lleva >= 3.5 s reproduciéndose pero videoWidth === 0, reinicia el relay
+                     en el segundo actual para solicitar un IDR keyframe fresco. */
+                  if (
+                    "player" === X.screen &&
+                    "vod" === X.playerMode &&
+                    ("smooth" === X.streamMode || "relay" === X.streamMode) &&
+                    br &&
+                    xe &&
+                    !xe.paused &&
+                    (xe.currentTime || 0) >= 3.5 &&
+                    xe.videoWidth === 0 &&
+                    X.playerItem
+                  ) {
+                    var smoothNoVideoKey = (Ln(X.playerItem) || Sn(X.playerItem)) + "|smooth_no_video";
+                    if (wn !== smoothNoVideoKey) {
+                      wn = smoothNoVideoKey;
+                      var curAt = Math.max(0, Math.floor(Cr + (xe.currentTime || 0)));
+                      console.log("[xuper-smooth] audio sin video en Modo Fluido, reiniciando en " + curAt);
+                      jr("Sincronizando imagen…");
+                      Gr(br + "?start=" + curAt);
+                      return;
+                    }
+                  }
+                }
+              }, 500)));
         }),
         (xe.onwaiting = function () {
           /* Solo el aviso visual, como en la 2.2.77. Aquí NO se arma el
@@ -12513,43 +12924,43 @@
         if (xe.currentSrc || xe.getAttribute("src")) {
           (xe.pause(), xe.removeAttribute("src"), xe.load());
         }
-      } catch (e) {}
+      } catch (e) { }
       for (
         /* En vivo NO se envía playTime.start=0: forzar el inicio al segmento
            más viejo de la ventana HLS saca al decodificador del borde en vivo
            y termina en MEDIA_ERR_DECODE (err=3). VOD conserva el inicio en 0. */
         var l = "live" === X.playerMode
-              ? { mediaTransportType: o ? "HLS" : "URI" }
-              : {
-                  mediaTransportType: o ? "HLS" : "URI",
-                  option: {
-                    transmission: {
-                      playTime: { start: 0 },
-                    },
-                  },
-                },
-          d = encodeURI(JSON.stringify(l)),
-          c = a ? s : s + ";mediaOption=" + d;
+          ? { mediaTransportType: o ? "HLS" : "URI" }
+          : {
+            mediaTransportType: o ? "HLS" : "URI",
+            option: {
+              transmission: {
+                playTime: { start: 0 },
+              },
+            },
+          },
+        d = encodeURI(JSON.stringify(l)),
+        c = a ? s : s + ";mediaOption=" + d;
         xe.firstChild;
       )
         xe.removeChild(xe.firstChild);
       if ((xe.removeAttribute("src"), a))
         try {
           xe.mediaOption = null;
-        } catch (e) {}
+        } catch (e) { }
       else
         try {
           xe.mediaOption = l;
-        } catch (e) {}
+        } catch (e) { }
       var p = document.createElement("source");
       if ((p.setAttribute("src", e), p.setAttribute("type", c), o))
         try {
           xe.load();
-        } catch (e) {}
+        } catch (e) { }
       if ((xe.appendChild(p), !o))
         try {
           xe.src = e;
-        } catch (e) {}
+        } catch (e) { }
       /* En vivo no se altera currentTime: en el demuxer nativo de webOS
          cualquier posición forzada (aunque sea 0) rompe la sincronización de
          una emisión HLS/TS y provoca MEDIA_ERR_DECODE (err=3). */
@@ -12557,7 +12968,7 @@
         (function () {
           try {
             xe.currentTime = 0;
-          } catch (e) {}
+          } catch (e) { }
         })();
       (xe.classList.add("is-active"), Te && (Te.style.display = "none"));
       try {
@@ -12568,7 +12979,7 @@
           u.catch(function () {
             xe.error ||
               ((X.streamError = "Pulsa OK para iniciar la reproducción"),
-              jr(X.streamError));
+                jr(X.streamError));
           });
       } catch (e) {
         ((X.streamError = "Pulsa OK para iniciar la reproducción"),
@@ -12576,18 +12987,39 @@
       }
     }
     function v() {
-      (Dr(), jr(""));
+      (Dr(), jr(""), Gn());
     }
   }
   function Qr(e, t) {
     var a = yr;
     function i() {
-      var i = { contentId: e.id };
+      if ((!X.resumePosition || X.resumePosition <= 3) && e) {
+        var isSeries = x(e);
+        var curEpId = X.playerEpisode && String(X.playerEpisode.id);
+        var hist = (Q && Q.history) || [];
+        for (var h = 0; h < hist.length; h++) {
+          if (String(hist[h].id) === String(e.id)) {
+            // En series, la posición guardada SOLO aplica si corresponde al MISMO capítulo
+            if (isSeries && curEpId && hist[h].episodeId && String(hist[h].episodeId) !== curEpId) {
+              break;
+            }
+            var pos = Math.floor(Number(hist[h].position) || 0);
+            var dur = Math.floor(Number(hist[h].duration) || 0);
+            // Si el contenido ya terminó (a menos de 25s del final), empezar desde 0
+            if (dur > 60 && pos >= dur - 25) {
+              pos = 0;
+            }
+            if (pos > 3) X.resumePosition = pos;
+            break;
+          }
+        }
+      }
+      var i = { contentId: e.id, title: e.title || e.name || "" };
       var ptT0 = Date.now();
       if (
         ((i.playbackMode = X.streamMode),
-        (i.forceRelay = "smooth" === X.streamMode || "relay" === X.streamMode),
-        i.forceRelay)
+          (i.forceRelay = "smooth" === X.streamMode || "relay" === X.streamMode),
+          i.forceRelay)
       ) {
         var n = _r();
         i.container = n;
@@ -12605,6 +13037,9 @@
       if (((ver > 0 && ver < 3) || legacyModel) && "auto" === curQuality) {
         panelUhd = !1;
       }
+      if ("1080" === curQuality || "720" === curQuality) {
+        panelUhd = !1;
+      }
       ((i.quality = curQuality),
         (i.hevc = xHevcCapable()),
         (i.uhd = panelUhd));
@@ -12615,9 +13050,9 @@
           (s && s.audio) || (r && r.streamAudioInfo) || e.streamAudioInfo || "";
       if (
         ((Xi = preferredAudioIndex(l)),
-        (i.audioTrack = Xi || 0),
-        (i.audioPreference = X.audioPreferenceCode || ""),
-        x(e))
+          (i.audioTrack = Xi || 0),
+          (i.audioPreference = X.audioPreferenceCode || ""),
+          x(e))
       ) {
         var d = X.playerEpisode,
           c = e.seasonId || e.id;
@@ -12635,7 +13070,7 @@
         try {
           (window.__xuperTiming || (window.__xuperTiming = {})).resolveMs =
             Date.now() - ptT0;
-        } catch (e) {}
+        } catch (e) { }
         /* Como XuperMH: si Modo Fluido no se puede resolver, reintenta una vez
            por el camino Normal en lugar de dejar al espectador sin vídeo. */
         if (
@@ -12666,7 +13101,7 @@
           (e.subtitles = n.subtitles || []),
           (e.streamAudioInfo = n.audio || e.streamAudioInfo || ""),
           X.playerEpisode &&
-            (X.playerEpisode.streamAudioInfo = n.audio || ""),
+          (X.playerEpisode.streamAudioInfo = n.audio || ""),
           (e.isHls = !!n.isHls),
           n.audio && (Xi = preferredAudioIndex(n.audio)));
         var r = {
@@ -12682,11 +13117,12 @@
             selectedTrack: n.selectedTrack || {},
             availableTracks: n.availableTracks || [],
           };
-        } catch (e) {}
+        } catch (e) { }
         var o = n.proxyPath || n.url || "",
           s = Math.floor(Number(X.resumePosition) || 0);
         if (s > 3 && /127\.0\.0\.1:8787\/s\//.test(o)) {
           o += (o.indexOf("?") >= 0 ? "&" : "?") + "start=" + s;
+          jr("Reanudando desde " + ai(s) + "…");
           X.resumePosition = 0;
         }
         t(o);
@@ -12709,6 +13145,7 @@
   }
   function Jr(e, t) {
     if (xe) {
+      vodUserPaused = !1;
       (t &&
         ((X.playerEpisode = t), (X.playerSeasonIndex = X.detailSeason || 0)),
         e && (X.playerItem = e));
@@ -12759,12 +13196,13 @@
       ro();
     }
     var i =
-        !a ||
-        !X.playerEpisode ||
-        X.playerEpisode === a ||
-        X.playerEpisode.id === a.id,
+      !a ||
+      !X.playerEpisode ||
+      X.playerEpisode === a ||
+      X.playerEpisode.id === a.id,
       n = "detail" === X.screen && xe && !!xe.src && X.playerItem === e && i;
     ((X.playerMode = "vod"),
+      (vodUserPaused = !1),
       e && X.playerItem !== e && _n(),
       e && (X.playerItem = e),
       a && (X.playerEpisode = a),
@@ -12824,6 +13262,8 @@
     liveGuardUntil = 0,
     liveGuardCooldown = 0,
     liveUserPaused = !1,
+    vodUserPaused = !1,
+    vodPauseTime = 0,
     liveDecodeRetries = 0,
     liveDecodeCooldown = 0,
     liveLogBuf = [],
@@ -12853,10 +13293,10 @@
           liveLogBuf = [];
           if (!batch.length) return;
           try {
-            P("liveLog", { events: batch }, function () {}, 8e3);
-          } catch (e) {}
+            P("liveLog", { events: batch }, function () { }, 8e3);
+          } catch (e) { }
         }, 1500));
-    } catch (e) {}
+    } catch (e) { }
   }
   function clearLiveStallWatch() {
     liveStallTimer && (clearTimeout(liveStallTimer), (liveStallTimer = null));
@@ -12894,7 +13334,7 @@
     clearLiveStallWatch();
     try {
       xe && xe.pause();
-    } catch (e) {}
+    } catch (e) { }
     eo && (clearTimeout(eo), (eo = null));
     setTimeout(function () {
       "live" === X.playerMode &&
@@ -12923,9 +13363,9 @@
         if (!liveUserPaused) {
           try {
             var pr = xe.play();
-            pr && pr.catch && pr.catch(function () {});
+            pr && pr.catch && pr.catch(function () { });
             logLive("resume");
-          } catch (e) {}
+          } catch (e) { }
         }
         watchLiveStall(delay);
         return;
@@ -12938,7 +13378,7 @@
       try {
         if (xe.buffered && xe.buffered.length > 0)
           end = xe.buffered.end(xe.buffered.length - 1);
-      } catch (e) {}
+      } catch (e) { }
       /* Si la reproducción en vivo tiene buffer saludable (más de 1.5s por
          delante) y readyState >= 3, el canal está fluyendo normalmente y
          NO se debe interrumpir ni recargar. */
@@ -12955,7 +13395,7 @@
           logLive("nudge");
           watchLiveStall(25e3);
           return;
-        } catch (e) {}
+        } catch (e) { }
       }
       if (liveStallRetries < 2) {
         liveStallRetries++;
@@ -12972,8 +13412,8 @@
   function to(e, t, force) {
     if (
       (eo && (clearTimeout(eo), (eo = null)),
-      e || (e = F[X.channel]),
-      e && (e.channelCode || e.streamUrl))
+        e || (e = F[X.channel]),
+        e && (e.channelCode || e.streamUrl))
     ) {
       if (F && F.length) {
         var idx = F.indexOf(e);
@@ -12981,11 +13421,11 @@
       }
       liveStallChannel !== X.channel &&
         ((liveStallChannel = X.channel),
-        (liveStallRetries = 0),
-        (liveStallLastTime = -1),
-        (liveStallStableSince = 0),
-        (liveDecodeRetries = 0),
-        (liveDecodeCooldown = 0));
+          (liveStallRetries = 0),
+          (liveStallLastTime = -1),
+          (liveStallStableSince = 0),
+          (liveDecodeRetries = 0),
+          (liveDecodeCooldown = 0));
       clearLiveStallWatch();
       logLive("zap");
       /* Al cambiar de canal o solicitar recarga, pausar y desmontar la señal
@@ -12997,8 +13437,8 @@
           xe.removeAttribute("src");
           xe.load();
         }
-      } catch (errZap) {}
-      var a = function () {
+      } catch (errZap) { }
+      var doResolveLive = function () {
         var t = ++Zr;
         (jr("Cargando señal " + (e.name || "") + "…"),
           P(
@@ -13006,26 +13446,39 @@
             e.streamUrl
               ? { streamUrl: e.streamUrl, channelCode: e.channelCode || "", force: force ? 1 : 0, name: e.name || "" }
               : { channelCode: e.channelCode, force: force ? 1 : 0, name: e.name || "" },
-            function (e, a) {
+            function (errLive, resPayload) {
               if (t === Zr) {
-                if (e || !a || !1 === a.returnValue) {
+                if (errLive || !resPayload || !1 === resPayload.returnValue) {
                   clearLiveStallWatch();
                   try {
                     xe && (xe.pause(), xe.removeAttribute("src"), xe.load());
-                  } catch (errErr) {}
-                  return (
-                    (X.streamError =
-                      "No se pudo conectar con la señal" + (e ? ": " + e : "")),
-                    void jr(X.streamError)
-                  );
+                  } catch (errErr) { }
+                  var errStr = String(errLive || "");
+                  var is200001 = /200001|版本已停止使用/i.test(errStr) || errStr.indexOf("portal200001") !== -1;
+                  var errMsg = is200001
+                    ? "Señal temporalmente no disponible en el servidor. Reconectando…"
+                    : ("No se pudo conectar con la señal" + (errLive ? ": " + errLive : ""));
+                  X.streamError = errMsg;
+                  jr(X.streamError);
+                  if (is200001 && "live" === X.playerMode && !window.__liveRetrying200001) {
+                    window.__liveRetrying200001 = true;
+                    eo = setTimeout(function () {
+                      window.__liveRetrying200001 = false;
+                      if ("live" === X.playerMode && t === Zr) {
+                        console.log("[live] auto-reintentando conexión tras respuesta del servidor...");
+                        doResolveLive();
+                      }
+                    }, 4000);
+                  }
+                  return;
                 }
-                D("live", a);
-                var i = a.proxyPath || a.url;
+                D("live", resPayload);
+                var i = resPayload.proxyPath || resPayload.url;
                 if (!i) {
                   clearLiveStallWatch();
                   try {
                     xe && (xe.pause(), xe.removeAttribute("src"), xe.load());
-                  } catch (errNoUrl) {}
+                  } catch (errNoUrl) { }
                   return (
                     (X.streamError = "Señal no disponible"),
                     void jr(X.streamError)
@@ -13036,7 +13489,7 @@
             }
           ));
       };
-      t ? a() : (eo = setTimeout(a, 180));
+      t ? doResolveLive() : (eo = setTimeout(doResolveLive, 180));
     }
   }
   function ao() {
@@ -13064,9 +13517,9 @@
         (c.style.display = t.uhd ? "block" : "none"),
         (p.style.display = "block"),
         p &&
-          (t.logo
-            ? (p.style.backgroundImage = "url(" + t.logo + ")")
-            : (p.style.backgroundImage = "")));
+        (t.logo
+          ? (p.style.backgroundImage = "url(" + t.logo + ")")
+          : (p.style.backgroundImage = "")));
     else {
       we && (we.classList.remove("is-active"), (we.style.display = "none"));
       var u = X.playerItem || l[0];
@@ -13102,8 +13555,8 @@
       t &&
       a &&
       ((e.style.left = "517.5px"),
-      (t.style.left = e.offsetLeft + e.offsetWidth + 30 + "px"),
-      (a.style.left = t.offsetLeft + t.offsetWidth + 30 + "px"));
+        (t.style.left = e.offsetLeft + e.offsetWidth + 30 + "px"),
+        (a.style.left = t.offsetLeft + t.offsetWidth + 30 + "px"));
   }
   function no() {
     if ("live" === X.playerMode) {
@@ -13136,26 +13589,26 @@
     var e = t("app");
     if (e) {
       var a = (function () {
-          var e =
-              window.innerWidth ||
-              (document.documentElement &&
-                document.documentElement.clientWidth) ||
-              0,
-            t =
-              window.innerHeight ||
-              (document.documentElement &&
-                document.documentElement.clientHeight) ||
-              0;
-          (e && t) || ((e = 1920), (t = 1080));
-          /* El panel físico solo sirve como dato de diagnóstico. Escalar con
-             screen.width/haría que en un TV 4K que reporta una ventana de
-             1920×1080 (dpr 2) el lienzo se dibujara a 3840×2160 y quedara
-             recortado a la mitad; la escala debe salir siempre del viewport
-             real que la app puede pintar. */
-          var a = Math.floor((screen && screen.width) || 0),
-            i = Math.floor((screen && screen.height) || 0);
-          return { w: e, h: t, panel: a > 0 && i > 0 ? { w: a, h: i } : null };
-        })(),
+        var e =
+          window.innerWidth ||
+          (document.documentElement &&
+            document.documentElement.clientWidth) ||
+          0,
+          t =
+            window.innerHeight ||
+            (document.documentElement &&
+              document.documentElement.clientHeight) ||
+            0;
+        (e && t) || ((e = 1920), (t = 1080));
+        /* El panel físico solo sirve como dato de diagnóstico. Escalar con
+           screen.width/haría que en un TV 4K que reporta una ventana de
+           1920×1080 (dpr 2) el lienzo se dibujara a 3840×2160 y quedara
+           recortado a la mitad; la escala debe salir siempre del viewport
+           real que la app puede pintar. */
+        var a = Math.floor((screen && screen.width) || 0),
+          i = Math.floor((screen && screen.height) || 0);
+        return { w: e, h: t, panel: a > 0 && i > 0 ? { w: a, h: i } : null };
+      })(),
         i = a.w,
         n = a.h,
         r = Math.min(i / 1920, n / 1080),
@@ -13213,87 +13666,87 @@
       },
       !1
     );
-      var lastHoverAt = 0;
-      document.addEventListener("mouseover", function (e) {
-        /* El control Magic puede emitir decenas de "mouseover" por segundo.
-           En TVs lentas eso repintaba el foco sin parar; se limita a ~12 fps.
-           Ademas ignoramos hover si acabamos de pulsar Back para evitar recaptura inmediata. */
-        var now = Date.now();
-        if (now - lastBackKeyDown < 500) return;
-        if (now - lastHoverAt < 80) return;
-        lastHoverAt = now;
-        var tElem = n(e.target, ".focusable");
-        if (tElem && at(tElem) && X.focus !== tElem) {
-          rt(tElem, !0);
+    var lastHoverAt = 0;
+    document.addEventListener("mouseover", function (e) {
+      /* El control Magic puede emitir decenas de "mouseover" por segundo.
+         En TVs lentas eso repintaba el foco sin parar; se limita a ~12 fps.
+         Ademas ignoramos hover si acabamos de pulsar Back para evitar recaptura inmediata. */
+      var now = Date.now();
+      if (now - lastBackKeyDown < 500) return;
+      if (now - lastHoverAt < 80) return;
+      lastHoverAt = now;
+      var tElem = n(e.target, ".focusable");
+      if (tElem && at(tElem) && X.focus !== tElem) {
+        rt(tElem, !0);
+      }
+    }, !1);
+    document.addEventListener("click", function (e) {
+      var t = n(e.target, ".focusable");
+      if (t) {
+        rt(t, !0);
+        if (t._activate) {
+          t._activate(e);
+        } else if (t.click && t !== e.target) {
+          t.click();
         }
-      }, !1);
-      document.addEventListener("click", function (e) {
-        var t = n(e.target, ".focusable");
-        if (t) {
-          rt(t, !0);
-          if (t._activate) {
-            t._activate(e);
-          } else if (t.click && t !== e.target) {
-            t.click();
-          }
+        return;
+      }
+      if (Ht) {
+        if (!n(e.target, ".dialog-addons-box")) {
+          la();
           return;
         }
-        if (Ht) {
-          if (!n(e.target, ".dialog-addons-box")) {
-            la();
-            return;
-          }
-        } else if (catalogFilterDialog) {
-          if (!n(e.target, ".catalog-filter-card")) {
-            closeCatalogFilter();
-            return;
-          }
-        } else if (liveFavoritePrompt) {
-          if (!n(e.target, ".pc-favorite-box")) {
-            closeLiveFavoriteConfirm();
-            return;
-          }
-        } else if (xa || (DialogManager && DialogManager.isOpen("seasonPopup"))) {
-          if (!n(e.target, ".season-popup")) {
-            Ta();
-            return;
-          }
-        } else if (X.categoryPickerOpen) {
-          if (!n(e.target, ".player-categories") && !n(e.target, ".pcat-box")) {
-            ur();
-            return;
-          }
-        } else if (X.episodeBrowserOpen) {
-          if (!n(e.target, "#player-episodes")) {
-            zn();
-            return;
-          }
-        } else if ("player" === X.screen) {
-          if (!n(e.target, ".player-channels") && !n(e.target, ".player-infobar") && !n(e.target, ".player-vod-infobar")) {
-            if (X.channelsOpen) {
-              no();
-            } else {
-              X.infobar ? ui() : pi();
-            }
-          }
-        }
-      }, !1);
-      window.addEventListener("wheel", function (e) {
-        var delta = e.deltaY || e.wheelDelta || 0;
-        if (!delta) return;
-        var scrollY = findScrollable(e.target, !1);
-        if (scrollY) {
-          smoothScroll(scrollY, null, scrollY.scrollTop + (delta > 0 ? 140 : -140), 160);
-          e.preventDefault && e.preventDefault();
+      } else if (catalogFilterDialog) {
+        if (!n(e.target, ".catalog-filter-card")) {
+          closeCatalogFilter();
           return;
         }
-        var scrollX = findScrollable(e.target, !0);
-        if (scrollX) {
-          smoothScroll(scrollX, scrollX.scrollLeft + (delta > 0 ? 240 : -240), null, 160);
-          e.preventDefault && e.preventDefault();
+      } else if (liveFavoritePrompt) {
+        if (!n(e.target, ".pc-favorite-box")) {
+          closeLiveFavoriteConfirm();
           return;
         }
-      }, !1);
+      } else if (xa || (DialogManager && DialogManager.isOpen("seasonPopup"))) {
+        if (!n(e.target, ".season-popup")) {
+          Ta();
+          return;
+        }
+      } else if (X.categoryPickerOpen) {
+        if (!n(e.target, ".player-categories") && !n(e.target, ".pcat-box")) {
+          ur();
+          return;
+        }
+      } else if (X.episodeBrowserOpen) {
+        if (!n(e.target, "#player-episodes")) {
+          zn();
+          return;
+        }
+      } else if ("player" === X.screen) {
+        if (!n(e.target, ".player-channels") && !n(e.target, ".player-infobar") && !n(e.target, ".player-vod-infobar")) {
+          if (X.channelsOpen) {
+            no();
+          } else {
+            X.infobar ? ui() : pi();
+          }
+        }
+      }
+    }, !1);
+    window.addEventListener("wheel", function (e) {
+      var delta = e.deltaY || e.wheelDelta || 0;
+      if (!delta) return;
+      var scrollY = findScrollable(e.target, !1);
+      if (scrollY) {
+        smoothScroll(scrollY, null, scrollY.scrollTop + (delta > 0 ? 140 : -140), 160);
+        e.preventDefault && e.preventDefault();
+        return;
+      }
+      var scrollX = findScrollable(e.target, !0);
+      if (scrollX) {
+        smoothScroll(scrollX, scrollX.scrollLeft + (delta > 0 ? 240 : -240), null, 160);
+        e.preventDefault && e.preventDefault();
+        return;
+      }
+    }, !1);
     try {
       _a();
     } catch (e) {
@@ -13310,7 +13763,7 @@
             !isNaN(t) && t > 0 && (Tr = t);
           }
         });
-    } catch (e) {}
+    } catch (e) { }
     try {
       !(function () {
         if (I()) {
@@ -13320,26 +13773,26 @@
               method: "keepAlive",
               parameters: { subscribe: !0 },
               resubscribe: !0,
-              onSuccess: function () {},
-              onFailure: function () {},
+              onSuccess: function () { },
+              onFailure: function () { },
             });
-          } catch (e) {}
+          } catch (e) { }
           setInterval(function () {
             try {
               window.webOS.service.request("luna://" + e, {
                 method: "heartbeat",
                 parameters: {},
-                onSuccess: function () {},
-                onFailure: function () {},
+                onSuccess: function () { },
+                onFailure: function () { },
               });
-            } catch (e) {}
+            } catch (e) { }
           }, 15e3);
         }
       })();
-    } catch (e) {}
+    } catch (e) { }
     try {
-      P("prewarm", {}, function () {});
-    } catch (e) {}
+      P("prewarm", {}, function () { });
+    } catch (e) { }
     var e, a;
     ((e = t("welcome-loading-img")),
       (a = 1),
@@ -13352,8 +13805,8 @@
         ++a > 16
           ? vt()
           : e &&
-            (e.src =
-              "assets/original/welcome/img_welcome_loading" + a + ".png");
+          (e.src =
+            "assets/original/welcome/img_welcome_loading" + a + ".png");
       }, 250)));
     try {
       V();
@@ -13368,7 +13821,7 @@
     (setTimeout(function () {
       try {
         oa(!0);
-      } catch (e) {}
+      } catch (e) { }
     }, 6e3),
       (window.__xuper = {
         version: "4.34.4",
@@ -13410,7 +13863,7 @@
           t && rt(t);
         },
         key: function (e) {
-          ut({ keyCode: e, preventDefault: function () {} });
+          ut({ keyCode: e, preventDefault: function () { } });
         },
         search: function (e) {
           (La(), Aa(e));
@@ -13446,10 +13899,10 @@
             : "settings" === o
               ? (Ha(), void 0 !== t.panel && Ua(parseInt(t.panel, 10) || 0, !0))
               : "player" === o &&
-                (Yr(
-                  "vod" === t.mode ? "vod" : "live",
-                  l[parseInt(t.vod, 10) || 0]
-                ),
+              (Yr(
+                "vod" === t.mode ? "vod" : "live",
+                l[parseInt(t.vod, 10) || 0]
+              ),
                 "1" === t.channels && no());
         if (t.focus) {
           var s = document.querySelector(t.focus);
@@ -13499,13 +13952,13 @@
       void v.offsetHeight;
       if (prevTransform) v.style.transform = prevTransform;
       if (prevWebkitTransform) v.style.webkitTransform = prevWebkitTransform;
-    } catch (e) {}
+    } catch (e) { }
     try {
       if (v.paused && !liveUserPaused) {
         var p = v.play();
-        p && p.catch && p.catch(function () {});
+        p && p.catch && p.catch(function () { });
       }
-    } catch (e) {}
+    } catch (e) { }
   }
   function restoreVideoSurfaces() {
     if (document.hidden) return;
@@ -13533,7 +13986,7 @@
       /* Al minimizar la app NO se desmonta el reproductor: en webOS el audio
          del canal sigue vivo y, al volver, solo hay que repintar la superficie
          de vídeo. Solo se cierran los paneles para que no reaparezcan abiertos. */
-      try { Da(); } catch (e) {}
+      try { Da(); } catch (e) { }
     } else {
       scheduleVideoSurfaceRestore();
     }
@@ -13541,7 +13994,7 @@
   (window.addEventListener("beforeunload", lo),
     window.addEventListener("unload", lo),
     window.addEventListener("pagehide", function () {
-      try { Da(); } catch (e) {}
+      try { Da(); } catch (e) { }
     }),
     document.addEventListener("visibilitychange", onAppHiddenChanged),
     document.addEventListener("webkitvisibilitychange", onAppHiddenChanged),
@@ -13555,7 +14008,7 @@
           "[XuperTV error] " + e + " at " + t + ":" + a + (i ? ":" + i : "")
         ),
           X && "welcome" === X.screen && vt());
-      } catch (e) {}
+      } catch (e) { }
       return !1;
     }),
     "loading" === document.readyState

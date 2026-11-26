@@ -211,9 +211,9 @@ function buildArgs(e, t, r, o, n) {
          lento: el espectador veía "Conectando" y el relay se rendía. Con
          ~384 KB basta para detectar vídeo/audio de una señal ya conocida. */
       "-probesize",
-      "384K",
+      "1024K",
       "-analyzeduration",
-      "300000",
+      "1000000",
     ];
   return (
     /^https?:\/\//i.test(c) &&

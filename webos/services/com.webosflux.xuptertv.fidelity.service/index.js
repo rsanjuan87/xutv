@@ -160,6 +160,8 @@ function resolveStream(e, r) {
         quality: a.quality,
         hevc: a.hevc,
         uhd: a.uhd,
+        title: a.title || a.name || "",
+        episodeNumber: a.episodeNumber || a.episodeIndex || 0,
       };
     magis.resolve(a.contentId, a.seriesContentId, s, function (s, t) {
       if (s) return fail(e, s);
@@ -814,6 +816,20 @@ function startHttpApi() {
   service.register("setSession", function (e) {
     if (needModule(e, magis, "./magis")) {
       var p = e.payload || {};
+      if (p.action === "reset" || p.reset) {
+        var onResetDone = function (err, res) {
+          if (err) return respond(e, err, null);
+          respond(e, null, { ok: !0, reset: !0, identity: res });
+        };
+        return magis.resetIdentity(onResetDone);
+      }
+      if (p.action === "shared" || p.useShared) {
+        var onSharedDone = function (err, res) {
+          if (err) return respond(e, err, null);
+          respond(e, null, { ok: !0, shared: !0, session: res });
+        };
+        return magis.loginSharedAccount(onSharedDone);
+      }
       var uid = p.userId && String(p.userId).trim();
       var tok = p.userToken && String(p.userToken).trim();
       var sn = (p.sn && String(p.sn).trim()) || "";
